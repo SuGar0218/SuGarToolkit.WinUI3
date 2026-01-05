@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="SuGarToolkit.WinUI3.Samples.Dialogs.Views.ContentDialogPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SuGarToolkit.WinUI3.Samples.Dialogs.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SuGarToolkit.WinUI3.Samples.Dialogs.ViewModels"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="Expander">
+            <Setter Property="ExpandDirection" Value="Down" />
+            <Setter Property="IsExpanded" Value="True" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="24" Spacing="16">
+            <Expander>
+                <Expander.DataContext>
+                    <vm:ContentDialogInfo x:Name="WindowedContentDialogInfo" />
+                </Expander.DataContext>
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button
+                            Click="OnShowWindowedContentDialogButtonClick"
+                            Content="ContentDialogWindow"
+                            Style="{ThemeResource AccentButtonStyle}" />
+                        <TextBlock VerticalAlignment="Center" Text="{x:Bind WindowedContentDialogInfo.Result, Mode=OneWay}" />
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="12">
+                    <TextBox Header="Header" Text="{x:Bind ContentDialogWindowInfo.Header, Mode=TwoWay}" />
+                    <TextBox Header="PrimaryButtonContent" Text="{x:Bind ContentDialogWindowInfo.PrimaryButtonText, Mode=TwoWay}" />
+                    <TextBox Header="SecondaryButtonContent" Text="{x:Bind ContentDialogWindowInfo.SecondaryButtonText, Mode=TwoWay}" />
+                    <TextBox Header="CloseButtonContent" Text="{x:Bind ContentDialogWindowInfo.CloseButtonText, Mode=TwoWay}" />
+                </StackPanel>
+            </Expander>
+
+            <Expander>
+                <Expander.DataContext>
+                    <vm:ContentDialogInfo x:Name="ContentDialogWindowInfo" />
+                </Expander.DataContext>
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button
+                            Click="OnShowContentDialogWindowButtonClick"
+                            Content="ContentDialogWindow"
+                            Style="{ThemeResource AccentButtonStyle}" />
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="12">
+                    <TextBox Header="PrimaryButtonContent" Text="{x:Bind ContentDialogWindowInfo.PrimaryButtonText, Mode=TwoWay}" />
+                    <TextBox Header="SecondaryButtonContent" Text="{x:Bind ContentDialogWindowInfo.SecondaryButtonText, Mode=TwoWay}" />
+                    <TextBox Header="CloseButtonContent" Text="{x:Bind ContentDialogWindowInfo.CloseButtonText, Mode=TwoWay}" />
+                </StackPanel>
+            </Expander>
+
+            <Expander>
+                <Expander.DataContext>
+                    <vm:ContentDialogInfo x:Name="ExtendedContentDialogWindowInfo" />
+                </Expander.DataContext>
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button
+                            Click="OnShowExtendedContentDialogWindowButtonClick"
+                            Content="ExtendedContentDialogWindow"
+                            Style="{ThemeResource AccentButtonStyle}" />
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="12">
+                    <TextBox Header="PrimaryButtonContent" Text="{x:Bind ExtendedContentDialogWindowInfo.PrimaryButtonText, Mode=TwoWay}" />
+                    <TextBox Header="SecondaryButtonContent" Text="{x:Bind ExtendedContentDialogWindowInfo.SecondaryButtonText, Mode=TwoWay}" />
+                    <TextBox Header="CloseButtonContent" Text="{x:Bind ExtendedContentDialogWindowInfo.CloseButtonText, Mode=TwoWay}" />
+                </StackPanel>
+            </Expander>
+
+            <Expander>
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button
+                            Click="OnShowUacDialogWindowButtonClick"
+                            Content="UAC styled dialog"
+                            Style="{ThemeResource AccentButtonStyle}" />
+                    </StackPanel>
+                </Expander.Header>
+                <ComboBox
+                    x:Name="PART_SeverityComboBox"
+                    Header="Severity"
+                    SelectedIndex="0">
+                    <InfoBarSeverity>Informational</InfoBarSeverity>
+                    <InfoBarSeverity>Warning</InfoBarSeverity>
+                    <InfoBarSeverity>Error</InfoBarSeverity>
+                    <InfoBarSeverity>Success</InfoBarSeverity>
+                </ComboBox>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

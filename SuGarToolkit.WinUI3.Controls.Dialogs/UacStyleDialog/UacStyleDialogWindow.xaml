@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SuGarToolkit.WinUI3.Controls.Dialogs">
+
+    <Style x:Key="UacStyleDialogWindowDefaultStyle" TargetType="local:UacStyleDialogWindow">
+        <Setter Property="DefaultButton" Value="Primary" />
+        <Setter Property="PrimaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
+        <Setter Property="SecondaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
+        <Setter Property="CloseButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:UacStyleDialogWindow">
+                    <local:UacStyleDialogView
+                        x:Name="PART_UacStyleDialogView"
+                        CloseButtonAccessKey="{TemplateBinding CloseButtonAccessKey}"
+                        CloseButtonContent="{TemplateBinding CloseButtonContent}"
+                        CloseButtonStyle="{TemplateBinding CloseButtonStyle}"
+                        CloseButtonTemplate="{TemplateBinding CloseButtonTemplate}"
+                        Content="{TemplateBinding Content}"
+                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                        DefaultButton="{TemplateBinding DefaultButton}"
+                        ExtendedHeader="{TemplateBinding ExtendedHeader}"
+                        ExtendedHeaderBackground="{TemplateBinding ExtendedHeaderBackground}"
+                        ExtendedHeaderTemplate="{TemplateBinding ExtendedHeaderTemplate}"
+                        Header="{TemplateBinding Header}"
+                        HeaderTemplate="{TemplateBinding HeaderTemplate}"
+                        IsPrimaryButtonEnabled="{TemplateBinding IsPrimaryButtonEnabled}"
+                        IsSecondaryButtonEnabled="{TemplateBinding IsSecondaryButtonEnabled}"
+                        PrimaryButtonAccessKey="{TemplateBinding PrimaryButtonAccessKey}"
+                        PrimaryButtonContent="{TemplateBinding PrimaryButtonContent}"
+                        PrimaryButtonStyle="{TemplateBinding PrimaryButtonStyle}"
+                        PrimaryButtonTemplate="{TemplateBinding PrimaryButtonTemplate}"
+                        SecondaryButtonAccessKey="{TemplateBinding SecondaryButtonAccessKey}"
+                        SecondaryButtonContent="{TemplateBinding SecondaryButtonContent}"
+                        SecondaryButtonStyle="{TemplateBinding SecondaryButtonStyle}"
+                        SecondaryButtonTemplate="{TemplateBinding SecondaryButtonTemplate}"
+                        Severity="{TemplateBinding Severity}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style BasedOn="{StaticResource UacStyleDialogWindowDefaultStyle}" TargetType="local:UacStyleDialogWindow" />
+
+    <Style
+        x:Key="UacStyleDialogWindowErrorSeverityStyle"
+        BasedOn="{StaticResource UacStyleDialogWindowDefaultStyle}"
+        TargetType="local:UacStyleDialogWindow">
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogErrorSeverityHeaderBackgroundBrush}" />
+    </Style>
+
+    <Style
+        x:Key="UacStyleDialogWindowWarningSeverityStyle"
+        BasedOn="{StaticResource UacStyleDialogWindowDefaultStyle}"
+        TargetType="local:UacStyleDialogWindow">
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogWarningSeverityHeaderBackgroundBrush}" />
+    </Style>
+
+    <Style
+        x:Key="UacStyleDialogWindowSuccessSeverityStyle"
+        BasedOn="{StaticResource UacStyleDialogWindowDefaultStyle}"
+        TargetType="local:UacStyleDialogWindow">
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogSuccessSeverityHeaderBackgroundBrush}" />
+    </Style>
+
+    <Style
+        x:Key="UacStyleDialogWindowInformationalSeverityStyle"
+        BasedOn="{StaticResource UacStyleDialogWindowDefaultStyle}"
+        TargetType="local:UacStyleDialogWindow">
+        <Setter Property="ExtendedHeaderBackground" Value="{ThemeResource UacStyleDialogInformationalSeverityHeaderBackgroundBrush}" />
+    </Style>
+
+</ResourceDictionary>

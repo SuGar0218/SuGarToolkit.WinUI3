@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SuGarToolkit.WinUI3.Samples.Dialogs (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SuGarToolkit.WinUI3.Samples.Dialogs (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

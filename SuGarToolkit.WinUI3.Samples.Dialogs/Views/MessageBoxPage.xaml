@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="SuGarToolkit.WinUI3.Samples.Dialogs.Views.MessageBoxPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SuGarToolkit.WinUI3.Samples.Dialogs.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SuGarToolkit.WinUI3.Samples.Dialogs.ViewModels"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="Expander">
+            <Setter Property="ExpandDirection" Value="Down" />
+            <Setter Property="IsExpanded" Value="True" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="24" Spacing="16">
+            <Expander>
+                <Expander.DataContext>
+                    <vm:MessageBoxInfo x:Name="messageBoxInfo" />
+                </Expander.DataContext>
+                <Expander.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <Button
+                            VerticalAlignment="Center"
+                            Click="OnShowMessageBoxButtonClick"
+                            Content="MessageBox"
+                            Style="{ThemeResource AccentButtonStyle}" />
+                        <TextBlock VerticalAlignment="Center" Text="{x:Bind messageBoxInfo.Result, Mode=OneWay}" />
+                    </StackPanel>
+                </Expander.Header>
+                <StackPanel Spacing="16">
+                    <TextBox Header="Title" Text="{x:Bind messageBoxInfo.Title, Mode=TwoWay}" />
+                    <TextBox Header="Message" Text="{x:Bind messageBoxInfo.Message, Mode=TwoWay}" />
+                    <ComboBox
+                        Header="Icon"
+                        ItemsSource="{x:Bind vm:MessageBoxInfo.MessageBoxIcons}"
+                        SelectedIndex="0"
+                        SelectedItem="{x:Bind messageBoxInfo.Icon, Mode=TwoWay}" />
+                    <ComboBox
+                        Header="Buttons"
+                        ItemsSource="{x:Bind vm:MessageBoxInfo.MessageBoxButtons}"
+                        SelectedIndex="0"
+                        SelectedItem="{x:Bind messageBoxInfo.Buttons, Mode=TwoWay}" />
+                    <ComboBox
+                        Header="DefaultButton"
+                        ItemsSource="{x:Bind vm:MessageBoxInfo.MessageBoxDefaultButtons}"
+                        SelectedIndex="0"
+                        SelectedItem="{x:Bind messageBoxInfo.DefaultButton, Mode=TwoWay}" />
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+
+</Page>

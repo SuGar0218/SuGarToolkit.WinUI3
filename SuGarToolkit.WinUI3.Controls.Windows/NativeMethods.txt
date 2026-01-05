@@ -1,0 +1,7 @@
+﻿GetDpiForWindow
+GetWindowLong
+SetWindowLong
+GetWindowLongPtr
+SetWindowLongPtr
+SetWindowSubclass
+DefSubclassProc

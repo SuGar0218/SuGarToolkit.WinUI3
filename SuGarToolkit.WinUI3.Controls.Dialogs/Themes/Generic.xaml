@@ -1,0 +1,16 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SuGarToolkit.WinUI3.Controls.Dialogs">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/ContentDialog/ContentDialogView.xaml" />
+        <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/ContentDialog/ContentDialogWindow.xaml" />
+        <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/ExtendedContentDialog/ExtendedContentDialogView.xaml" />
+        <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/ExtendedContentDialog/ExtendedContentDialogWindow.xaml" />
+        <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/UacStyleDialog/UacStyleDialogView.xaml" />
+        <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/UacStyleDialog/UacStyleDialogWindow.xaml" />
+        <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/MessageBox/MessageBoxView.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

@@ -1,0 +1,19 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Project Path="SuGarToolkit.WinUI3.Controls.Dialogs/SuGarToolkit.WinUI3.Controls.Dialogs.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="SuGarToolkit.WinUI3.Controls.Windows/SuGarToolkit.WinUI3.Controls.Windows.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+  </Project>
+  <Project Path="SuGarToolkit.WinUI3.Samples.Dialogs/SuGarToolkit.WinUI3.Samples.Dialogs.csproj" Id="cf55b832-15b3-40d7-b598-02ace45f93a1">
+    <Platform Project="x64" />
+    <Deploy />
+  </Project>
+</Solution>
