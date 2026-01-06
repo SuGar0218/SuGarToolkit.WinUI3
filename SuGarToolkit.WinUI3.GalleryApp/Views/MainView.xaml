@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<UserControl
+    x:Class="SuGarToolkit.WinUI3.GalleryApp.Views.MainView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SuGarToolkit.WinUI3.GalleryApp.ViewModels"
+    mc:Ignorable="d">
+
+    <UserControl.DataContext>
+        <vm:MainViewModel x:Name="ViewModel" x:FieldModifier="internal" />
+    </UserControl.DataContext>
+
+    <NavigationView
+        IsBackButtonVisible="Collapsed"
+        IsBackEnabled="False"
+        IsSettingsVisible="False"
+        MenuItemsSource="{x:Bind ViewModel.Pages}"
+        SelectionChanged="OnNavigationViewSelectionChanged">
+        <NavigationView.MenuItemTemplate>
+            <DataTemplate x:DataType="vm:PageViewModel">
+                <NavigationViewItem Content="{x:Bind Name}" />
+            </DataTemplate>
+        </NavigationView.MenuItemTemplate>
+        <Frame x:Name="PART_Frame" />
+    </NavigationView>
+
+</UserControl>

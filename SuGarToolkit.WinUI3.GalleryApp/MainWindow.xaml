@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:ContentWindow
+    x:Class="SuGarToolkit.WinUI3.GalleryApp.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SuGarToolkit.WinUI3.Controls.Windows"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:SuGarToolkit.WinUI3.GalleryApp.Views"
+    Title="SuGarToolkit.WinUI3.GalleryApp"
+    Width="1024"
+    Height="768"
+    mc:Ignorable="d">
+
+    <controls:ContentWindow.SystemBackdrop>
+        <MicaBackdrop />
+    </controls:ContentWindow.SystemBackdrop>
+
+    <views:MainView x:Name="PART_MainView" />
+
+</controls:ContentWindow>

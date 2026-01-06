@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="SuGarToolkit.WinUI3.GalleryApp.Views.ContentWindowPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:SuGarToolkit.WinUI3.GalleryApp.ViewModels"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style TargetType="Expander">
+            <Setter Property="ExpandDirection" Value="Down" />
+            <Setter Property="IsExpanded" Value="True" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="24" Spacing="16">
+            <Expander>
+                <Expander.DataContext>
+                    <vm:ContentWindowInfo x:Name="ContentWindowInfo" />
+                </Expander.DataContext>
+                <Expander.Header>
+                    <Button
+                        Click="OnOpenNewWindowButtonClick"
+                        Content="ContentWindow"
+                        Style="{ThemeResource AccentButtonStyle}" />
+                </Expander.Header>
+
+                <Grid ColumnSpacing="24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" Spacing="16">
+                        <TextBox Header="Title" Text="{x:Bind ContentWindowInfo.Title, Mode=TwoWay}" />
+                        <NumberBox
+                            Header="Width"
+                            Minimum="0"
+                            Value="{x:Bind ContentWindowInfo.Width, Mode=TwoWay}" />
+                        <NumberBox
+                            Header="Height"
+                            Minimum="0"
+                            Value="{x:Bind ContentWindowInfo.Height, Mode=TwoWay}" />
+                        <NumberBox
+                            Header="MinWidth"
+                            Minimum="0"
+                            Value="{x:Bind ContentWindowInfo.MinWidth, Mode=TwoWay}" />
+                        <NumberBox
+                            Header="MinHeight"
+                            Minimum="0"
+                            Value="{x:Bind ContentWindowInfo.MinHeight, Mode=TwoWay}" />
+                        <NumberBox
+                            Header="MaxWidth"
+                            Minimum="0"
+                            Value="{x:Bind ContentWindowInfo.MaxWidth, Mode=TwoWay}" />
+                        <NumberBox
+                            Header="MaxHeight"
+                            Minimum="0"
+                            Value="{x:Bind ContentWindowInfo.MaxHeight, Mode=TwoWay}" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Spacing="16">
+                        <CheckBox Content="CanMinimize" IsChecked="{x:Bind ContentWindowInfo.CanMinimize, Mode=TwoWay}" />
+                        <CheckBox Content="CanMaximize" IsChecked="{x:Bind ContentWindowInfo.CanMaximize, Mode=TwoWay}" />
+                        <CheckBox Content="CanResize" IsChecked="{x:Bind ContentWindowInfo.CanResize, Mode=TwoWay}" />
+                        <CheckBox Content="ShowInTaskbar" IsChecked="{x:Bind ContentWindowInfo.ShowInTaskbar, Mode=TwoWay}" />
+                    </StackPanel>
+                </Grid>
+            </Expander>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

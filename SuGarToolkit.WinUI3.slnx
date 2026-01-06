@@ -12,7 +12,7 @@
   <Project Path="SuGarToolkit.WinUI3.Controls.Windows/SuGarToolkit.WinUI3.Controls.Windows.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
-  <Project Path="SuGarToolkit.WinUI3.Samples.Dialogs/SuGarToolkit.WinUI3.Samples.Dialogs.csproj" Id="cf55b832-15b3-40d7-b598-02ace45f93a1">
+  <Project Path="SuGarToolkit.WinUI3.GalleryApp/SuGarToolkit.WinUI3.GalleryApp.csproj" Id="2ec8696c-d885-4f93-9388-052b06f78a70">
     <Platform Project="x64" />
     <Deploy />
   </Project>

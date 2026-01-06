@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dialogs:UacStyleDialogWindow
+    x:Class="SuGarToolkit.WinUI3.GalleryApp.Views.SampleUacStyleDialogWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:dialogs="using:SuGarToolkit.WinUI3.Controls.Dialogs"
+    xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    CloseButtonClick="UacStyleDialogWindow_CloseButtonClick"
+    CloseButtonContent="否"
+    DefaultButton="Close"
+    Header="原神"
+    PrimaryButtonClick="UacStyleDialogWindow_PrimaryButtonClick"
+    PrimaryButtonContent="是"
+    mc:Ignorable="d">
+
+    <dialogs:UacStyleDialogWindow.SystemBackdrop>
+        <MicaBackdrop />
+    </dialogs:UacStyleDialogWindow.SystemBackdrop>
+
+    <dialogs:UacStyleDialogWindow.ExtendedHeader>
+        <StackPanel Spacing="16">
+            <TextBlock Style="{ThemeResource CaptionTextBlockStyle}" Text="用户账户控制" />
+            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="你要允许此应用对你的设备进行更改吗?" />
+        </StackPanel>
+    </dialogs:UacStyleDialogWindow.ExtendedHeader>
+
+    <StackPanel Spacing="16">
+        <StackPanel>
+            <TextBlock Text="已验证的发布者: miHoYo Co.,Ltd." />
+            <TextBlock Text="文件源: 此计算机上的硬盘驱动器" />
+        </StackPanel>
+        <HyperlinkButton Padding="0" Content="显示更多详细信息" />
+    </StackPanel>
+
+</dialogs:UacStyleDialogWindow>

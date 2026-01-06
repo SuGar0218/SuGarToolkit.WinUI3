@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SuGarToolkit.WinUI3.GalleryApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SuGarToolkit.WinUI3.GalleryApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
