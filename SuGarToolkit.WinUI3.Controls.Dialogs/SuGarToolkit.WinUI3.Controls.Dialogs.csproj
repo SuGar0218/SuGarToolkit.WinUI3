@@ -24,9 +24,6 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
 		<IsAotCompatible>True</IsAotCompatible>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Platform)'=='x64'">
-		<DefineConstants>$(DefineConstants);SUGAR_TOOLKIT_X64</DefineConstants>
-	</PropertyGroup>
 	<ItemGroup>
 		<None Remove="ContentDialogView.xaml" />
 		<None Remove="ContentDialogView_themeresources.xaml" />

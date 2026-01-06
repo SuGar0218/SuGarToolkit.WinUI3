@@ -460,7 +460,7 @@ public partial class ContentWindow : ContentControl
 
             field = value;
             nint ownerHwnd = Owner is null ? nint.Zero : Win32Interop.GetWindowFromWindowId(Owner.AppWindow.Id);
-            PInvoke.SetWindowLongPtr(_hwnd, WINDOW_LONG_PTR_INDEX.GWLP_HWNDPARENT, new HWND(ownerHwnd));
+            PInvokeNative.SetWindowLongPtr(_hwnd, WINDOW_LONG_PTR_INDEX.GWLP_HWNDPARENT, new HWND(ownerHwnd));
         }
     }
 
