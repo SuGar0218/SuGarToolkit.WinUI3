@@ -1,24 +1,9 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 
 using SuGarToolkit.WinUI3.Controls.Dialogs;
 using SuGarToolkit.WinUI3.Controls.Windows;
-using SuGarToolkit.WinUI3.GalleryApp.ViewModels;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 
 namespace SuGarToolkit.WinUI3.GalleryApp.Views;
 
@@ -38,6 +23,8 @@ public sealed partial class ContentDialogPage : Page
             PrimaryButtonContent = WindowedContentDialogInfo.PrimaryButtonText,
             SecondaryButtonContent = WindowedContentDialogInfo.SecondaryButtonText,
             CloseButtonContent = WindowedContentDialogInfo.CloseButtonText,
+            ButtonOrientation = WindowedContentDialogInfo.Orientation,
+            SystemBackdrop = new MicaBackdrop(),
             Owner = ContentWindow.GetWindow(this)
         }
         .ShowAsync();
@@ -50,6 +37,7 @@ public sealed partial class ContentDialogPage : Page
             PrimaryButtonContent = ContentDialogWindowInfo.PrimaryButtonText,
             SecondaryButtonContent = ContentDialogWindowInfo.SecondaryButtonText,
             CloseButtonContent = ContentDialogWindowInfo.CloseButtonText,
+            ButtonOrientation = ContentDialogWindowInfo.Orientation,
             Owner = ContentWindow.GetWindow(this)
         };
         window.ShowDialog();
@@ -62,7 +50,8 @@ public sealed partial class ContentDialogPage : Page
             Owner = ContentWindow.GetWindow(this),
             PrimaryButtonContent = ExtendedContentDialogWindowInfo.PrimaryButtonText,
             SecondaryButtonContent = ExtendedContentDialogWindowInfo.SecondaryButtonText,
-            CloseButtonContent = ExtendedContentDialogWindowInfo.CloseButtonText
+            CloseButtonContent = ExtendedContentDialogWindowInfo.CloseButtonText,
+            ButtonOrientation = ExtendedContentDialogWindowInfo.Orientation
         };
         window.ShowDialog();
     }

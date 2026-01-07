@@ -2,6 +2,9 @@
 
 using Microsoft.UI.Xaml.Controls;
 
+using System;
+using System.Collections.Generic;
+
 namespace SuGarToolkit.WinUI3.GalleryApp.ViewModels;
 
 public partial class ContentDialogInfo : ObservableObject
@@ -19,5 +22,10 @@ public partial class ContentDialogInfo : ObservableObject
     public partial string? CloseButtonText { get; set; } = "Close";
 
     [ObservableProperty]
+    public partial Orientation Orientation { get; set; } = Orientation.Horizontal;
+
+    [ObservableProperty]
     public partial ContentDialogResult Result { get; set; }
+
+    public static List<Orientation> Orientations => field ??= [Orientation.Horizontal, Orientation.Vertical];
 }

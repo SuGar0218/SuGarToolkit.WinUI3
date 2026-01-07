@@ -28,16 +28,21 @@
                     <StackPanel Orientation="Horizontal" Spacing="12">
                         <Button
                             Click="OnShowWindowedContentDialogButtonClick"
-                            Content="ContentDialogWindow"
+                            Content="WindowedContentDialog"
                             Style="{ThemeResource AccentButtonStyle}" />
                         <TextBlock VerticalAlignment="Center" Text="{x:Bind WindowedContentDialogInfo.Result, Mode=OneWay}" />
                     </StackPanel>
                 </Expander.Header>
                 <StackPanel Spacing="12">
-                    <TextBox Header="Header" Text="{x:Bind ContentDialogWindowInfo.Header, Mode=TwoWay}" />
-                    <TextBox Header="PrimaryButtonContent" Text="{x:Bind ContentDialogWindowInfo.PrimaryButtonText, Mode=TwoWay}" />
-                    <TextBox Header="SecondaryButtonContent" Text="{x:Bind ContentDialogWindowInfo.SecondaryButtonText, Mode=TwoWay}" />
-                    <TextBox Header="CloseButtonContent" Text="{x:Bind ContentDialogWindowInfo.CloseButtonText, Mode=TwoWay}" />
+                    <TextBox Header="Header" Text="{x:Bind WindowedContentDialogInfo.Header, Mode=TwoWay}" />
+                    <TextBox Header="PrimaryButtonContent" Text="{x:Bind WindowedContentDialogInfo.PrimaryButtonText, Mode=TwoWay}" />
+                    <TextBox Header="SecondaryButtonContent" Text="{x:Bind WindowedContentDialogInfo.SecondaryButtonText, Mode=TwoWay}" />
+                    <TextBox Header="CloseButtonContent" Text="{x:Bind WindowedContentDialogInfo.CloseButtonText, Mode=TwoWay}" />
+                    <ComboBox
+                        Header="ButtonOrientation"
+                        ItemsSource="{x:Bind vm:ContentDialogInfo.Orientations}"
+                        SelectedIndex="0"
+                        SelectedItem="{x:Bind WindowedContentDialogInfo.Orientation, Mode=TwoWay}" />
                 </StackPanel>
             </Expander>
 
@@ -57,6 +62,11 @@
                     <TextBox Header="PrimaryButtonContent" Text="{x:Bind ContentDialogWindowInfo.PrimaryButtonText, Mode=TwoWay}" />
                     <TextBox Header="SecondaryButtonContent" Text="{x:Bind ContentDialogWindowInfo.SecondaryButtonText, Mode=TwoWay}" />
                     <TextBox Header="CloseButtonContent" Text="{x:Bind ContentDialogWindowInfo.CloseButtonText, Mode=TwoWay}" />
+                    <ComboBox
+                        Header="ButtonOrientation"
+                        ItemsSource="{x:Bind vm:ContentDialogInfo.Orientations}"
+                        SelectedIndex="0"
+                        SelectedItem="{x:Bind ContentDialogWindowInfo.Orientation, Mode=TwoWay}" />
                 </StackPanel>
             </Expander>
 
@@ -76,6 +86,11 @@
                     <TextBox Header="PrimaryButtonContent" Text="{x:Bind ExtendedContentDialogWindowInfo.PrimaryButtonText, Mode=TwoWay}" />
                     <TextBox Header="SecondaryButtonContent" Text="{x:Bind ExtendedContentDialogWindowInfo.SecondaryButtonText, Mode=TwoWay}" />
                     <TextBox Header="CloseButtonContent" Text="{x:Bind ExtendedContentDialogWindowInfo.CloseButtonText, Mode=TwoWay}" />
+                    <ComboBox
+                        Header="ButtonOrientation"
+                        ItemsSource="{x:Bind vm:ContentDialogInfo.Orientations}"
+                        SelectedIndex="0"
+                        SelectedItem="{x:Bind ExtendedContentDialogWindowInfo.Orientation, Mode=TwoWay}" />
                 </StackPanel>
             </Expander>
 
