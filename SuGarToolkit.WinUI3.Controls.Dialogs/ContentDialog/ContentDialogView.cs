@@ -360,9 +360,9 @@ public partial class ContentDialogView : ContentControl, IContentDialog
 
     private void DetermineButtonsVisibilityState()
     {
-        bool isPrimaryButtonVisible = PrimaryButtonContent is not null;
-        bool isSecondaryButtonVisible = SecondaryButtonContent is not null;
-        bool isCloseButtonVisible = CloseButtonContent is not null;
+        bool isPrimaryButtonVisible = DeterminePrimaryButtonVisibility();
+        bool isSecondaryButtonVisible = DetermineSecondaryButtonVisibility();
+        bool isCloseButtonVisible = DetermineCloseButtonVisibility();
 
         if (isPrimaryButtonVisible)
         {
@@ -446,9 +446,9 @@ public partial class ContentDialogView : ContentControl, IContentDialog
 
     private void DetermineCommandSpacePlaceholderState()
     {
-        bool isPrimaryButtonVisible = PrimaryButtonContent is not null;
-        bool isSecondaryButtonVisible = SecondaryButtonContent is not null;
-        bool isCloseButtonVisible = CloseButtonContent is not null;
+        bool isPrimaryButtonVisible = DeterminePrimaryButtonVisibility();
+        bool isSecondaryButtonVisible = DetermineSecondaryButtonVisibility();
+        bool isCloseButtonVisible = DetermineCloseButtonVisibility();
 
         if (ButtonOrientation is Orientation.Horizontal)
         {
@@ -491,6 +491,10 @@ public partial class ContentDialogView : ContentControl, IContentDialog
             TitleVisibilityState = "TitleVisible";
         }
     }
+
+    private bool DeterminePrimaryButtonVisibility() => PrimaryButtonContent is not null && (PrimaryButtonContent is not string text || !string.IsNullOrEmpty(text));
+    private bool DetermineSecondaryButtonVisibility() => SecondaryButtonContent is not null && (SecondaryButtonContent is not string text || !string.IsNullOrEmpty(text));
+    private bool DetermineCloseButtonVisibility() => CloseButtonContent is not null && (CloseButtonContent is not string text || !string.IsNullOrEmpty(text));
 
     private string? ButtonsVisibilityState
     {
