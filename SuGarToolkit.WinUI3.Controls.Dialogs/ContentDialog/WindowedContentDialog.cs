@@ -1,6 +1,7 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Markup;
+using Microsoft.UI.Xaml.Media;
 
 using System;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
 {
     public WindowedContentDialog()
     {
-        _view = new ContentDialogView();
         _view.PrimaryButtonClick += OnPrimaryButtonClick;
         _view.SecondaryButtonClick += OnSecondaryButtonClick;
         _view.CloseButtonClick += OnCloseButtonClick;
@@ -241,7 +241,7 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
         nameof(ButtonOrientation),
         typeof(Orientation),
         typeof(WindowedContentDialog),
-        new PropertyMetadata(default(Orientation), OnButtonOrientationChanged)
+        new PropertyMetadata(Orientation.Horizontal, OnButtonOrientationChanged)
     );
 
     private static void OnButtonOrientationChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -375,6 +375,19 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
         ((WindowedContentDialog) d)._view.DefaultButton = (ContentDialogButton) e.NewValue;
     }
 
+    public SystemBackdrop? SystemBackdrop
+    {
+        get => (SystemBackdrop?) GetValue(SystemBackdropProperty);
+        set => SetValue(SystemBackdropProperty, value);
+    }
+
+    public static readonly DependencyProperty SystemBackdropProperty = DependencyProperty.Register(
+        nameof(SystemBackdrop),
+        typeof(SystemBackdrop),
+        typeof(WindowedContentDialog),
+        new PropertyMetadata(default(SystemBackdrop))
+    );
+
     #endregion
 
     public Window? Owner { get; set; }
@@ -395,6 +408,7 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
         _window = new DialogWindowBase
         {
             Content = _view,
+            SystemBackdrop = SystemBackdrop,
             Owner = Owner,
         };
         _window.Closed += OnWindowClosed;
