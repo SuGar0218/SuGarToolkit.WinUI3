@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SuGarToolkit.WinUI3.Controls.Dialogs;
 
-public partial class MessageBox
+public partial class MessageBox : DependencyObject
 {
     public MessageBox()
     {
@@ -20,41 +20,99 @@ public partial class MessageBox
         _view.ResultChanged += OnResultChanged;
     }
 
+    #region DependencyProperty
+
     public string? Title
     {
-        get => _view.Title;
-        set => _view.Title = value;
+        get => (string?) GetValue(TitleProperty);
+        set => SetValue(TitleProperty, value);
+    }
+
+    public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
+        nameof(Title),
+        typeof(string),
+        typeof(MessageBox),
+        new PropertyMetadata(default(string), OnTitleChanged)
+    );
+
+    private static void OnTitleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((MessageBox) d)._view.Title = (string?) e.NewValue;
     }
 
     public string? Message
     {
-        get => _view.Message;
-        set => _view.Message = value;
+        get => (string?) GetValue(MessageProperty);
+        set => SetValue(MessageProperty, value);
+    }
+
+    public static readonly DependencyProperty MessageProperty = DependencyProperty.Register(
+        nameof(Message),
+        typeof(string),
+        typeof(MessageBox),
+        new PropertyMetadata(default(string), OnMessageChanged)
+    );
+
+    private static void OnMessageChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((MessageBox) d)._view.Message = (string?) e.NewValue;
     }
 
     public MessageBoxIcon Icon
     {
-        get => _view.Icon;
-        set => _view.Icon = value;
+        get => (MessageBoxIcon) GetValue(IconProperty);
+        set => SetValue(IconProperty, value);
+    }
+
+    public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
+        nameof(Icon),
+        typeof(MessageBoxIcon),
+        typeof(MessageBox),
+        new PropertyMetadata(default(MessageBoxIcon), OnIconChanged)
+    );
+
+    private static void OnIconChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((MessageBox) d)._view.Icon = (MessageBoxIcon) e.NewValue;
     }
 
     public MessageBoxButtons Buttons
     {
-        get => _view.Buttons;
-        set => _view.Buttons = value;
+        get => (MessageBoxButtons) GetValue(ButtonsProperty);
+        set => SetValue(ButtonsProperty, value);
+    }
+
+    public static readonly DependencyProperty ButtonsProperty = DependencyProperty.Register(
+        nameof(Buttons),
+        typeof(MessageBoxButtons),
+        typeof(MessageBox),
+        new PropertyMetadata(default(MessageBoxButtons), OnButtonsChanged)
+    );
+
+    private static void OnButtonsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((MessageBox) d)._view.Buttons = (MessageBoxButtons) e.NewValue;
     }
 
     public MessageBoxDefaultButton DefaultButton
     {
-        get => _view.DefaultButton;
-        set => _view.DefaultButton = value;
+        get => (MessageBoxDefaultButton) GetValue(DefaultButtonProperty);
+        set => SetValue(DefaultButtonProperty, value);
     }
 
-    //public SystemBackdrop? SystemBackdrop
-    //{
-    //    get => _window.SystemBackdrop;
-    //    set => _window.SystemBackdrop = value;
-    //}
+    public static readonly DependencyProperty DefaultButtonProperty = DependencyProperty.Register(
+        nameof(DefaultButton),
+        typeof(MessageBoxDefaultButton),
+        typeof(MessageBox),
+        new PropertyMetadata(default(MessageBoxDefaultButton), OnDefaultButtonChanged)
+    );
+
+    private static void OnDefaultButtonChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((MessageBox) d)._view.DefaultButton = (MessageBoxDefaultButton) e.NewValue;
+    }
+
+    #endregion
 
     public Window? Owner
     {
