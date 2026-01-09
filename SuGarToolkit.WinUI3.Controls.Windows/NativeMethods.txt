@@ -4,4 +4,5 @@ SetWindowLong
 GetWindowLongPtr
 SetWindowLongPtr
 SetWindowSubclass
+RemoveWindowSubclass
 DefSubclassProc

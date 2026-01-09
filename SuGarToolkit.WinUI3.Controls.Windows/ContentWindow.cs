@@ -12,7 +12,6 @@ using Windows.Graphics;
 using Windows.UI;
 using Windows.Win32;
 using Windows.Win32.Foundation;
-using Windows.Win32.UI.Shell;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace SuGarToolkit.WinUI3.Controls.Windows;
@@ -28,8 +27,7 @@ public partial class ContentWindow : ContentControl
         _hwnd = new HWND(Win32Interop.GetWindowFromWindowId(_window.AppWindow.Id));
         _styleHelper = new WindowStyleHelper(_hwnd);
         _subclassProcHelper = new WindowSubclassProcHelper(_hwnd);
-        _baseSubclassProc = BaseSubclassProc;
-        PInvoke.SetWindowSubclass(_hwnd, _baseSubclassProc, 314159, 0);
+        _subclassProcHelper.AddSubclassProc(BaseSubclassProc);
         Loaded += OnLoaded;
         ActualThemeChanged += OnActualThemeChanged;
         Window.AppWindow.Changed += OnAppWindowStateChanged;
@@ -62,7 +60,6 @@ public partial class ContentWindow : ContentControl
     private readonly HWND _hwnd;
     private readonly WindowStyleHelper _styleHelper;
     private readonly WindowSubclassProcHelper _subclassProcHelper;
-    private readonly SUBCLASSPROC _baseSubclassProc;
 
     #region DependencyProperty
 
@@ -117,7 +114,7 @@ public partial class ContentWindow : ContentControl
         typeof(ContentWindow),
         new PropertyMetadata(double.NaN, OnWidthChanged)
     );
-    
+
     public new double Height
     {
         get => (double) GetValue(HeightProperty);
@@ -143,7 +140,7 @@ public partial class ContentWindow : ContentControl
         typeof(ContentWindow),
         new PropertyMetadata(default(bool))
     );
-    
+
     public WindowStartupLocation StartupLocation
     {
         get => (WindowStartupLocation) GetValue(StartupLocationProperty);
@@ -734,6 +731,7 @@ public partial class ContentWindow : ContentControl
 
     private void OnWindowClosed(object sender, WindowEventArgs args)
     {
+        _subclassProcHelper.Dispose();
         (Window.AppWindow.Presenter as OverlappedPresenter)?.IsModal = false;
         Closed?.Invoke(this, EventArgs.Empty);
     }
@@ -774,10 +772,12 @@ public partial class ContentWindow : ContentControl
         };
     }
 
-    private LRESULT BaseSubclassProc(HWND hWnd, uint uMsg, WPARAM wParam, LPARAM lParam, nuint uIdSubclass, nuint dwRefData)
+    private int DipToPixel(double dip) => (int) Math.Ceiling(dip * DpiScale);
+
+    private nint BaseSubclassProc(nint hwnd, uint msg, nuint wParam, nint lParam, ref bool handled)
     {
         CancelEventArgs e;
-        switch (uMsg)
+        switch (msg)
         {
             case WindowMessages.WM_SYSCOMMAND:
                 switch ((wParam & 0xFFF0))
@@ -786,28 +786,40 @@ public partial class ContentWindow : ContentControl
                         e = new CancelEventArgs(false);
                         OnMinimizing(e);
                         if (e.Cancel)
-                            return new LRESULT(0);
+                        {
+                            handled = true;
+                            return nint.Zero;
+                        }
                         break;
 
                     case SYS_COMMAND_WPARAM.SC_MAXIMIZE:
                         e = new CancelEventArgs(false);
                         OnMaximizing(e);
                         if (e.Cancel)
-                            return new LRESULT(0);
+                        {
+                            handled = true;
+                            return nint.Zero;
+                        }
                         break;
 
                     case SYS_COMMAND_WPARAM.SC_RESTORE:
                         e = new CancelEventArgs(false);
                         OnRestoring(e);
                         if (e.Cancel)
-                            return new LRESULT(0);
+                        {
+                            handled = true;
+                            return nint.Zero;
+                        }
                         break;
 
                     case SYS_COMMAND_WPARAM.SC_CLOSE:
                         e = new CancelEventArgs(false);
                         OnClosing(e);
                         if (e.Cancel)
-                            return new LRESULT(0);
+                        {
+                            handled = true;
+                            return nint.Zero;
+                        }
                         WindowState = WindowState.Closed;
                         break;
 
@@ -819,8 +831,8 @@ public partial class ContentWindow : ContentControl
             default:
                 break;
         }
-        return PInvoke.DefSubclassProc(hWnd, uMsg, wParam, lParam);
+        return nint.Zero;
     }
 
-    private int DipToPixel(double dip) => (int) Math.Ceiling(dip * DpiScale);
+    private const nuint _windowSubclassProcId = 285714;
 }
