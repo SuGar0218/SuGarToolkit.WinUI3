@@ -18,6 +18,7 @@
         <CheckBox Content="CanMinimize" IsChecked="{x:Bind CanMinimize, Mode=TwoWay}" />
         <CheckBox Content="CanMaximize" IsChecked="{x:Bind CanMaximize, Mode=TwoWay}" />
         <CheckBox Content="CanResize" IsChecked="{x:Bind CanResize, Mode=TwoWay}" />
+        <CheckBox Content="ExtendsContentIntoTitleBar" IsChecked="{x:Bind ExtendsContentIntoTitleBar, Mode=TwoWay}" />
     </StackPanel>
 
 </controls:ContentWindow>

@@ -10,7 +10,9 @@
     xmlns:views="using:SuGarToolkit.WinUI3.GalleryApp.Views"
     Title="SuGarToolkit.WinUI3.GalleryApp"
     Width="1024"
-    Height="768"
+    Height="720"
+    MinWidth="640"
+    MinHeight="480"
     mc:Ignorable="d">
 
     <controls:ContentWindow.SystemBackdrop>

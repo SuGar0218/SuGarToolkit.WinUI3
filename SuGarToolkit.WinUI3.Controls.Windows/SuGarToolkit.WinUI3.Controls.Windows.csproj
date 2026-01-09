@@ -10,7 +10,8 @@
 		<Platforms>AnyCPU;x64</Platforms>
 		<Nullable>enable</Nullable>
 		<LangVersion>preview</LangVersion>
-		<Version>0.0.1-dev202601041334</Version>
+		<VersionPrefix>0.0.1</VersionPrefix>
+		<VersionSuffix>dev.202601091457</VersionSuffix>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<IsAotCompatible>True</IsAotCompatible>
