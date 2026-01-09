@@ -22,6 +22,12 @@ public partial class ContentDialogInfo : ObservableObject
     public partial string? CloseButtonText { get; set; } = "Close";
 
     [ObservableProperty]
+    public partial bool IsModal { get; set; }
+
+    [ObservableProperty]
+    public partial bool ShowInTaskbar { get; set; }
+
+    [ObservableProperty]
     public partial Orientation Orientation { get; set; } = Orientation.Horizontal;
 
     [ObservableProperty]

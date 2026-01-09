@@ -38,22 +38,38 @@ public sealed partial class ContentDialogPage : Page
             SecondaryButtonContent = ContentDialogWindowInfo.SecondaryButtonText,
             CloseButtonContent = ContentDialogWindowInfo.CloseButtonText,
             ButtonOrientation = ContentDialogWindowInfo.Orientation,
+            ShowInTaskbar = ContentDialogWindowInfo.ShowInTaskbar,
             Owner = ContentWindow.GetWindow(this)
         };
-        window.ShowDialog();
+        if (ContentDialogWindowInfo.IsModal)
+        {
+            window.ShowDialog();
+        }
+        else
+        {
+            window.Show();
+        }
     }
 
     private void OnShowExtendedContentDialogWindowButtonClick(object sender, RoutedEventArgs e)
     {
         SampleExtendedContentDialogWindow window = new()
         {
-            Owner = ContentWindow.GetWindow(this),
             PrimaryButtonContent = ExtendedContentDialogWindowInfo.PrimaryButtonText,
             SecondaryButtonContent = ExtendedContentDialogWindowInfo.SecondaryButtonText,
             CloseButtonContent = ExtendedContentDialogWindowInfo.CloseButtonText,
-            ButtonOrientation = ExtendedContentDialogWindowInfo.Orientation
+            ButtonOrientation = ExtendedContentDialogWindowInfo.Orientation,
+            ShowInTaskbar = ExtendedContentDialogWindowInfo.ShowInTaskbar,
+            Owner = ContentWindow.GetWindow(this)
         };
-        window.ShowDialog();
+        if (ExtendedContentDialogWindowInfo.IsModal)
+        {
+            window.ShowDialog();
+        }
+        else
+        {
+            window.Show();
+        }
     }
 
     private void OnShowUacDialogWindowButtonClick(object sender, RoutedEventArgs e)
