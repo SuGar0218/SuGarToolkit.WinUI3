@@ -19,6 +19,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:ContentWindow">
                     <Border
+                        Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
