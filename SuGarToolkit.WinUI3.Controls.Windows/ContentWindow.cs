@@ -100,6 +100,8 @@ public partial class ContentWindow : ContentControl
     private static void OnWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         ContentWindow self = (ContentWindow) d;
+        if (!self.IsLoaded)
+            return;
         double newWidth = (double) e.NewValue;
         self.Resize(new Size(newWidth, self.Height));
     }
@@ -120,6 +122,8 @@ public partial class ContentWindow : ContentControl
     private static void OnHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         ContentWindow self = (ContentWindow) d;
+        if (!self.IsLoaded)
+            return;
         double newHeight = (double) e.NewValue;
         self.Resize(new Size(self.Width, newHeight));
     }
@@ -307,6 +311,10 @@ public partial class ContentWindow : ContentControl
             self.Window.AppWindow.TitleBar.ButtonPressedForegroundColor = null;
         }
         self.Window.ExtendsContentIntoTitleBar = newValue;
+        //if (IsValidLength(self.Height))
+        //{
+        //    self.Resize()
+        //}
     }
 
     public TitleBarHeightOption TitleBarHeightOption
@@ -623,7 +631,11 @@ public partial class ContentWindow : ContentControl
 
     public void Activate()
     {
-        Window.Activate();
+        _shouldShow = true;
+        if (IsLoaded)
+        {
+            Window.Activate();
+        }
     }
 
     public bool TryMinimize()
@@ -693,6 +705,11 @@ public partial class ContentWindow : ContentControl
         }
     }
 
+    /// <summary>
+    /// Resize window to specified size.
+    /// If you want to keep width or height, set it double.NaN.
+    /// </summary>
+    /// <param name="size"></param>
     public void Resize(Size size)
     {
         if (Window.ExtendsContentIntoTitleBar)
@@ -715,7 +732,7 @@ public partial class ContentWindow : ContentControl
 
     public void ResizeToContent()
     {
-        Resize(new Size(DesiredSize.Width + 1, DesiredSize.Height + 1));
+        Resize(new Size(DesiredSize.Width + 1 / DpiScale, DesiredSize.Height));
     }
 
     public void AddSubclassProc(WindowSubclassProc proc)
@@ -768,6 +785,10 @@ public partial class ContentWindow : ContentControl
             if (SizeToContent)
             {
                 ResizeToContent();
+            }
+            else
+            {
+                Resize(new Size(Width, Height));
             }
             if (_shouldShow)
             {

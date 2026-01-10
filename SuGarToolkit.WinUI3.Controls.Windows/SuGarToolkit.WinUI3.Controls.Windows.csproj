@@ -11,7 +11,7 @@
 		<Nullable>enable</Nullable>
 		<LangVersion>preview</LangVersion>
 		<VersionPrefix>0.0.1</VersionPrefix>
-		<VersionSuffix>dev.202601091457</VersionSuffix>
+		<VersionSuffix>dev.202601100013</VersionSuffix>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<IsAotCompatible>True</IsAotCompatible>

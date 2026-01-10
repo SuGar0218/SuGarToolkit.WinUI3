@@ -12,7 +12,7 @@
 		<PlatformTarget>x64</PlatformTarget>
 		<Platforms>AnyCPU;x64</Platforms>
 		<VersionPrefix>0.0.1</VersionPrefix>
-		<VersionSuffix>dev.202601091457</VersionSuffix>
+		<VersionSuffix>dev.2026010100013</VersionSuffix>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<IsAotCompatible>True</IsAotCompatible>
