@@ -70,8 +70,7 @@
                             SelectedItem="{x:Bind ViewModel.Trigger, Mode=TwoWay}">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate x:DataType="validation:ValidationTrigger">
-                                    <TextBlock Text="{x:Bind (validation:ValidationTrigger), Converter={StaticResource ValidationTriggerToNameConverter}}" />
-                                    <!--  Visual Studio xaml editor may mark an error here, but it can be compiled and run properly.  -->
+                                    <TextBlock Text="{x:Bind Converter={StaticResource ValidationTriggerToNameConverter}}" />
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
