@@ -732,7 +732,8 @@ public partial class ContentWindow : ContentControl
 
     public void ResizeToContent()
     {
-        Resize(new Size(DesiredSize.Width + 1 / DpiScale, DesiredSize.Height));
+        double pixel = 1 / DpiScale;
+        Resize(new Size(DesiredSize.Width + pixel, DesiredSize.Height + pixel));
     }
 
     public void AddSubclassProc(WindowSubclassProc proc)
