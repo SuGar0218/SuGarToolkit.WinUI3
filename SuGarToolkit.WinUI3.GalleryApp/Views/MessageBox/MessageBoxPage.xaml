@@ -16,7 +16,7 @@
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
         </Style>
-        <Style TargetType="ComboBox">
+        <Style BasedOn="{StaticResource DefaultComboBoxStyle}" TargetType="ComboBox">
             <Setter Property="HorizontalAlignment" Value="Stretch" />
         </Style>
     </Page.Resources>

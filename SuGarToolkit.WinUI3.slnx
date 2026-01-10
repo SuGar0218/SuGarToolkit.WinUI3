@@ -9,6 +9,7 @@
   <Project Path="SuGarToolkit.WinUI3.Controls.Dialogs/SuGarToolkit.WinUI3.Controls.Dialogs.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
+  <Project Path="SuGarToolkit.WinUI3.Controls.Validations/SuGarToolkit.WinUI3.Controls.Validations.csproj" Id="fa4e3127-654b-4ee3-bad0-d96e7fee8a76" />
   <Project Path="SuGarToolkit.WinUI3.Controls.Windows/SuGarToolkit.WinUI3.Controls.Windows.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>

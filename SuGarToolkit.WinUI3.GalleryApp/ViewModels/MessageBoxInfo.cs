@@ -27,7 +27,7 @@ public partial class MessageBoxInfo : ObservableObject
     [ObservableProperty]
     public partial MessageBoxResult Result { get; set; }
 
-    public static List<MessageBoxButtons> MessageBoxButtons => field ??= [.. Enum.GetValues<MessageBoxButtons>()];
-    public static List<MessageBoxIcon> MessageBoxIcons => field ??= [.. Enum.GetValues<MessageBoxIcon>()];
-    public static List<MessageBoxDefaultButton> MessageBoxDefaultButtons => field ??= [.. Enum.GetValues<MessageBoxDefaultButton>()];
+    public static IEnumerable<MessageBoxButtons> MessageBoxButtons => field ??= Enum.GetValues<MessageBoxButtons>();
+    public static IEnumerable<MessageBoxIcon> MessageBoxIcons => field ??= Enum.GetValues<MessageBoxIcon>();
+    public static IEnumerable<MessageBoxDefaultButton> MessageBoxDefaultButtons => field ??= Enum.GetValues<MessageBoxDefaultButton>();
 }
