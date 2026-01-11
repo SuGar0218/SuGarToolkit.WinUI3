@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 
 using System;
+using System.Windows.Input;
 
 namespace SuGarToolkit.WinUI3.Controls.Dialogs;
 
@@ -159,6 +160,45 @@ public partial class ExtendedContentDialogWindow : DialogWindowBase, IExtendedCo
         typeof(DataTemplate),
         typeof(ExtendedContentDialogWindow),
         new PropertyMetadata(default(DataTemplate))
+    );
+
+    public ICommand? PrimaryButtonCommand
+    {
+        get => (ICommand?) GetValue(PrimaryButtonCommandProperty);
+        set => SetValue(PrimaryButtonCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty PrimaryButtonCommandProperty = DependencyProperty.Register(
+        nameof(PrimaryButtonCommand),
+        typeof(ICommand),
+        typeof(ExtendedContentDialogWindow),
+        new PropertyMetadata(default(ICommand))
+    );
+
+    public ICommand? SecondaryButtonCommand
+    {
+        get => (ICommand?) GetValue(SecondaryButtonCommandProperty);
+        set => SetValue(SecondaryButtonCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty SecondaryButtonCommandProperty = DependencyProperty.Register(
+        nameof(SecondaryButtonCommand),
+        typeof(ICommand),
+        typeof(ExtendedContentDialogWindow),
+        new PropertyMetadata(default(ICommand))
+    );
+
+    public ICommand? CloseButtonCommand
+    {
+        get => (ICommand?) GetValue(CloseButtonCommandProperty);
+        set => SetValue(CloseButtonCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty CloseButtonCommandProperty = DependencyProperty.Register(
+        nameof(CloseButtonCommand),
+        typeof(ICommand),
+        typeof(ExtendedContentDialogWindow),
+        new PropertyMetadata(default(ICommand))
     );
 
     public bool IsPrimaryButtonEnabled

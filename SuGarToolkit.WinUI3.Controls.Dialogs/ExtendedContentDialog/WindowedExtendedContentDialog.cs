@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Media;
 
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SuGarToolkit.WinUI3.Controls.Dialogs;
 
@@ -227,6 +228,60 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
     private static void OnCloseButtonTemplateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         ((WindowedExtendedContentDialog) d)._view.CloseButtonTemplate = (DataTemplate?) e.NewValue;
+    }
+
+    public ICommand? PrimaryButtonCommand
+    {
+        get => (ICommand?) GetValue(PrimaryButtonCommandProperty);
+        set => SetValue(PrimaryButtonCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty PrimaryButtonCommandProperty = DependencyProperty.Register(
+        nameof(PrimaryButtonCommand),
+        typeof(ICommand),
+        typeof(WindowedExtendedContentDialog),
+        new PropertyMetadata(default(ICommand), OnPrimaryButtonCommandChanged)
+    );
+
+    private static void OnPrimaryButtonCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((WindowedExtendedContentDialog) d).PrimaryButtonCommand = (ICommand?) e.NewValue;
+    }
+
+    public ICommand? SecondaryButtonCommand
+    {
+        get => (ICommand?) GetValue(SecondaryButtonCommandProperty);
+        set => SetValue(SecondaryButtonCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty SecondaryButtonCommandProperty = DependencyProperty.Register(
+        nameof(SecondaryButtonCommand),
+        typeof(ICommand),
+        typeof(WindowedExtendedContentDialog),
+        new PropertyMetadata(default(ICommand), OnSecondaryButtonCommandChanged)
+    );
+
+    private static void OnSecondaryButtonCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((WindowedExtendedContentDialog) d).SecondaryButtonCommand = (ICommand?) e.NewValue;
+    }
+
+    public ICommand? CloseButtonCommand
+    {
+        get => (ICommand?) GetValue(CloseButtonCommandProperty);
+        set => SetValue(CloseButtonCommandProperty, value);
+    }
+
+    public static readonly DependencyProperty CloseButtonCommandProperty = DependencyProperty.Register(
+        nameof(CloseButtonCommand),
+        typeof(ICommand),
+        typeof(WindowedExtendedContentDialog),
+        new PropertyMetadata(default(ICommand), OnCloseButtonCommandChanged)
+    );
+
+    private static void OnCloseButtonCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ((WindowedExtendedContentDialog) d).CloseButtonCommand = (ICommand?) e.NewValue;
     }
 
     public bool IsPrimaryButtonEnabled

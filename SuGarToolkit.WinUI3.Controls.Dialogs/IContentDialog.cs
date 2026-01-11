@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 
 using System;
+using System.Windows.Input;
 
 namespace SuGarToolkit.WinUI3.Controls.Dialogs;
 
@@ -31,6 +32,10 @@ public interface IContentDialog
     event EventHandler? PrimaryButtonClick;
     event EventHandler? SecondaryButtonClick;
     event EventHandler? CloseButtonClick;
+
+    ICommand? PrimaryButtonCommand { get; set; }
+    ICommand? SecondaryButtonCommand { get; set; }
+    ICommand? CloseButtonCommand { get; set; }
 
     Style? PrimaryButtonStyle { get; set; }
     Style? SecondaryButtonStyle { get; set; }
