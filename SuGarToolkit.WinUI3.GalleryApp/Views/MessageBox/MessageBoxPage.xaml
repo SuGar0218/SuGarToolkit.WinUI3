@@ -38,8 +38,14 @@
                     </StackPanel>
                 </Expander.Header>
                 <StackPanel Spacing="16">
-                    <TextBox Header="Title" Text="{x:Bind messageBoxInfo.Title, Mode=TwoWay}" />
-                    <TextBox Header="Message" Text="{x:Bind messageBoxInfo.Message, Mode=TwoWay}" />
+                    <TextBox
+                        AcceptsReturn="True"
+                        Header="Title"
+                        Text="{x:Bind messageBoxInfo.Title, Mode=TwoWay}" />
+                    <TextBox
+                        AcceptsReturn="True"
+                        Header="Message"
+                        Text="{x:Bind messageBoxInfo.Message, Mode=TwoWay}" />
                     <ComboBox
                         Header="Icon"
                         ItemsSource="{x:Bind vm:MessageBoxInfo.MessageBoxIcons}"

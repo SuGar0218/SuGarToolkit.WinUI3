@@ -15,6 +15,7 @@
 		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Views\TestPage.xaml" />
 	  <None Remove="Views\TextBoxValidationPage.xaml" />
 	</ItemGroup>
 
@@ -49,6 +50,11 @@
 	<ItemGroup>
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Dialogs\SuGarToolkit.WinUI3.Controls.Dialogs.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Validations\SuGarToolkit.WinUI3.Controls.Validations.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\TestPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\TextBoxValidationPage.xaml">
