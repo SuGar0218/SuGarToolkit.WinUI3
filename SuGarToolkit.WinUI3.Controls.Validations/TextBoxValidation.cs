@@ -8,8 +8,8 @@ namespace SuGarToolkit.WinUI3.Controls.Validations;
 
 public class TextBoxValidation
 {
-    public static Predicate<string> GetValidation(TextBox target) => (Predicate<string>) target.GetValue(ValidationProperty);
-    public static void SetValidation(TextBox target, Predicate<string> value) => target.SetValue(ValidationProperty, value);
+    public static Predicate<string>? GetValidation(TextBox target) => (Predicate<string>?) target.GetValue(ValidationProperty);
+    public static void SetValidation(TextBox target, Predicate<string>? value) => target.SetValue(ValidationProperty, value);
 
     public static readonly DependencyProperty ValidationProperty = DependencyProperty.RegisterAttached(
         "Validation",
@@ -28,8 +28,8 @@ public class TextBoxValidation
         new PropertyMetadata(default(ValidationTrigger), OnValidationTriggerChanged)
     );
 
-    public static Action GetValidationSucceed(TextBox target) => (Action) target.GetValue(ValidationSucceedProperty);
-    public static void SetValidationSucceed(TextBox target, Action value) => target.SetValue(ValidationSucceedProperty, value);
+    public static Action? GetValidationSucceed(TextBox target) => (Action?) target.GetValue(ValidationSucceedProperty);
+    public static void SetValidationSucceed(TextBox target, Action? value) => target.SetValue(ValidationSucceedProperty, value);
 
     public static readonly DependencyProperty ValidationSucceedProperty = DependencyProperty.RegisterAttached(
         "ValidationSucceed",
@@ -38,8 +38,8 @@ public class TextBoxValidation
         new PropertyMetadata(default(Action))
     );
 
-    public static Action GetValidationFailed(TextBox target) => (Action) target.GetValue(ValidationFailedProperty);
-    public static void SetValidationFailed(TextBox target, Action value) => target.SetValue(ValidationFailedProperty, value);
+    public static Action? GetValidationFailed(TextBox target) => (Action?) target.GetValue(ValidationFailedProperty);
+    public static void SetValidationFailed(TextBox target, Action? value) => target.SetValue(ValidationFailedProperty, value);
 
     public static readonly DependencyProperty ValidationFailedProperty = DependencyProperty.RegisterAttached(
         "ValidationFailed",
@@ -50,14 +50,14 @@ public class TextBoxValidation
 
     public static bool Validate(TextBox textBox)
     {
-        if (GetValidation(textBox).Invoke(textBox.Text))
+        if (GetValidation(textBox)?.Invoke(textBox.Text) ?? true)
         {
-            GetValidationSucceed(textBox).Invoke();
+            GetValidationSucceed(textBox)?.Invoke();
             return true;
         }
         else
         {
-            GetValidationFailed(textBox).Invoke();
+            GetValidationFailed(textBox)?.Invoke();
             return false;
         }
     }
