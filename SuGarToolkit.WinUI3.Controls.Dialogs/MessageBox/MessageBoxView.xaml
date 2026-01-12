@@ -91,7 +91,7 @@
                             <TextBox
                                 Grid.Column="1"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
+                                VerticalAlignment="Center"
                                 AcceptsReturn="True"
                                 IsReadOnly="True"
                                 Style="{StaticResource MinimalTextBoxStyle}"
