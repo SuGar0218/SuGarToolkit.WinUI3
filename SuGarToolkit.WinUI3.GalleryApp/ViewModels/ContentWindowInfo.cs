@@ -45,4 +45,7 @@ public partial class ContentWindowInfo : ObservableObject
 
     [ObservableProperty]
     public partial bool CanResize { get; set; } = true;
+
+    [ObservableProperty]
+    public partial bool IsModal { get; set; }
 }

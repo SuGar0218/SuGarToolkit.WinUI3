@@ -33,7 +33,6 @@ public partial class ContentWindow : ContentControl
         Window.AppWindow.Closing += OnAppWindowClosing;
         Window.AppWindow.TitleBar.PreferredTheme = TitleBarTheme.UseDefaultAppMode;
         Window.Activated += OnWindowActivated;
-        Window.Closed += OnWindowClosed;
         Window.Content = this;
         RegisterPropertyChangedCallback(RequestedThemeProperty, OnRequestedThemeChanged);
     }
@@ -773,6 +772,13 @@ public partial class ContentWindow : ContentControl
         Closing?.Invoke(this, e);
     }
 
+    protected virtual void OnClosed()  // OnClosed is not triggered by Window.Closed because adding breakpoint in it may cause a crash
+    {
+        _subclassProcHelper.Dispose();
+        (Window.AppWindow.Presenter as OverlappedPresenter)?.IsModal = false;
+        Closed?.Invoke(this, EventArgs.Empty);
+    }
+
     private void OnAppWindowClosing(AppWindow sender, AppWindowClosingEventArgs args)
     {
         Owner?.Activate();
@@ -835,13 +841,6 @@ public partial class ContentWindow : ContentControl
         }
     }
 
-    private void OnWindowClosed(object sender, WindowEventArgs args)
-    {
-        _subclassProcHelper.Dispose();
-        (Window.AppWindow.Presenter as OverlappedPresenter)?.IsModal = false;
-        Closed?.Invoke(this, EventArgs.Empty);
-    }
-
     private void OnRequestedThemeChanged(DependencyObject d, DependencyProperty p)
     {
         ElementTheme theme = (ElementTheme) d.GetValue(p);
@@ -894,20 +893,35 @@ public partial class ContentWindow : ContentControl
                         }
                         break;
 
-                    case SYS_COMMAND_WPARAM.SC_CLOSE:
-                        e = new CancelEventArgs(false);
-                        OnClosing(e);
-                        if (e.Cancel)
-                        {
-                            handled = true;
-                            return nint.Zero;
-                        }
-                        WindowState = WindowState.Closed;
-                        break;
+                    //case SYS_COMMAND_WPARAM.SC_CLOSE:
+                    //    e = new CancelEventArgs(false);
+                    //    OnClosing(e);
+                    //    if (e.Cancel)
+                    //    {
+                    //        handled = true;
+                    //        return nint.Zero;
+                    //    }
+                    //    WindowState = WindowState.Closed;
+                    //    break;
 
                     default:
                         break;
                 }
+                break;
+
+            case WindowMessages.WM_CLOSE:
+                e = new CancelEventArgs(false);
+                OnClosing(e);
+                if (e.Cancel)
+                {
+                    handled = true;
+                    return nint.Zero;
+                }
+                WindowState = WindowState.Closed;
+                break;
+
+            case WindowMessages.WM_DESTROY:
+                OnClosed();
                 break;
 
             default:

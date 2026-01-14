@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using SuGarToolkit.WinUI3.Controls.Windows;
 
 namespace SuGarToolkit.WinUI3.GalleryApp.Views;
 
@@ -24,7 +25,7 @@ public sealed partial class ContentWindowPage : Page
 
     private void OnOpenNewWindowButtonClick(object sender, RoutedEventArgs e)
     {
-        new SampleContentWindow
+        SampleContentWindow window = new()
         {
             Title = ContentWindowInfo.Title,
             Width = ContentWindowInfo.Width,
@@ -37,7 +38,15 @@ public sealed partial class ContentWindowPage : Page
             CanMinimize = ContentWindowInfo.CanMinimize,
             CanMaximize = ContentWindowInfo.CanMaximize,
             CanResize = ContentWindowInfo.CanResize
+        };
+        if (ContentWindowInfo.IsModal)
+        {
+            window.Owner = ContentWindow.GetWindow(this);
+            window.ShowDialog();
         }
-        .Show();
+        else
+        {
+            window.Show();
+        }
     }
 }

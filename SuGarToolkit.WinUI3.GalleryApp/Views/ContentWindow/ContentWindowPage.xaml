@@ -68,6 +68,7 @@
                         <CheckBox Content="CanMinimize" IsChecked="{x:Bind ContentWindowInfo.CanMinimize, Mode=TwoWay}" />
                         <CheckBox Content="CanMaximize" IsChecked="{x:Bind ContentWindowInfo.CanMaximize, Mode=TwoWay}" />
                         <CheckBox Content="CanResize" IsChecked="{x:Bind ContentWindowInfo.CanResize, Mode=TwoWay}" />
+                        <CheckBox Content="IsModal" IsChecked="{x:Bind ContentWindowInfo.IsModal, Mode=TwoWay}" />
                         <CheckBox Content="ShowInTaskbar" IsChecked="{x:Bind ContentWindowInfo.ShowInTaskbar, Mode=TwoWay}" />
                     </StackPanel>
                 </Grid>
