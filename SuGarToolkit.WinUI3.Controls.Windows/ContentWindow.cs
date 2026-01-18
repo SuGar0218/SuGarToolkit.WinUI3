@@ -310,10 +310,6 @@ public partial class ContentWindow : ContentControl
             self.Window.AppWindow.TitleBar.ButtonPressedForegroundColor = null;
         }
         self.Window.ExtendsContentIntoTitleBar = newValue;
-        //if (IsValidLength(self.Height))
-        //{
-        //    self.Resize()
-        //}
     }
 
     public TitleBarHeightOption TitleBarHeightOption
@@ -731,8 +727,7 @@ public partial class ContentWindow : ContentControl
 
     public void ResizeToContent()
     {
-        double pixel = 1 / DpiScale;
-        Resize(new Size(DesiredSize.Width + pixel, DesiredSize.Height + pixel));
+        Resize(new Size(DesiredSize.Width, DesiredSize.Height));
     }
 
     public void AddSubclassProc(WindowSubclassProc proc)
