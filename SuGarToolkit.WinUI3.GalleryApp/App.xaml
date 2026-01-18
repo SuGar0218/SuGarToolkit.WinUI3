@@ -1,16 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Application
-    x:Class="SuGarToolkit.WinUI3.GalleryApp.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp">
-    <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!-- Other merged dictionaries here -->
-            </ResourceDictionary.MergedDictionaries>
-            <!-- Other app resources here -->
-        </ResourceDictionary>
-    </Application.Resources>
+	x:Class="SuGarToolkit.WinUI3.GalleryApp.App"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp">
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+				<!--  Other merged dictionaries here  -->
+				<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Windows/Themes/Generic.xaml" />
+				<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/Themes/Generic.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<!--  Other app resources here  -->
+		</ResourceDictionary>
+	</Application.Resources>
 </Application>

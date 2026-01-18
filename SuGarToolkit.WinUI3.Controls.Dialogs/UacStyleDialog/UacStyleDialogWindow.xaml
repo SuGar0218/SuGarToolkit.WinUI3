@@ -4,7 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SuGarToolkit.WinUI3.Controls.Dialogs">
 
-    <Style x:Key="UacStyleDialogWindowDefaultStyle" TargetType="local:UacStyleDialogWindow">
+    <Style
+        x:Key="UacStyleDialogWindowDefaultStyle"
+        BasedOn="{StaticResource ContentWindowDefaultStyle}"
+        TargetType="local:UacStyleDialogWindow">
         <Setter Property="DefaultButton" Value="Primary" />
         <Setter Property="PrimaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
         <Setter Property="SecondaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />

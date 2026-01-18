@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:SuGarToolkit.WinUI3.Controls.Dialogs">
 
-    <Style TargetType="local:ContentDialogWindow">
+	<Style TargetType="local:ContentDialogWindow" BasedOn="{StaticResource ContentWindowDefaultStyle}">
         <Setter Property="DefaultButton" Value="Primary" />
         <Setter Property="PrimaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />
         <Setter Property="SecondaryButtonStyle" Value="{ThemeResource DefaultButtonStyle}" />

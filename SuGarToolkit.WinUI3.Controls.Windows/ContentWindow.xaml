@@ -8,7 +8,7 @@
         <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Windows/ContentWindow_themeresources.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style TargetType="local:ContentWindow">
+    <Style x:Key="ContentWindowDefaultStyle" TargetType="local:ContentWindow">
         <Setter Property="TitleBarButtonHoverBackgroundColor" Value="{ThemeResource ContentWindowTitleBarButtonHoverBackgroundColor}" />
         <Setter Property="TitleBarButtonPressedBackgroundColor" Value="{ThemeResource ContentWindowTitleBarButtonPressedBackgroundColor}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -34,5 +34,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+	<Style BasedOn="{StaticResource ContentWindowDefaultStyle}" TargetType="local:ContentWindow" />
 
 </ResourceDictionary>
