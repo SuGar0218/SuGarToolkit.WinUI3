@@ -24,5 +24,20 @@ public sealed partial class TestPage : Page
         InitializeComponent();
         TestTextBox.Text = "Test1\rTest2";
         TestTextBox.AcceptsReturn = true;
+        for (int fontSize = 8; fontSize <= 96; fontSize += 2)
+        {
+            PART_DisableTextScaleFactorStackPanel.Children.Add(new TextBlock
+            {
+                IsTextScaleFactorEnabled = false,
+                FontSize = fontSize,
+                Text = fontSize.ToString()
+            });
+            PART_EnableTextScaleFactorStackPanel.Children.Add(new TextBlock
+            {
+                IsTextScaleFactorEnabled = true,
+                FontSize = fontSize,
+                Text = fontSize.ToString()
+            });
+        }
     }
 }

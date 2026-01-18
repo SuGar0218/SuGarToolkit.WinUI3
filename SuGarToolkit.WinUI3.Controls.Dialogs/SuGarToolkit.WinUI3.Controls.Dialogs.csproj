@@ -44,7 +44,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260101001" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Windows\SuGarToolkit.WinUI3.Controls.Windows.csproj" />

@@ -45,11 +45,13 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7463" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260101001" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Dialogs\SuGarToolkit.WinUI3.Controls.Dialogs.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Validations\SuGarToolkit.WinUI3.Controls.Validations.csproj" />
+		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Windows\SuGarToolkit.WinUI3.Controls.Windows.csproj" />
+		<ProjectReference Include="..\SuGarToolkit.WinUI3.Layout\SuGarToolkit.WinUI3.Layout.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\TestPage.xaml">

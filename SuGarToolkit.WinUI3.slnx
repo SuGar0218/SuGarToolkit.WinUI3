@@ -17,4 +17,5 @@
     <Platform Project="x64" />
     <Deploy />
   </Project>
+  <Project Path="SuGarToolkit.WinUI3.Layout/SuGarToolkit.WinUI3.Layout.csproj" Id="aecd8164-8ada-4ffa-b8e4-6660c1d85539" />
 </Solution>

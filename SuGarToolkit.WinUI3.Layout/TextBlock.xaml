@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:SuGarToolkit.WinUI3.Layout">
+
+	<Style TargetType="local:TextBlock">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="local:TextBlock">
+					<Border
+						Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}">
+						<TextBlock
+							x:Name="PART_TextBlock"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Center"
+							Text="{TemplateBinding Text}"
+							TextAlignment="{TemplateBinding TextAlignment}"
+							TextDecorations="{TemplateBinding TextDecorations}"
+							TextLineBounds="{TemplateBinding TextLineBounds}"
+							TextReadingOrder="{TemplateBinding TextReadingOrder}"
+							TextTrimming="{TemplateBinding TextTrimming}"
+							TextWrapping="{TemplateBinding TextWrapping}" />
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>
