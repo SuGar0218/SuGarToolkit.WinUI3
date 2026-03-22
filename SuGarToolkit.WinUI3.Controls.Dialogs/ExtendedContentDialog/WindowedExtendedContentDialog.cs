@@ -498,7 +498,7 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
         {
             Content = _view,
             SystemBackdrop = SystemBackdrop,
-            Owner = Owner,
+            Owner = Owner
         };
         _window.Closed += OnWindowClosed;
         _window.ShowDialog();

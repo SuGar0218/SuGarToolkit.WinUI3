@@ -4,6 +4,7 @@
     xmlns:local="using:SuGarToolkit.WinUI3.Controls.Dialogs">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Windows/Themes/Generic.xaml" />
         <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/ContentDialog/ContentDialogView.xaml" />
         <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/ContentDialog/ContentDialogWindow.xaml" />
         <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/ExtendedContentDialog/ExtendedContentDialogView.xaml" />
@@ -12,5 +13,7 @@
         <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/UacStyleDialog/UacStyleDialogWindow.xaml" />
         <ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/MessageBox/MessageBoxView.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <Style BasedOn="{StaticResource ContentWindowDefaultStyle}" TargetType="local:DialogWindowBase" />
 
 </ResourceDictionary>
