@@ -6,6 +6,7 @@ public partial class DialogWindowBase : ContentWindow
 {
     public DialogWindowBase()
     {
+        DefaultStyleKey = typeof(DialogWindowBase);
         ExtendsContentIntoTitleBar = true;
         StartupLocation = WindowStartupLocation.CenterOwner;
         SizeToContent = true;

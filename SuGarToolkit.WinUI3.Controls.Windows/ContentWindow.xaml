@@ -9,12 +9,16 @@
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="ContentWindowDefaultStyle" TargetType="local:ContentWindow">
+        <Setter Property="TitleBarButtonForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
+        <Setter Property="TitleBarButtonHoverForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
+        <Setter Property="TitleBarButtonPressedForegroundColor" Value="{ThemeResource TextFillColorPrimary}" />
         <Setter Property="TitleBarButtonHoverBackgroundColor" Value="{ThemeResource ContentWindowTitleBarButtonHoverBackgroundColor}" />
         <Setter Property="TitleBarButtonPressedBackgroundColor" Value="{ThemeResource ContentWindowTitleBarButtonPressedBackgroundColor}" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="ShowInTaskbar" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:ContentWindow">
@@ -35,6 +39,6 @@
         </Setter>
     </Style>
 
-	<Style BasedOn="{StaticResource ContentWindowDefaultStyle}" TargetType="local:ContentWindow" />
+    <Style BasedOn="{StaticResource ContentWindowDefaultStyle}" TargetType="local:ContentWindow" />
 
 </ResourceDictionary>
