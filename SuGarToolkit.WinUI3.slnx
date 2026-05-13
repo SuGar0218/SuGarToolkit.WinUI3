@@ -6,6 +6,7 @@
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
   </Folder>
+  <Project Path="SuGarToolkit.WinUI3.Controls.Decorators/SuGarToolkit.WinUI3.Controls.Decorators.csproj" Id="780cbbf3-c1ef-4085-b3e7-2090185da778" />
   <Project Path="SuGarToolkit.WinUI3.Controls.Dialogs/SuGarToolkit.WinUI3.Controls.Dialogs.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
@@ -17,5 +18,6 @@
     <Platform Project="x64" />
     <Deploy />
   </Project>
+  <Project Path="SuGarToolkit.WinUI3.Helpers/SuGarToolkit.WinUI3.Helpers.csproj" Id="299cef0f-7cba-4148-abb6-792b90fbe23a" />
   <Project Path="SuGarToolkit.WinUI3.Layout/SuGarToolkit.WinUI3.Layout.csproj" Id="aecd8164-8ada-4ffa-b8e4-6660c1d85539" />
 </Solution>

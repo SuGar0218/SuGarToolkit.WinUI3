@@ -16,6 +16,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Views\AdaptiveStackPanel\AdaptiveStackPanelPage.xaml" />
+	  <None Remove="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml" />
 	  <None Remove="Views\TestPage.xaml" />
 	  <None Remove="Views\TextBoxValidationPage.xaml" />
 	</ItemGroup>
@@ -43,15 +44,17 @@
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7705" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.260317003" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1839" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.0.1" />
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Decorators\SuGarToolkit.WinUI3.Controls.Decorators.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Dialogs\SuGarToolkit.WinUI3.Controls.Dialogs.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Validations\SuGarToolkit.WinUI3.Controls.Validations.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Windows\SuGarToolkit.WinUI3.Controls.Windows.csproj" />
+		<ProjectReference Include="..\SuGarToolkit.WinUI3.Helpers\SuGarToolkit.WinUI3.Helpers.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Layout\SuGarToolkit.WinUI3.Layout.csproj" />
 	</ItemGroup>
 	<ItemGroup>
@@ -71,6 +74,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\AdaptiveStackPanel\AdaptiveStackPanelPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>
