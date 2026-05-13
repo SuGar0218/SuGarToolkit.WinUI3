@@ -23,3 +23,8 @@ An extension version of ContentDialog, inspired by the Windows User Account Cont
 ContentWindow is somewhat like Window ([System.Windows.Window](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.window)) in WPF.
 
 <img width="1918" height="1018" alt="ContentWindow" src="https://github.com/user-attachments/assets/f32e6a7a-026c-4c75-a781-0e7a02218223" />
+
+### LiquidGlass-Like Interaction Decorator
+
+<img width="800" height="375" alt="屏幕录制 2026-05-13 214115" src="https://github.com/user-attachments/assets/b4fc6ea9-ee88-458d-b656-a2ae1e0c340e" />
+
