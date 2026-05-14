@@ -15,6 +15,7 @@ public class LiquidGlassLikeInteractionTransformController
     public LiquidGlassLikeInteractionTransformController(FrameworkElement target)
     {
         _target = target;
+        _target.SizeChanged += OnTargetSizeChanged;
         _transformGroup = new TransformGroup
         {
             Children =
@@ -60,8 +61,8 @@ public class LiquidGlassLikeInteractionTransformController
         EasingMode = EasingMode.EaseOut,
         Amplitude = 0.5
     };
-
     private readonly Storyboard _resetStoryboard = new Storyboard();
+    private readonly LiquidGlassLikeStretchCalculator _stretchCalculator = new();
 
     public Transform Transform => _transformGroup;
 
@@ -97,6 +98,12 @@ public class LiquidGlassLikeInteractionTransformController
         _resetStoryboard.Begin();
     }
 
+    private void OnTargetSizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        _stretchCalculator.OriginalSize = e.NewSize;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void OnResetStoryboardCompleted(object? sender, object e)
     {
         _resetStoryboard.FillBehavior = FillBehavior.Stop;
@@ -106,6 +113,7 @@ public class LiquidGlassLikeInteractionTransformController
         _translateTransform.Y = 0;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void OnResetAnimationSecondsChanged()
     {
         _scaleTransfromResetXAnimation.Duration = TimeSpan.FromSeconds(ResetAnimationSeconds);
@@ -114,30 +122,27 @@ public class LiquidGlassLikeInteractionTransformController
         _translateTransformResetYAnimation.Duration = TimeSpan.FromSeconds(ResetAnimationSeconds);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void OnDragDeltaChanged()
     {
+        _stretchCalculator.DragDelta = DragDelta;
+        _stretchCalculator.Calculate();
         RefreshScaleTranform();
         RefreshTranslateTransform();
     }
 
-    private static readonly double k = 618;
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void RefreshScaleTranform()
     {
-        double absDeltaX = Math.Abs(DragDelta.X);
-        double absDeltaY = Math.Abs(DragDelta.Y);
-        _scaleTransform.ScaleX = 2 - k / (absDeltaX + k) - 0.5 * absDeltaY / (absDeltaY + k);
-        _scaleTransform.ScaleY = 2 - k / (absDeltaY + k) - 0.5 * absDeltaX / (absDeltaX + k);
+        _scaleTransform.ScaleX = 1 + _stretchCalculator.StretchX / _target.ActualWidth;
+        _scaleTransform.ScaleY = 1 + _stretchCalculator.StretchY / _target.ActualHeight;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void RefreshTranslateTransform()
     {
-        double absDeltaX = Math.Abs(DragDelta.X);
-        double absDeltaY = Math.Abs(DragDelta.Y);
-        _translateTransform.X = (_target.ActualWidth * 0.5 + 16) * absDeltaX / (absDeltaX + k);
-        _translateTransform.Y = (_target.ActualHeight * 0.5 + 16) * absDeltaY / (absDeltaY + k);
+        _translateTransform.X = _stretchCalculator.OffsetX;
+        _translateTransform.Y = _stretchCalculator.OffsetY;
         if (DragDelta.X < 0)
         {
             _translateTransform.X = -_translateTransform.X;

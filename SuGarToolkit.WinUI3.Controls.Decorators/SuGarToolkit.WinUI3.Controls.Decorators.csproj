@@ -6,6 +6,7 @@
 		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
 		<UseWinUI>true</UseWinUI>
 		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
 		<Page Remove="LiquidGlassLike\LiquidGlassLikeInteractionDecorator.xaml" />
