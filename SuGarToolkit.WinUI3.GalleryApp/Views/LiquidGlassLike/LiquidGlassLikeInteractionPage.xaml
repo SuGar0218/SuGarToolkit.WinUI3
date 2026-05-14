@@ -96,35 +96,64 @@
             </StackPanel>
         </Grid>
 
-        <StackPanel
+        <Grid
+            x:Name="PART_DialGrid"
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Opacity="0.618">
-            <TextBlock
-                HorizontalAlignment="Center"
-                FontSize="24"
-                Text="LiquidGlass-Like interaction" />
-            <TextBlock HorizontalAlignment="Center" TextAlignment="Center">
-                <Run Text="Try to drag move these controls." />
-                <LineBreak />
-                <Run Text="They will act like Liquid Glass." />
-            </TextBlock>
-        </StackPanel>
+            ColumnSpacing="8"
+            RowSpacing="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
 
-        <decorators:LiquidGlassLikeInteractionDecorator
-            Grid.Row="1"
-            Margin="32"
-            HorizontalAlignment="Right"
-            VerticalAlignment="Bottom">
-            <Button
-                Width="48"
-                Height="48"
-                helpers:CapsuleShapeHelper.ShapeIntoCapsule="True"
-                Style="{ThemeResource AccentButtonStyle}">
-                <FontIcon Glyph="&#xE74A;" />
-            </Button>
-        </decorators:LiquidGlassLikeInteractionDecorator>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <decorators:LiquidGlassLikeInteractionDecorator Grid.Row="3" Grid.Column="0">
+                <Button
+                    Width="56"
+                    Height="56"
+                    helpers:CapsuleShapeHelper.ShapeIntoCapsule="True">
+                    <TextBlock FontSize="24" Text="＊" />
+                </Button>
+            </decorators:LiquidGlassLikeInteractionDecorator>
+
+            <decorators:LiquidGlassLikeInteractionDecorator Grid.Row="3" Grid.Column="1">
+                <Button
+                    Width="56"
+                    Height="56"
+                    helpers:CapsuleShapeHelper.ShapeIntoCapsule="True">
+                    <TextBlock FontSize="24" Text="0" />
+                </Button>
+            </decorators:LiquidGlassLikeInteractionDecorator>
+
+            <decorators:LiquidGlassLikeInteractionDecorator Grid.Row="3" Grid.Column="2">
+                <Button
+                    Width="56"
+                    Height="56"
+                    helpers:CapsuleShapeHelper.ShapeIntoCapsule="True">
+                    <TextBlock FontSize="24" Text="#" />
+                </Button>
+            </decorators:LiquidGlassLikeInteractionDecorator>
+
+            <decorators:LiquidGlassLikeInteractionDecorator Grid.Row="4" Grid.Column="1">
+                <Button
+                    Width="56"
+                    Height="56"
+                    helpers:CapsuleShapeHelper.ShapeIntoCapsule="True"
+                    Style="{ThemeResource AccentButtonStyle}">
+                    <FontIcon FontSize="24" Glyph="&#xE717;" />
+                </Button>
+            </decorators:LiquidGlassLikeInteractionDecorator>
+        </Grid>
     </Grid>
 
 </Page>
