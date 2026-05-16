@@ -27,10 +27,13 @@ public class LiquidGlassLikeInteractionTransformController
         _scaleTransfromResetYAnimation.EasingFunction = _easingFunction;
         _translateTransformResetXAnimation.EasingFunction = _easingFunction;
         _translateTransformResetYAnimation.EasingFunction = _easingFunction;
-        Timeline[] timelines = [_scaleTransfromResetXAnimation,
+        Timeline[] timelines =
+        [
+            _scaleTransfromResetXAnimation,
             _scaleTransfromResetYAnimation,
             _translateTransformResetXAnimation,
-            _translateTransformResetYAnimation];
+            _translateTransformResetYAnimation
+        ];
         foreach (Timeline timeline in timelines)
         {
             _resetStoryboard.Children.Add(timeline);

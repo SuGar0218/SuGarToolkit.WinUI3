@@ -38,7 +38,7 @@ public sealed partial class LiquidGlassLikeInteractionDecorator : ContentControl
 
         Point currentPosition = e.GetCurrentPoint(this).Position;
         Point dragDelta = new(currentPosition.X - _pointerPressedPosition.X, currentPosition.Y - _pointerPressedPosition.Y);
-        if (Math.Abs(dragDelta.X) <= double.Epsilon || Math.Abs(dragDelta.Y) <= double.Epsilon)
+        if (Math.Abs(dragDelta.X) <= double.Epsilon && Math.Abs(dragDelta.Y) <= double.Epsilon)
             return;
 
         CapturePointer(e.Pointer);
