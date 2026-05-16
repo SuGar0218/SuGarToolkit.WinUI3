@@ -3,7 +3,6 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
 
 using System;
-using System.Numerics;
 using System.Runtime.CompilerServices;
 
 using Windows.Foundation;
@@ -54,8 +53,8 @@ public class LiquidGlassLikeInteractionTransformController
     private readonly DoubleAnimation _scaleTransfromResetXAnimation = new DoubleAnimation { To = 1 };
     private readonly DoubleAnimation _scaleTransfromResetYAnimation = new DoubleAnimation { To = 1 };
     private readonly TranslateTransform _translateTransform = new();
-    private readonly DoubleAnimation _translateTransformResetXAnimation = new DoubleAnimation { To = 1 };
-    private readonly DoubleAnimation _translateTransformResetYAnimation = new DoubleAnimation { To = 1 };
+    private readonly DoubleAnimation _translateTransformResetXAnimation = new DoubleAnimation { To = 0 };
+    private readonly DoubleAnimation _translateTransformResetYAnimation = new DoubleAnimation { To = 0 };
     private readonly EasingFunctionBase _easingFunction = new BackEase
     {
         EasingMode = EasingMode.EaseOut,
@@ -141,15 +140,7 @@ public class LiquidGlassLikeInteractionTransformController
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void RefreshTranslateTransform()
     {
-        _translateTransform.X = _stretchCalculator.OffsetX;
-        _translateTransform.Y = _stretchCalculator.OffsetY;
-        if (DragDelta.X < 0)
-        {
-            _translateTransform.X = -_translateTransform.X;
-        }
-        if (DragDelta.Y < 0)
-        {
-            _translateTransform.Y = -_translateTransform.Y;
-        }
+        _translateTransform.X = Math.Sign(DragDelta.X) * _stretchCalculator.OffsetX;
+        _translateTransform.Y = Math.Sign(DragDelta.Y) * _stretchCalculator.OffsetY;
     }
 }
