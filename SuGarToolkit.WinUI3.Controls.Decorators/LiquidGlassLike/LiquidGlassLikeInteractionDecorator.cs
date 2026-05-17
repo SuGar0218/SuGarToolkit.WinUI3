@@ -29,6 +29,7 @@ public sealed partial class LiquidGlassLikeInteractionDecorator : ContentControl
     {
         _isPointerPressed = true;
         _pointerPressedPosition = e.GetCurrentPoint(this).Position;
+        _controller.Begin();
     }
 
     private void OnPointerMoved(object sender, PointerRoutedEventArgs e)
