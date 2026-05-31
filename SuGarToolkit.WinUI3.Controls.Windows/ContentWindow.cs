@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Media;
 
 using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 using Windows.Foundation;
 using Windows.Graphics;
@@ -611,13 +612,21 @@ public partial class ContentWindow : ContentControl
         }
     }
 
-    public void ShowDialog()
+    public async Task ShowDialogAsync()
     {
+        TaskCompletionSource taskCompletionSource = new();
+        Closed += OnClosed;
+        void OnClosed(object? sender, EventArgs e)
+        {
+            Closed -= OnClosed;
+            taskCompletionSource.SetResult();
+        }
         if (Owner is not null)
         {
             (Window.AppWindow.Presenter as OverlappedPresenter)?.IsModal = true;
         }
         Show();
+        await taskCompletionSource.Task;
     }
 
     public void Hide()

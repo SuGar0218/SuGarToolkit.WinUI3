@@ -485,24 +485,21 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
 
     private readonly ExtendedContentDialogView _view = new();
     private DialogWindowBase? _window;
-    private TaskCompletionSource<ContentDialogResult>? _taskCompletionSource;
 
     public event EventHandler? PrimaryButtonClick;
     public event EventHandler? SecondaryButtonClick;
     public event EventHandler? CloseButtonClick;
 
-    public Task<ContentDialogResult> ShowAsync()
+    public async Task<ContentDialogResult> ShowAsync()
     {
-        _taskCompletionSource = new TaskCompletionSource<ContentDialogResult>();
         _window = new DialogWindowBase
         {
             Content = _view,
             SystemBackdrop = SystemBackdrop,
             Owner = Owner
         };
-        _window.Closed += OnWindowClosed;
-        _window.ShowDialog();
-        return _taskCompletionSource.Task;
+        await _window.ShowDialogAsync();
+        return Result;
     }
 
     private void OnPrimaryButtonClick(object? sender, EventArgs e)
@@ -521,10 +518,5 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
     {
         _window!.TryClose();
         CloseButtonClick?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void OnWindowClosed(object? sender, EventArgs e)
-    {
-        _taskCompletionSource?.SetResult(Result);
     }
 }

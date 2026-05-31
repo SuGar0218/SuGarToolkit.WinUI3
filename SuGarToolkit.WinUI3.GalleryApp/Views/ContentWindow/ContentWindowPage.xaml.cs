@@ -23,7 +23,7 @@ public sealed partial class ContentWindowPage : Page
         InitializeComponent();
     }
 
-    private void OnOpenNewWindowButtonClick(object sender, RoutedEventArgs e)
+    private async void OnOpenNewWindowButtonClick(object sender, RoutedEventArgs e)
     {
         SampleContentWindow window = new()
         {
@@ -42,7 +42,7 @@ public sealed partial class ContentWindowPage : Page
         if (ContentWindowInfo.IsModal)
         {
             window.Owner = ContentWindow.GetWindow(this);
-            window.ShowDialog();
+            await window.ShowDialogAsync();
         }
         else
         {

@@ -457,18 +457,16 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
     public event EventHandler? SecondaryButtonClick;
     public event EventHandler? CloseButtonClick;
 
-    public Task<ContentDialogResult> ShowAsync()
+    public async Task<ContentDialogResult> ShowAsync()
     {
-        _taskCompletionSource = new TaskCompletionSource<ContentDialogResult>();
         _window = new DialogWindowBase
         {
             Content = _view,
             SystemBackdrop = SystemBackdrop,
             Owner = Owner,
         };
-        _window.Closed += OnWindowClosed;
-        _window.ShowDialog();
-        return _taskCompletionSource.Task;
+        await _window.ShowDialogAsync();
+        return Result;
     }
 
     private void OnPrimaryButtonClick(object? sender, EventArgs e)
@@ -487,10 +485,5 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
     {
         _window!.TryClose();
         CloseButtonClick?.Invoke(this, EventArgs.Empty);
-    }
-
-    private void OnWindowClosed(object? sender, EventArgs e)
-    {
-        _taskCompletionSource?.SetResult(Result);
     }
 }

@@ -30,7 +30,7 @@ public sealed partial class ContentDialogPage : Page
         .ShowAsync();
     }
 
-    private void OnShowContentDialogWindowButtonClick(object sender, RoutedEventArgs e)
+    private async void OnShowContentDialogWindowButtonClick(object sender, RoutedEventArgs e)
     {
         SampleContentDialogWindow window = new()
         {
@@ -43,7 +43,7 @@ public sealed partial class ContentDialogPage : Page
         };
         if (ContentDialogWindowInfo.IsModal)
         {
-            window.ShowDialog();
+            await window.ShowDialogAsync();
         }
         else
         {
@@ -51,7 +51,7 @@ public sealed partial class ContentDialogPage : Page
         }
     }
 
-    private void OnShowExtendedContentDialogWindowButtonClick(object sender, RoutedEventArgs e)
+    private async void OnShowExtendedContentDialogWindowButtonClick(object sender, RoutedEventArgs e)
     {
         SampleExtendedContentDialogWindow window = new()
         {
@@ -64,7 +64,7 @@ public sealed partial class ContentDialogPage : Page
         };
         if (ExtendedContentDialogWindowInfo.IsModal)
         {
-            window.ShowDialog();
+            await window.ShowDialogAsync();
         }
         else
         {
@@ -72,13 +72,13 @@ public sealed partial class ContentDialogPage : Page
         }
     }
 
-    private void OnShowUacDialogWindowButtonClick(object sender, RoutedEventArgs e)
+    private async void OnShowUacDialogWindowButtonClick(object sender, RoutedEventArgs e)
     {
         SampleUacStyleDialogWindow window = new()
         {
             Owner = ContentWindow.GetWindow(this),
             Severity = (InfoBarSeverity) PART_SeverityComboBox.SelectedItem
         };
-        window.ShowDialog();
+        await window.ShowDialogAsync();
     }
 }

@@ -12,11 +12,9 @@ public partial class MessageBox : DependencyObject
     {
         _window = new DialogWindowBase();
         _view = new MessageBoxView();
-        _taskCompletionSource = new TaskCompletionSource<MessageBoxResult>();
         _view.Loaded += OnViewLoaded;
         _window.SystemBackdrop = SystemBackdrop;
         _window.Content = _view;
-        _window.Closed += OnWindowClosed;
         _view.ResultChanged += OnResultChanged;
     }
 
@@ -122,22 +120,16 @@ public partial class MessageBox : DependencyObject
 
     private readonly DialogWindowBase _window;
     private readonly MessageBoxView _view;
-    private readonly TaskCompletionSource<MessageBoxResult> _taskCompletionSource;
 
-    public Task<MessageBoxResult> ShowAsync()
+    public async Task<MessageBoxResult> ShowAsync()
     {
-        _window.ShowDialog();
-        return _taskCompletionSource.Task;
+        await _window.ShowDialogAsync();
+        return _view.Result;
     }
 
     private void OnViewLoaded(object sender, RoutedEventArgs e)
     {
         _view.MaxWidth = double.PositiveInfinity;
-    }
-
-    private void OnWindowClosed(object? sender, EventArgs e)
-    {
-        _taskCompletionSource.SetResult(_view.Result);
     }
 
     private void OnResultChanged(object? sender, EventArgs e)
