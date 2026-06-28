@@ -16,6 +16,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Views\AdaptiveStackPanel\AdaptiveStackPanelPage.xaml" />
+	  <None Remove="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml" />
 	  <None Remove="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml" />
 	  <None Remove="Views\TestPage.xaml" />
 	  <None Remove="Views\TextBoxValidationPage.xaml" />
@@ -82,6 +83,11 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
 
 	<!--
 	Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
@@ -96,10 +102,10 @@
 	<PropertyGroup>
 		<PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
 		<PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
-		<PublishTrimmed Condition="'$(Configuration)' == 'Debug'">True</PublishTrimmed>
+		<PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
 		<PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
 		<WindowsPackageType>None</WindowsPackageType>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<PublishAot>True</PublishAot>
+		<PublishAot>False</PublishAot>
 	</PropertyGroup>
 </Project>

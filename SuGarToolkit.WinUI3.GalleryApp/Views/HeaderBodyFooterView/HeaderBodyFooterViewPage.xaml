@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+	x:Class="SuGarToolkit.WinUI3.GalleryApp.Views.HeaderBodyFooterView.HeaderBodyFooterViewPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:layout="using:SuGarToolkit.WinUI3.Layout"
+	xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp.Views.HeaderBodyFooterView"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<layout:HeaderBodyFooterView
+		VerticalContentAlignment="Top"
+		FooterBackground="#08000000"
+		FooterSeparatorBrush="#20000000"
+		FooterSeparatorThickness="1"
+		HeaderBackground="#08000000"
+		HeaderSeparatorBrush="#20000000"
+		HeaderSeparatorThickness="1"
+		HorizontalFooterAlignment="Right">
+		<layout:HeaderBodyFooterView.Header>
+			<TextBlock
+				Margin="24,24,24,12"
+				Style="{ThemeResource TitleTextBlockStyle}"
+				Text="Lorem Ipsum" />
+		</layout:HeaderBodyFooterView.Header>
+		<layout:HeaderBodyFooterView.Footer>
+			<StackPanel
+				Padding="24"
+				Orientation="Horizontal"
+				Spacing="8">
+				<HyperlinkButton Content="Cancel" />
+				<Button Content="Submit" Style="{ThemeResource AccentButtonStyle}" />
+			</StackPanel>
+		</layout:HeaderBodyFooterView.Footer>
+		<TextBlock Margin="24,12" TextWrapping="Wrap">
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		</TextBlock>
+	</layout:HeaderBodyFooterView>
+
+</Page>
