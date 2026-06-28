@@ -21,6 +21,14 @@
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.0.1" />
 	</ItemGroup>
 	<ItemGroup>
+	  <ProjectReference Include="..\SuGarToolkit.WinUI3.Helpers\SuGarToolkit.WinUI3.Helpers.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="HeaderBodyFooterView\HeaderBodyFooterView.xaml">
+	    <SubType>Designer</SubType>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
 		<Page Update="TextBlock.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

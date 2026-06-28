@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:helpers="using:SuGarToolkit.WinUI3.Helpers"
+	xmlns:local="using:SuGarToolkit.WinUI3.Layout">
+
+	<Style TargetType="local:HeaderBodyFooterView">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="local:HeaderBodyFooterView">
+					<Grid
+						x:Name="PART_RootGrid"
+						Padding="{TemplateBinding Padding}"
+						Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}">
+
+						<Grid.Resources>
+							<helpers:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+							<ControlTemplate x:Key="SimpleContentControlTemplate" TargetType="ContentControl">
+								<Border
+									Padding="{TemplateBinding Padding}"
+									Background="{TemplateBinding Background}"
+									BorderBrush="{TemplateBinding BorderBrush}"
+									BorderThickness="{TemplateBinding BorderThickness}">
+									<ContentPresenter
+										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+										Content="{TemplateBinding Content}"
+										ContentTemplate="{TemplateBinding ContentTemplate}"
+										ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
+								</Border>
+							</ControlTemplate>
+						</Grid.Resources>
+
+						<ContentControl
+							x:Name="PART_HeaderContentControl"
+							Grid.Row="0"
+							Grid.Column="0"
+							HorizontalContentAlignment="{TemplateBinding HorizontalHeaderAlignment}"
+							VerticalContentAlignment="{TemplateBinding VerticalHeaderAlignment}"
+							Background="{TemplateBinding HeaderBackground}"
+							BorderBrush="{TemplateBinding HeaderSeparatorBrush}"
+							Content="{TemplateBinding Header}"
+							ContentTemplate="{TemplateBinding HeaderTemplate}"
+							ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+							Template="{StaticResource SimpleContentControlTemplate}">
+							<ContentControl.BorderThickness>
+								<Binding
+									Converter="{StaticResource DoubleToThicknessConverter}"
+									Path="HeaderSeparatorThickness"
+									RelativeSource="{RelativeSource Mode=TemplatedParent}">
+									<Binding.ConverterParameter>
+										<helpers:ThicknessSides>Bottom</helpers:ThicknessSides>
+									</Binding.ConverterParameter>
+								</Binding>
+							</ContentControl.BorderThickness>
+						</ContentControl>
+
+						<ContentControl
+							x:Name="PART_BodyContentControl"
+							Grid.Row="1"
+							Grid.Column="1"
+							HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+							VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+							Content="{TemplateBinding Content}"
+							ContentTemplate="{TemplateBinding ContentTemplate}"
+							ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+							Template="{StaticResource SimpleContentControlTemplate}" />
+
+						<ContentControl
+							x:Name="PART_FooterContentControl"
+							Grid.Row="2"
+							Grid.Column="2"
+							HorizontalContentAlignment="{TemplateBinding HorizontalFooterAlignment}"
+							VerticalContentAlignment="{TemplateBinding VerticalFooterAlignment}"
+							Background="{TemplateBinding FooterBackground}"
+							BorderBrush="{TemplateBinding FooterSeparatorBrush}"
+							Content="{TemplateBinding Footer}"
+							ContentTemplate="{TemplateBinding FooterTemplate}"
+							ContentTemplateSelector="{TemplateBinding FooterTemplateSelector}"
+							Template="{StaticResource SimpleContentControlTemplate}">
+							<ContentControl.BorderThickness>
+								<Binding
+									Converter="{StaticResource DoubleToThicknessConverter}"
+									Path="FooterSeparatorThickness"
+									RelativeSource="{RelativeSource Mode=TemplatedParent}">
+									<Binding.ConverterParameter>
+										<helpers:ThicknessSides>Top</helpers:ThicknessSides>
+									</Binding.ConverterParameter>
+								</Binding>
+							</ContentControl.BorderThickness>
+						</ContentControl>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>
