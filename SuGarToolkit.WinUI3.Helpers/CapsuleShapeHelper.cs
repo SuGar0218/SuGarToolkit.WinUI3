@@ -25,9 +25,9 @@ public class CapsuleShapeHelper
     private static void OnShapeIntoCapsuleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
         Control target = (Control) d;
-        ShapeControlIntoCapsule(target);
         if ((bool) e.NewValue)
         {
+            ShapeControlIntoCapsule(target);
             target.SizeChanged += OnControlSizeChanged;
         }
         else

@@ -15,6 +15,9 @@
 		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Content Remove="Assets\OS 26 Liquid Glass Sample.jpg" />
+	</ItemGroup>
+	<ItemGroup>
 	  <None Remove="Views\AdaptiveStackPanel\AdaptiveStackPanelPage.xaml" />
 	  <None Remove="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml" />
 	  <None Remove="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml" />
@@ -46,9 +49,10 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+		<PackageReference Include="LiquidGlassWinUI" Version="1.0.1" />
 		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1839" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.0.1" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2270" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.2.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Decorators\SuGarToolkit.WinUI3.Controls.Decorators.csproj" />
@@ -57,6 +61,11 @@
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Windows\SuGarToolkit.WinUI3.Controls.Windows.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Helpers\SuGarToolkit.WinUI3.Helpers.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Layout\SuGarToolkit.WinUI3.Layout.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="Assets\OS 26 Liquid Glass Sample.jpg">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\TestPage.xaml">

@@ -1,4 +1,3 @@
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
 using SuGarToolkit.WinUI3.Controls.Decorators;
@@ -17,12 +16,12 @@ public sealed partial class LiquidGlassLikeInteractionPage : Page
             {
                 Button button = new()
                 {
-                    Width = 56,
-                    Height = 56,
+                    Width = 64,
+                    Height = 64,
                     Content = new TextBlock
                     {
                         Text = (i * 3 + j + 1).ToString(),
-                        FontSize = 24
+                        FontSize = 32
                     }
                 };
                 CapsuleShapeHelper.SetShapeIntoCapsule(button, true);

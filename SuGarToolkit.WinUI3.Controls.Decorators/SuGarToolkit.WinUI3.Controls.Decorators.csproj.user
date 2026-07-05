@@ -2,8 +2,13 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <None Update="LiquidGlassLike\LiquidGlassLikeInteractionDecorator.xaml">
+    <Page Update="LiquidGlassLike\LiquidGlassLikeInteractionDecorator.xaml">
       <SubType>Designer</SubType>
-    </None>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>
