@@ -117,6 +117,15 @@
 					<InfoBarSeverity>Success</InfoBarSeverity>
 				</ComboBox>
 			</Expander>
+
+			<Expander>
+				<Expander.Header>
+					<Button
+						Click="OnShowContentDialogExButtonClick"
+						Content="ContentDialogEx"
+						Style="{ThemeResource AccentButtonStyle}" />
+				</Expander.Header>
+			</Expander>
 		</StackPanel>
 	</ScrollViewer>
 

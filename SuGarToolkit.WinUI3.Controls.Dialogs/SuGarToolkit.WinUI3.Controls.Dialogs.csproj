@@ -27,6 +27,7 @@
 		<IsAotCompatible>True</IsAotCompatible>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="ContentDialogEx\ContentDialogEx.xaml" />
 		<None Remove="ContentDialogView.xaml" />
 		<None Remove="ContentDialogView_themeresources.xaml" />
 		<None Remove="ContentDialogWindow.xaml" />
@@ -48,6 +49,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Windows\SuGarToolkit.WinUI3.Controls.Windows.csproj" />
+		<ProjectReference Include="..\SuGarToolkit.WinUI3.Layout\SuGarToolkit.WinUI3.Layout.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Page Update="UacStyleDialogWindow.xaml">
@@ -92,6 +94,11 @@
 	<ItemGroup>
 		<Folder Include="MessageBox\" />
 		<Folder Include="UacStyleDialog\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="ContentDialogEx\ContentDialogEx.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 		<Page Update="MessageBoxView_themeresources.xaml">

@@ -81,4 +81,16 @@ public sealed partial class ContentDialogPage : Page
         };
         await window.ShowDialogAsync();
     }
+
+    private async void OnShowContentDialogExButtonClick(object sender, RoutedEventArgs e)
+    {
+        await new DialogWindowBase
+        {
+            Owner = ContentWindow.GetWindow(this),
+            SystemBackdrop = new MicaBackdrop(),
+            Content = new SampleContentDialogEx(),
+            MaxWidth = 640
+        }
+        .ShowDialogAsync();
+    }
 }

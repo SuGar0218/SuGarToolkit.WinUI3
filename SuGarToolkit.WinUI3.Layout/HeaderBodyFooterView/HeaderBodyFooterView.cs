@@ -1,8 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-using SuGarToolkit.WinUI3.Helpers;
-
 using System;
 
 namespace SuGarToolkit.WinUI3.Layout

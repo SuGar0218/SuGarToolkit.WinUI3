@@ -9,8 +9,11 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup />
-  <ItemGroup />
-  <ItemGroup />
+  <ItemGroup>
+    <Page Update="ContentDialogEx\ContentDialogEx.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   <ItemGroup>
     <Page Update="Themes\Generic.xaml">
       <SubType>Designer</SubType>
