@@ -18,6 +18,12 @@ An extension version of ContentDialog, inspired by the Windows User Account Cont
 
 ![MessageBox](https://github.com/user-attachments/assets/a2c0ca11-f303-46aa-96de-5c9941e084a4)
 
+### ContentDialogEx
+
+ContentDialog with more freedom to customize buttons.
+
+<img width="1192" height="577" alt="ContentDialogEx" src="https://github.com/user-attachments/assets/4647ec31-4999-43da-b856-a73076976b8b" />
+
 ### ContentWindow, derived from ContentControl
 
 ContentWindow is somewhat like Window ([System.Windows.Window](https://learn.microsoft.com/zh-cn/dotnet/api/system.windows.window)) in WPF.
@@ -27,4 +33,3 @@ ContentWindow is somewhat like Window ([System.Windows.Window](https://learn.mic
 ### LiquidGlass-Like Interaction Decorator
 
 <img width="800" height="375" alt="屏幕录制 2026-05-13 214115" src="https://github.com/user-attachments/assets/b4fc6ea9-ee88-458d-b656-a2ae1e0c340e" />
-
