@@ -4,7 +4,6 @@ using Microsoft.UI.Xaml.Media;
 
 namespace SuGarToolkit.WinUI3.Layout
 {
-    [TemplatePart(Name = nameof(PART_RootGrid), Type = typeof(HeaderBodyFooterView))]
     public partial class HeaderBodyFooterView
     {
         public Orientation Orientation
