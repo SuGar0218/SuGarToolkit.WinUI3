@@ -24,6 +24,7 @@
 
 						<Grid.Resources>
 							<helpers:DoubleToThicknessConverter x:Key="DoubleToThicknessConverter" />
+							<helpers:CollapseIfNullConverter x:Key="CollapseIfNullConverter" />
 							<ControlTemplate x:Key="SimpleContentControlTemplate" TargetType="ContentControl">
 								<Border
 									Padding="{TemplateBinding Padding}"
@@ -51,7 +52,8 @@
 							Content="{TemplateBinding Header}"
 							ContentTemplate="{TemplateBinding HeaderTemplate}"
 							ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
-							Template="{StaticResource SimpleContentControlTemplate}">
+							Template="{StaticResource SimpleContentControlTemplate}"
+							Visibility="{Binding Header, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource CollapseIfNullConverter}}">
 							<ContentControl.BorderThickness>
 								<Binding
 									Converter="{StaticResource DoubleToThicknessConverter}"
@@ -86,7 +88,8 @@
 							Content="{TemplateBinding Footer}"
 							ContentTemplate="{TemplateBinding FooterTemplate}"
 							ContentTemplateSelector="{TemplateBinding FooterTemplateSelector}"
-							Template="{StaticResource SimpleContentControlTemplate}">
+							Template="{StaticResource SimpleContentControlTemplate}"
+							Visibility="{Binding Footer, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource CollapseIfNullConverter}}">
 							<ContentControl.BorderThickness>
 								<Binding
 									Converter="{StaticResource DoubleToThicknessConverter}"
