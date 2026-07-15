@@ -154,6 +154,19 @@ public partial class HeaderBodyFooterView
         new PropertyMetadata(default(VerticalAlignment))
     );
 
+    public Brush? BodyBackground
+    {
+        get => (Brush?) GetValue(BodyBackgroundProperty);
+        set => SetValue(BodyBackgroundProperty, value);
+    }
+
+    public static readonly DependencyProperty BodyBackgroundProperty = DependencyProperty.Register(
+        nameof(BodyBackground),
+        typeof(Brush),
+        typeof(HeaderBodyFooterView),
+        new PropertyMetadata(default(Brush))
+    );
+
     public object? Footer
     {
         get => (object?) GetValue(FooterProperty);
@@ -199,11 +212,25 @@ public partial class HeaderBodyFooterView
         set => SetValue(FooterBackgroundProperty, value);
     }
 
+    public static readonly DependencyProperty FooterBackgroundProperty = DependencyProperty.Register(
+        nameof(FooterBackground),
+        typeof(Brush),
+        typeof(HeaderBodyFooterView),
+        new PropertyMetadata(default(Brush))
+    );
+
     public Brush? FooterSeparatorBrush
     {
         get => (Brush?) GetValue(FooterSeparatorBrushProperty);
         set => SetValue(FooterSeparatorBrushProperty, value);
     }
+
+    public static readonly DependencyProperty FooterSeparatorBrushProperty = DependencyProperty.Register(
+        nameof(FooterSeparatorBrush),
+        typeof(Brush),
+        typeof(HeaderBodyFooterView),
+        new PropertyMetadata(default(Brush?))
+    );
 
     public double FooterSeparatorThickness
     {
@@ -216,20 +243,6 @@ public partial class HeaderBodyFooterView
         typeof(double),
         typeof(HeaderBodyFooterView),
         new PropertyMetadata(default(double))
-    );
-
-    public static readonly DependencyProperty FooterSeparatorBrushProperty = DependencyProperty.Register(
-        nameof(FooterSeparatorBrush),
-        typeof(Brush),
-        typeof(HeaderBodyFooterView),
-        new PropertyMetadata(default(Brush?))
-    );
-
-    public static readonly DependencyProperty FooterBackgroundProperty = DependencyProperty.Register(
-        nameof(FooterBackground),
-        typeof(Brush),
-        typeof(HeaderBodyFooterView),
-        new PropertyMetadata(default(Brush))
     );
 
     public HorizontalAlignment HorizontalFooterAlignment

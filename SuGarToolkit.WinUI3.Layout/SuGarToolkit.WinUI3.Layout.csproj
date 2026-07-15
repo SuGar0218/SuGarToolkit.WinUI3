@@ -10,6 +10,7 @@
 		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="HeaderBodyFooterView\HeaderBodyFooterView_themeresources.xaml" />
 		<None Remove="TextBlock.xaml" />
 	</ItemGroup>
 	<ItemGroup>
@@ -22,6 +23,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\SuGarToolkit.WinUI3.Helpers\SuGarToolkit.WinUI3.Helpers.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="HeaderBodyFooterView\HeaderBodyFooterView_themeresources.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="HeaderBodyFooterView\HeaderBodyFooterView.xaml">

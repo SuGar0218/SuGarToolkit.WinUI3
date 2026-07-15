@@ -9,16 +9,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 
-	<layout:HeaderBodyFooterView
-		VerticalContentAlignment="Top"
-		FooterBackground="#08000000"
-		FooterSeparatorBrush="#20000000"
-		FooterSeparatorThickness="1"
-		HeaderBackground="#08000000"
-		HeaderSeparatorBrush="#20000000"
-		HeaderSeparatorThickness="1"
-		HorizontalFooterAlignment="Right">
-
+	<layout:HeaderBodyFooterView HorizontalFooterAlignment="Right" HorizontalHeaderAlignment="Left">
 		<layout:HeaderBodyFooterView.Header>
 			<TextBlock
 				Margin="24,24,24,12"

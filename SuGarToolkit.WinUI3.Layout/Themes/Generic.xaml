@@ -6,6 +6,7 @@
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Layout/TextBlock.xaml" />
 		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Layout/HeaderBodyFooterView/HeaderBodyFooterView.xaml" />
+		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Layout/HeaderBodyFooterView/HeaderBodyFooterView_themeresources.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

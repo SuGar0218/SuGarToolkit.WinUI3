@@ -9,7 +9,7 @@ namespace SuGarToolkit.WinUI3.Layout
     [TemplatePart(Name = nameof(PART_HeaderContentControl), Type = typeof(ContentControl))]
     [TemplatePart(Name = nameof(PART_BodyContentControl), Type = typeof(ContentControl))]
     [TemplatePart(Name = nameof(PART_FooterContentControl), Type = typeof(ContentControl))]
-    public partial class HeaderBodyFooterView : ContentControl, IHeaderBodyFooterView
+    public partial class HeaderBodyFooterView : ContentControl
     {
         public HeaderBodyFooterView()
         {

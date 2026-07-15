@@ -11,6 +11,7 @@
 				<!--  Other merged dictionaries here  -->
 				<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Windows/Themes/Generic.xaml" />
 				<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/Themes/Generic.xaml" />
+				<ResourceDictionary Source="/SuGarToolkit.WinUI3.Layout/Themes/Generic.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<!--  Other app resources here  -->
 		</ResourceDictionary>

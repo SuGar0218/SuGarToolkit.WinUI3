@@ -12,6 +12,13 @@
 		<Setter Property="VerticalHeaderAlignment" Value="Stretch" />
 		<Setter Property="VerticalContentAlignment" Value="Stretch" />
 		<Setter Property="VerticalFooterAlignment" Value="Stretch" />
+		<Setter Property="HeaderBackground" Value="{ThemeResource HeaderBodyFooterViewSecondaryBackground}" />
+		<Setter Property="HeaderSeparatorThickness" Value="1" />
+		<Setter Property="HeaderSeparatorBrush" Value="{ThemeResource HeaderBodyFooterViewSeparatorBorderBrush}" />
+		<Setter Property="BodyBackground" Value="{ThemeResource HeaderBodyFooterViewPrimaryBackground}" />
+		<Setter Property="FooterBackground" Value="{ThemeResource HeaderBodyFooterViewSecondaryBackground}" />
+		<Setter Property="FooterSeparatorThickness" Value="1" />
+		<Setter Property="FooterSeparatorBrush" Value="{ThemeResource HeaderBodyFooterViewSeparatorBorderBrush}" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:HeaderBodyFooterView">
@@ -72,6 +79,7 @@
 							Grid.Column="1"
 							HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
 							VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+							Background="{TemplateBinding BodyBackground}"
 							Content="{TemplateBinding Content}"
 							ContentTemplate="{TemplateBinding ContentTemplate}"
 							ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
