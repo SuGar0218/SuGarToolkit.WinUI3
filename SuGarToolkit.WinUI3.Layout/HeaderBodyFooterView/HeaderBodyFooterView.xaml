@@ -6,6 +6,12 @@
 	xmlns:local="using:SuGarToolkit.WinUI3.Layout">
 
 	<Style TargetType="local:HeaderBodyFooterView">
+		<Setter Property="HorizontalHeaderAlignment" Value="Stretch" />
+		<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		<Setter Property="HorizontalFooterAlignment" Value="Stretch" />
+		<Setter Property="VerticalHeaderAlignment" Value="Stretch" />
+		<Setter Property="VerticalContentAlignment" Value="Stretch" />
+		<Setter Property="VerticalFooterAlignment" Value="Stretch" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:HeaderBodyFooterView">
