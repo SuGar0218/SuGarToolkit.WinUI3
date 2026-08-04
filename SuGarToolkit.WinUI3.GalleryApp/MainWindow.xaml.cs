@@ -22,6 +22,7 @@ public sealed partial class MainWindow : ContentWindow
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<AdaptiveStackPanelPage>("AdaptiveStackPanel"));
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<LiquidGlassLikeInteractionPage>("LiquidGlassLikeInteraction"));
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<HeaderBodyFooterViewPage>("HeaderBodyFooterView"));
+        PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<DwmWindowAttributesSamplePage>("DwmWindowAttributes"));
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<TestPage>("Test"));
     }
 }
