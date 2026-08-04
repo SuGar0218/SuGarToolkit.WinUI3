@@ -13,6 +13,12 @@
     <None Update="Package.appxmanifest">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="Views\DwmWindowAttributes\DwmWindowAttributesSamplePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\DwmWindowAttributes\SampleDwmAttributesWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml">
       <SubType>Designer</SubType>
     </Page>

@@ -16,6 +16,8 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Views\AdaptiveStackPanel\AdaptiveStackPanelPage.xaml" />
+	  <None Remove="Views\DwmWindowAttributes\DwmWindowAttributesSamplePage.xaml" />
+	  <None Remove="Views\DwmWindowAttributes\SampleDwmAttributesWindow.xaml" />
 	  <None Remove="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml" />
 	  <None Remove="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml" />
 	  <None Remove="Views\TestPage.xaml" />
@@ -59,6 +61,11 @@
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Layout\SuGarToolkit.WinUI3.Layout.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+	  <Page Update="Views\DwmWindowAttributes\DwmWindowAttributesSamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
 	  <Page Update="Views\TestPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
@@ -85,6 +92,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\DwmWindowAttributes\SampleDwmAttributesWindow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>

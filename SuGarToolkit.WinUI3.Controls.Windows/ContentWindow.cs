@@ -513,6 +513,32 @@ public partial class ContentWindow : ContentControl
         (self.Window.AppWindow.Presenter as OverlappedPresenter)?.IsResizable = canResize;
     }
 
+    /// <summary>
+    /// The color of the window outer border, only supported on Windows 11.
+    /// </summary>
+    /// <remarks>
+    /// <a href="https://learn.microsoft.com/zh-cn/windows/win32/api/dwmapi/ne-dwmapi-dwmwindowattribute">DWMWINDOWATTRIBUTE.DWMWA_BORDER_COLOR</a>
+    /// </remarks>
+    public Color? OuterBorderColor
+    {
+        get => (Color?) GetValue(OuterBorderColorProperty);
+        set => SetValue(OuterBorderColorProperty, value);
+    }
+
+    public static readonly DependencyProperty OuterBorderColorProperty = DependencyProperty.Register(
+        nameof(OuterBorderColor),
+        typeof(Color?),
+        typeof(ContentWindow),
+        new PropertyMetadata(default(Color?), OnOuterBorderColorChanged)
+    );
+
+    private static void OnOuterBorderColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+        ContentWindow self = (ContentWindow) d;
+        Color? color = (Color?) e.NewValue;
+        self.Window.BorderColor(color);
+    }
+
     #endregion
 
     public event EventHandler? StateChanged;

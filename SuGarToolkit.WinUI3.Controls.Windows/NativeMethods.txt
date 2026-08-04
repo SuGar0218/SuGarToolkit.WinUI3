@@ -6,3 +6,5 @@ SetWindowLongPtr
 SetWindowSubclass
 RemoveWindowSubclass
 DefSubclassProc
+﻿DwmGetWindowAttribute
+DwmSetWindowAttribute

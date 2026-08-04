@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Window
+	x:Class="SuGarToolkit.WinUI3.GalleryApp.Views.SampleDwmAttributesWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp.Views"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:windows="using:SuGarToolkit.WinUI3.Controls.Windows"
+	Title="SampleDwmAttributesWindow"
+	mc:Ignorable="d">
+
+	<Window.SystemBackdrop>
+		<MicaBackdrop />
+	</Window.SystemBackdrop>
+
+	<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+		<StackPanel Margin="24" Spacing="24">
+			<StackPanel Orientation="Horizontal" Spacing="24">
+				<Grid
+					Padding="24"
+					BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+					BorderThickness="1"
+					CornerRadius="{ThemeResource ControlCornerRadius}"
+					RowSpacing="12">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<TextBlock
+						Grid.Row="0"
+						Style="{ThemeResource SubtitleTextBlockStyle}"
+						Text="Title bar color" />
+					<Button
+						Grid.Row="1"
+						Click="OnTitleBarResetButtonClick"
+						Content="Reset to auto"
+						Style="{ThemeResource AccentButtonStyle}" />
+					<ColorPicker
+						Grid.Row="2"
+						ColorChanged="OnTitleBarColorPickerColorChanged"
+						IsColorChannelTextInputVisible="False" />
+				</Grid>
+
+				<Grid
+					Padding="24"
+					BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+					BorderThickness="1"
+					CornerRadius="{ThemeResource ControlCornerRadius}"
+					RowSpacing="12">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<TextBlock
+						Grid.Row="0"
+						Style="{ThemeResource SubtitleTextBlockStyle}"
+						Text="Title text color" />
+					<Button
+						Grid.Row="1"
+						Click="OnTitleTextResetButtonClick"
+						Content="Reset to auto"
+						Style="{ThemeResource AccentButtonStyle}" />
+					<ColorPicker
+						Grid.Row="2"
+						ColorChanged="OnTitleTextColorPickerColorChanged"
+						IsColorChannelTextInputVisible="False" />
+				</Grid>
+
+				<Grid
+					Padding="24"
+					BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+					BorderThickness="1"
+					CornerRadius="{ThemeResource ControlCornerRadius}"
+					RowSpacing="12">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="auto" />
+						<RowDefinition Height="*" />
+					</Grid.RowDefinitions>
+					<TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" Text="Window border color" />
+					<Button
+						Grid.Row="1"
+						Click="OnWindowBorderColorResetButtonClick"
+						Content="Reset to auto"
+						Style="{ThemeResource AccentButtonStyle}" />
+					<ColorPicker
+						Grid.Row="2"
+						ColorChanged="OnWindowBorderColorPickerColorChanged"
+						IsColorChannelTextInputVisible="False" />
+				</Grid>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Spacing="24">
+				<ComboBox Header="Window corner roundness" SelectionChanged="OnWindowCornerRoundnessSelectionChanged">
+					<ComboBoxItem Content="Normal" DataContext="{x:Bind windows:WindowCornerRoundness.Normal}" />
+					<ComboBoxItem Content="Small" DataContext="{x:Bind windows:WindowCornerRoundness.Small}" />
+					<ComboBoxItem Content="None" DataContext="{x:Bind windows:WindowCornerRoundness.None}" />
+				</ComboBox>
+				<CheckBox
+					VerticalAlignment="Bottom"
+					Checked="OnAutoDarkModeCheckBoxChecked"
+					Content="Title bar dark mode"
+					Unchecked="OnAutoDarkModeCheckBoxUnchecked" />
+			</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+
+</Window>
