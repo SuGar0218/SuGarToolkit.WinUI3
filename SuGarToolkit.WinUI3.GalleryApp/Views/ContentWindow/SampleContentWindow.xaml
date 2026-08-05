@@ -31,6 +31,10 @@
 
 			<StackPanel Grid.Column="1" Spacing="12">
 				<TextBox Header="Title" Text="{x:Bind Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+				<ComboBox
+					Header="Window corner roundness"
+					ItemsSource="{x:Bind CornerRoundnesses}"
+					SelectionChanged="OnCornerRoundnessComboBoxSelectionChanged" />
 				<CheckBox Content="CanMinimize" IsChecked="{x:Bind CanMinimize, Mode=TwoWay}" />
 				<CheckBox Content="CanMaximize" IsChecked="{x:Bind CanMaximize, Mode=TwoWay}" />
 				<CheckBox Content="CanResize" IsChecked="{x:Bind CanResize, Mode=TwoWay}" />

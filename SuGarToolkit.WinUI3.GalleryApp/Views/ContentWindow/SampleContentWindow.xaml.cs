@@ -3,6 +3,8 @@ using Microsoft.UI.Xaml.Controls;
 
 using SuGarToolkit.WinUI3.Controls.Windows;
 
+using System;
+
 namespace SuGarToolkit.WinUI3.GalleryApp.Views;
 
 public sealed partial class SampleContentWindow : ContentWindow
@@ -21,4 +23,14 @@ public sealed partial class SampleContentWindow : ContentWindow
     {
         OuterBorderColor = null;
     }
+
+    private void OnCornerRoundnessComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.AddedItems is not null && e.AddedItems[0] is WindowCornerRoundness cornerRoundness)
+        {
+            CornerRoundness = cornerRoundness;
+        }
+    }
+
+    private WindowCornerRoundness[] CornerRoundnesses { get; } = Enum.GetValues<WindowCornerRoundness>();
 }
