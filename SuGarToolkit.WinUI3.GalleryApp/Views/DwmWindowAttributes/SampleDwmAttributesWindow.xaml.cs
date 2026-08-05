@@ -10,6 +10,7 @@ public sealed partial class SampleDwmAttributesWindow : Window
     public SampleDwmAttributesWindow()
     {
         InitializeComponent();
+        this.DwmSystemBackdrop(WindowSystemBackdrop.Acrylic);
     }
 
     private void OnTitleBarColorPickerColorChanged(ColorPicker sender, ColorChangedEventArgs args)
