@@ -3,6 +3,7 @@
 	x:Class="SuGarToolkit.WinUI3.GalleryApp.Views.TestPage"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:SuGarControls="using:SuGarToolkit.WinUI3.Controls"
 	xmlns:SuGarDialogs="using:SuGarToolkit.WinUI3.Controls.Dialogs"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:layout="using:SuGarToolkit.WinUI3.Layout"
@@ -40,6 +41,12 @@
 			<CheckBox>
 				<layout:TextBlock Text="MAXIMIZEBOX" />
 			</CheckBox>
+			<SuGarControls:SegmentedSelector Background="{ThemeResource ControlAltFillColorSecondaryBrush}">
+				<SuGarControls:SegmentedSelectorItem Content="Lorem" />
+				<SuGarControls:SegmentedSelectorItem Content="Ipsum" />
+				<SuGarControls:SegmentedSelectorItem Content="Sit" />
+				<SuGarControls:SegmentedSelectorItem Content="Amet" />
+			</SuGarControls:SegmentedSelector>
 		</StackPanel>
 	</ScrollViewer>
 
