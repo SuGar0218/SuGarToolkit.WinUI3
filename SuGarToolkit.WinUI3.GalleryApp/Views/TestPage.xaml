@@ -41,7 +41,10 @@
 			<CheckBox>
 				<layout:TextBlock Text="MAXIMIZEBOX" />
 			</CheckBox>
-			<SuGarControls:SegmentedSelector Background="{ThemeResource ControlAltFillColorSecondaryBrush}">
+			<SuGarControls:SegmentedSelector
+				Margin="24"
+				Background="{ThemeResource ControlAltFillColorSecondaryBrush}"
+				SelectionMode="Multiple">
 				<SuGarControls:SegmentedSelectorItem Content="Lorem" />
 				<SuGarControls:SegmentedSelectorItem Content="Ipsum" />
 				<SuGarControls:SegmentedSelectorItem Content="Sit" />

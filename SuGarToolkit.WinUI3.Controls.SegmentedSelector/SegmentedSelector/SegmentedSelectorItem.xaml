@@ -2,6 +2,7 @@
 <ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="using:Microsoft.UI.Xaml.Controls"
 	xmlns:local="using:SuGarToolkit.WinUI3.Controls">
 
 	<Style TargetType="local:SegmentedSelectorItem">
@@ -14,16 +15,27 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:SegmentedSelectorItem">
-					<Border
+					<!--  SubtleButtonStyle  -->
+					<ContentPresenter
+						xmlns:local="using:Microsoft.UI.Xaml.Controls"
+						x:Name="ContentPresenter"
 						Padding="{TemplateBinding Padding}"
+						HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+						VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+						local:AnimatedIcon.State="Normal"
+						AutomationProperties.AccessibilityView="Raw"
 						Background="{TemplateBinding Background}"
+						BackgroundSizing="{TemplateBinding BackgroundSizing}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}"
-						CornerRadius="{TemplateBinding CornerRadius}">
-						<ContentPresenter
-							x:Name="ContentPresenter"
-							HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-							VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+						Content="{TemplateBinding Content}"
+						ContentTemplate="{TemplateBinding ContentTemplate}"
+						ContentTransitions="{TemplateBinding ContentTransitions}"
+						CornerRadius="{TemplateBinding CornerRadius}"
+						Foreground="{TemplateBinding Foreground}">
+						<ContentPresenter.BackgroundTransition>
+							<BrushTransition Duration="0:0:0.083" />
+						</ContentPresenter.BackgroundTransition>
 
 						<VisualStateManager.VisualStateGroups>
 							<VisualStateGroup x:Name="CommonStates">
@@ -32,42 +44,75 @@
 								<VisualState x:Name="PointerOver">
 									<Storyboard>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
-											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}" />
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonBackgroundPointerOver}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonBorderBrushPointerOver}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}" />
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonForegroundPointerOver}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.(controls:AnimatedIcon.State)" Value="PointerOver" />
+									</VisualState.Setters>
 								</VisualState>
 
 								<VisualState x:Name="Pressed">
 									<Storyboard>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
-											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}" />
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonBackgroundPressed}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}" />
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonBorderBrushPressed}" />
 										</ObjectAnimationUsingKeyFrames>
 										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}" />
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonForegroundPressed}" />
 										</ObjectAnimationUsingKeyFrames>
 									</Storyboard>
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.(controls:AnimatedIcon.State)" Value="Pressed" />
+									</VisualState.Setters>
 								</VisualState>
-							</VisualStateGroup>
 
-							<VisualStateGroup x:Name="SelectionStates">
-								<VisualState x:Name="Unselected" />
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonBackgroundDisabled}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonBorderBrushDisabled}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SubtleButtonForegroundDisabled}" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+									<VisualState.Setters>
+										<!--  DisabledVisual Should be handled by the control, not the animated icon.  -->
+										<Setter Target="ContentPresenter.(controls:AnimatedIcon.State)" Value="Normal" />
+									</VisualState.Setters>
+								</VisualState>
+
 								<VisualState x:Name="Selected">
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.FontWeight" Value="SemiBold" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="PointerOverSelected">
+									<VisualState.Setters>
+										<Setter Target="ContentPresenter.FontWeight" Value="SemiBold" />
+									</VisualState.Setters>
+								</VisualState>
+
+								<VisualState x:Name="PressedSelected">
 									<VisualState.Setters>
 										<Setter Target="ContentPresenter.FontWeight" Value="SemiBold" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-					</Border>
+					</ContentPresenter>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>

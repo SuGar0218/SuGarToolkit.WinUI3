@@ -6,7 +6,9 @@
 	xmlns:local="using:SuGarToolkit.WinUI3.Controls">
 
 	<Style TargetType="local:SegmentedSelector">
-		<Setter Property="Background" Value="{ThemeResource ButtonBackgroundThemeBrush}" />
+		<Setter Property="Background" Value="{ThemeResource ControlAltFillColorSecondaryBrush}" />
+		<Setter Property="BorderBrush" Value="{ThemeResource ControlStrokeColorDefaultBrush}" />
+		<Setter Property="BorderThickness" Value="1" />
 		<Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
 		<Setter Property="ItemsPanel">
 			<Setter.Value>
@@ -24,34 +26,48 @@
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}"
 						CornerRadius="{TemplateBinding CornerRadius}">
-						<Canvas x:Name="PART_SliderHost">
-							<Thumb
-								x:Name="PART_SliderThumb"
+
+						<!--  SliderBlock for display  -->
+						<Canvas x:Name="PART_SliderBlockHost">
+							<Border
+								x:Name="PART_SliderBlock"
 								Background="{ThemeResource ControlFillColorDefaultBrush}"
 								BorderBrush="{ThemeResource ControlElevationBorderBrush}"
 								BorderThickness="{ThemeResource TextControlBorderThemeThickness}"
 								CornerRadius="{TemplateBinding CornerRadius}">
+								<!--  Pill-shaped selection indicator  -->
+								<Rectangle
+									Width="{ThemeResource ComboBoxItemPillHeight}"
+									Height="{ThemeResource ComboBoxItemPillWidth}"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Bottom"
+									Fill="{ThemeResource AccentFillColorDefaultBrush}"
+									RadiusX="2"
+									RadiusY="2" />
+							</Border>
+						</Canvas>
+
+						<ItemsPresenter x:Name="PART_ItemsHost" />
+
+						<!--  SliderThumb for drag  -->
+						<Canvas x:Name="PART_SliderThumbHost">
+							<Thumb
+								x:Name="PART_SliderThumb"
+								Background="Transparent"
+								BorderBrush="{x:Null}"
+								BorderThickness="0"
+								IsTabStop="False">
 								<Thumb.Template>
 									<ControlTemplate TargetType="Thumb">
 										<Border
 											Background="{TemplateBinding Background}"
 											BorderBrush="{TemplateBinding BorderBrush}"
 											BorderThickness="{TemplateBinding BorderThickness}"
-											CornerRadius="{TemplateBinding CornerRadius}">
-											<Rectangle
-												Width="{ThemeResource ComboBoxItemPillHeight}"
-												Height="{ThemeResource ComboBoxItemPillWidth}"
-												HorizontalAlignment="Center"
-												VerticalAlignment="Bottom"
-												Fill="{ThemeResource AccentFillColorDefaultBrush}"
-												RadiusX="2"
-												RadiusY="2" />
-										</Border>
+											CornerRadius="{TemplateBinding CornerRadius}" />
 									</ControlTemplate>
 								</Thumb.Template>
 							</Thumb>
 						</Canvas>
-						<ItemsPresenter x:Name="PART_ItemsHost" />
 					</Grid>
 				</ControlTemplate>
 			</Setter.Value>
