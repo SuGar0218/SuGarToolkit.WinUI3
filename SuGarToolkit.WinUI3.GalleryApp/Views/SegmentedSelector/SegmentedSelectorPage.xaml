@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+	x:Class="SuGarToolkit.WinUI3.GalleryApp.Views.SegmentedSelectorPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="using:SuGarToolkit.WinUI3.Controls"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp.Views"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d">
+
+	<StackPanel Margin="24" Spacing="12">
+		<controls:SegmentedSelector>
+			<controls:SegmentedSelectorItem Content="You" />
+			<controls:SegmentedSelectorItem Content="can" />
+			<controls:SegmentedSelectorItem Content="drag" />
+			<controls:SegmentedSelectorItem Content="to" />
+			<controls:SegmentedSelectorItem Content="select" />
+		</controls:SegmentedSelector>
+		<controls:SegmentedSelector x:Name="testSegmentedSelector" ItemsSource="{x:Bind Items}" />
+		<TextBlock Text="{x:Bind testSegmentedSelector.SelectedItem, Mode=OneWay}" />
+	</StackPanel>
+
+</Page>

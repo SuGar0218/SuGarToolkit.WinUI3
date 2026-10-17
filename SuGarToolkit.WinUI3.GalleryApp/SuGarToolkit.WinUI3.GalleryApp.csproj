@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+		<TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 		<RootNamespace>SuGarToolkit.WinUI3.GalleryApp</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
@@ -20,6 +20,7 @@
 	  <None Remove="Views\DwmWindowAttributes\SampleDwmAttributesWindow.xaml" />
 	  <None Remove="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml" />
 	  <None Remove="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml" />
+	  <None Remove="Views\SegmentedSelector\SegmentedSelectorPage.xaml" />
 	  <None Remove="Views\TestPage.xaml" />
 	  <None Remove="Views\TextBoxValidationPage.xaml" />
 	</ItemGroup>
@@ -48,13 +49,14 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
-		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.1839" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.0.1" />
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.3.1" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Decorators\SuGarToolkit.WinUI3.Controls.Decorators.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Dialogs\SuGarToolkit.WinUI3.Controls.Dialogs.csproj" />
+		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.SegmentedSelector\SuGarToolkit.WinUI3.Controls.SegmentedSelector.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Validations\SuGarToolkit.WinUI3.Controls.Validations.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Windows\SuGarToolkit.WinUI3.Controls.Windows.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Helpers\SuGarToolkit.WinUI3.Helpers.csproj" />
@@ -97,6 +99,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\DwmWindowAttributes\SampleDwmAttributesWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\SegmentedSelector\SegmentedSelectorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>
