@@ -28,3 +28,6 @@ ContentWindow is somewhat like Window ([System.Windows.Window](https://learn.mic
 
 <img width="800" height="375" alt="屏幕录制 2026-05-13 214115" src="https://github.com/user-attachments/assets/b4fc6ea9-ee88-458d-b656-a2ae1e0c340e" />
 
+### SegmentedSelector
+
+<img width="2286" height="767" alt="SegmentedSelector" src="https://github.com/user-attachments/assets/8c2b80f0-522a-43aa-af44-092ff9db0fd8" />
