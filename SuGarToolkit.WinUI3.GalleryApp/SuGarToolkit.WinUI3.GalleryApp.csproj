@@ -20,6 +20,7 @@
 	  <None Remove="Views\DwmWindowAttributes\SampleDwmAttributesWindow.xaml" />
 	  <None Remove="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml" />
 	  <None Remove="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml" />
+	  <None Remove="Views\SegmentedSelector\SegmentedSelectorPage.xaml" />
 	  <None Remove="Views\TestPage.xaml" />
 	  <None Remove="Views\TextBoxValidationPage.xaml" />
 	</ItemGroup>
@@ -98,6 +99,11 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\DwmWindowAttributes\SampleDwmAttributesWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\SegmentedSelector\SegmentedSelectorPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>
