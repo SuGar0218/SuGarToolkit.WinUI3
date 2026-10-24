@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:SuGarToolkit.WinUI3.Controls">
+
+	<Style x:Key="DefaultSegmentedSelectorSliderBlockStyle" TargetType="local:SegmentedSelectorSliderBlock">
+		<Setter Property="Background" Value="{ThemeResource ButtonBackground}" />
+		<Setter Property="BackgroundSizing" Value="InnerBorderEdge" />
+		<Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}" />
+		<Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
+		<Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="local:SegmentedSelectorSliderBlock">
+					<Border
+						x:Name="LayoutRoot"
+						Padding="{TemplateBinding Padding}"
+						Background="{TemplateBinding Background}"
+						BorderBrush="{TemplateBinding BorderBrush}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						CornerRadius="{TemplateBinding CornerRadius}">
+						<Rectangle
+							Width="{ThemeResource ComboBoxItemPillHeight}"
+							Height="{ThemeResource ComboBoxItemPillWidth}"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Bottom"
+							Fill="{ThemeResource AccentFillColorDefaultBrush}"
+							RadiusX="2"
+							RadiusY="2"
+							RenderTransformOrigin="0.5,0.5">
+							<Rectangle.RenderTransform>
+								<ScaleTransform x:Name="PillTransform" />
+							</Rectangle.RenderTransform>
+						</Rectangle>
+
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleX">
+											<SplineDoubleKeyFrame
+												KeySpline="0,0,0,1"
+												KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
+												Value="1.0" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="PointerOver">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="BorderBrush">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
+										</ObjectAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleX">
+											<SplineDoubleKeyFrame
+												KeySpline="0,0,0,1"
+												KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
+												Value="1.0" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="BorderBrush">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}" />
+										</ObjectAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetName="PillTransform" Storyboard.TargetProperty="ScaleX">
+											<SplineDoubleKeyFrame
+												KeySpline="0,0,0,1"
+												KeyTime="{StaticResource ComboBoxItemScaleAnimationDuration}"
+												Value="{StaticResource ComboBoxItemPillMinScale}" />
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="Background">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}" />
+										</ObjectAnimationUsingKeyFrames>
+										<ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot" Storyboard.TargetProperty="BorderBrush">
+											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}" />
+										</ObjectAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style BasedOn="{StaticResource DefaultSegmentedSelectorSliderBlockStyle}" TargetType="local:SegmentedSelectorSliderBlock" />
+
+</ResourceDictionary>

@@ -6,6 +6,7 @@
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.SegmentedSelector/SegmentedSelector/SegmentedSelector.xaml" />
 		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.SegmentedSelector/SegmentedSelector/SegmentedSelectorItem.xaml" />
+		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.SegmentedSelector/SegmentedSelector/SegmentedSelectorSliderBlock.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

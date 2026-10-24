@@ -7,15 +7,22 @@
     <WinUISDKReferences>false</WinUISDKReferences>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="SegmentedSelector\SegmentedSelector.xaml" />
     <None Remove="SegmentedSelector\SegmentedSelectorItem.xaml" />
+    <None Remove="SegmentedSelector\SegmentedSelectorSliderBlock.xaml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.2.251219" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="SegmentedSelector\SegmentedSelectorSliderBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="SegmentedSelector\SegmentedSelectorItem.xaml">

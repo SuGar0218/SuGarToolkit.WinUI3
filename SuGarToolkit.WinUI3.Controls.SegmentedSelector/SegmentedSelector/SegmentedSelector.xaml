@@ -5,7 +5,7 @@
 	xmlns:community="using:CommunityToolkit.WinUI.Controls"
 	xmlns:local="using:SuGarToolkit.WinUI3.Controls">
 
-	<Style TargetType="local:SegmentedSelector">
+	<Style x:Key="DefaultSegmentedSelectorStyle" TargetType="local:SegmentedSelector">
 		<Setter Property="Background" Value="{ThemeResource ControlAltFillColorSecondaryBrush}" />
 		<Setter Property="BorderBrush" Value="{ThemeResource ControlStrokeColorDefaultBrush}" />
 		<Setter Property="BorderThickness" Value="1" />
@@ -29,13 +29,16 @@
 
 						<!--  SliderBlock for display  -->
 						<Canvas x:Name="PART_SliderBlockHost">
-							<Border
+							<local:SegmentedSelectorSliderBlock x:Name="PART_SliderBlock" />
+							<!--<Border
 								x:Name="PART_SliderBlock"
 								Background="{ThemeResource ControlFillColorDefaultBrush}"
 								BorderBrush="{ThemeResource ControlElevationBorderBrush}"
 								BorderThickness="{ThemeResource TextControlBorderThemeThickness}"
 								CornerRadius="{TemplateBinding CornerRadius}">
-								<!--  Pill-shaped selection indicator  -->
+								-->
+							<!--  Pill-shaped selection indicator  -->
+							<!--
 								<Rectangle
 									Width="{ThemeResource ComboBoxItemPillHeight}"
 									Height="{ThemeResource ComboBoxItemPillWidth}"
@@ -44,7 +47,7 @@
 									Fill="{ThemeResource AccentFillColorDefaultBrush}"
 									RadiusX="2"
 									RadiusY="2" />
-							</Border>
+							</Border>-->
 						</Canvas>
 
 						<ItemsPresenter x:Name="PART_ItemsHost" />
@@ -73,5 +76,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+	<Style BasedOn="{StaticResource DefaultSegmentedSelectorStyle}" TargetType="local:SegmentedSelector" />
 
 </ResourceDictionary>

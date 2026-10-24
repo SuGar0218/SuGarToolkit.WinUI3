@@ -5,7 +5,7 @@
 	xmlns:controls="using:Microsoft.UI.Xaml.Controls"
 	xmlns:local="using:SuGarToolkit.WinUI3.Controls">
 
-	<Style TargetType="local:SegmentedSelectorItem">
+	<Style x:Key="DefaultSegmentedSelectorItemStyle" TargetType="local:SegmentedSelectorItem">
 		<Setter Property="Background" Value="Transparent" />
 		<Setter Property="BorderThickness" Value="1" />
 		<Setter Property="CornerRadius" Value="{ThemeResource ControlCornerRadius}" />
@@ -117,5 +117,7 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+
+	<Style BasedOn="{StaticResource DefaultSegmentedSelectorItemStyle}" TargetType="local:SegmentedSelectorItem" />
 
 </ResourceDictionary>

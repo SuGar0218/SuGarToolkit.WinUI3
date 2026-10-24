@@ -12,7 +12,7 @@ namespace SuGarToolkit.WinUI3.Controls;
 /// <remarks>
 /// Although it is based on <see cref="ListViewBase"/>, for <see cref="ListViewBase.SelectionMode"/>, only <see cref="SelectionMode.Single"/> is supported.
 /// </remarks>
-[TemplatePart(Name = nameof(PART_SliderBlock), Type = typeof(FrameworkElement))]
+[TemplatePart(Name = nameof(PART_SliderBlock), Type = typeof(SegmentedSelectorSliderBlock))]
 [TemplatePart(Name = nameof(PART_SliderBlockHost), Type = typeof(Canvas))]
 [TemplatePart(Name = nameof(PART_SliderThumb), Type = typeof(Thumb))]
 [TemplatePart(Name = nameof(PART_SliderThumbHost), Type = typeof(Canvas))]
@@ -23,6 +23,8 @@ public partial class SegmentedSelector : ListViewBase
     {
         DefaultStyleKey = typeof(SegmentedSelector);
 
+        Loaded += OnLoaded;
+        Unloaded += OnUnloaded;
         SelectionChanged += OnSelectionChanged;
         SizeChanged += OnSizeChanged;
         RegisterPropertyChangedCallback(SelectionModeProperty, OnSelectionModeChanged);
@@ -33,30 +35,74 @@ public partial class SegmentedSelector : ListViewBase
     private readonly DoubleAnimation _sliderBlockCanvasLeftAnimation = new();
     private readonly EasingFunctionBase _easingFunction = new QuarticEase { EasingMode = EasingMode.EaseOut };
 
-    private FrameworkElement PART_SliderBlock;
-    private Canvas PART_SliderBlockHost;
-    private Thumb PART_SliderThumb;
-    private Canvas PART_SliderThumbHost;
-    private ItemsPresenter PART_ItemsHost;
-    private SegmentedSelectorItem _selectedItemContainer;
+    private SegmentedSelectorSliderBlock? PART_SliderBlock;
+    private Canvas? PART_SliderBlockHost;
+    private Thumb? PART_SliderThumb;
+    private Canvas? PART_SliderThumbHost;
+    private ItemsPresenter? PART_ItemsHost;
+    private SegmentedSelectorItem? _selectedItemContainer;
     private bool _isPrivateSelecting;
+    private SegmentedSelectorSliderThumbPointerStateManager? _thumbPointerStateManager;
+
+    private SegmentedSelectorSliderThumbPointerStateManager CreateThumbPointerStateManager(Thumb thumb)
+    {
+        SegmentedSelectorSliderThumbPointerStateManager thumbPointerStateManager = new(thumb);
+        thumbPointerStateManager.StateChanged += OnThumbPointerStateManagerStateChanged;
+        return thumbPointerStateManager;
+    }
+
+    private void OnThumbPointerStateManagerStateChanged(object? sender, EventArgs e)
+    {
+        if (PART_SliderBlock is null)
+            return;
+
+        SegmentedSelectorSliderThumbPointerStateManager thumbPointerStateManager = (SegmentedSelectorSliderThumbPointerStateManager) sender!;
+        switch (thumbPointerStateManager.State)
+        {
+            case SegmentedSelectorSliderThumbPointerState.Normal:
+                PART_SliderBlock.State = SegmentedSelectorSliderBlockState.Normal;
+                break;
+            case SegmentedSelectorSliderThumbPointerState.PointerOver:
+                PART_SliderBlock.State = SegmentedSelectorSliderBlockState.PointerOver;
+                break;
+            case SegmentedSelectorSliderThumbPointerState.Dragging:
+                PART_SliderBlock.State = SegmentedSelectorSliderBlockState.Pressed;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        if (_thumbPointerStateManager is null && PART_SliderThumb is not null)
+        {
+            _thumbPointerStateManager = CreateThumbPointerStateManager(PART_SliderThumb);
+        }
+    }
+
+    private void OnUnloaded(object sender, RoutedEventArgs e)
+    {
+        _thumbPointerStateManager?.Dispose();
+    }
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
-        PART_SliderBlock = GetTemplateChild(nameof(PART_SliderBlock)) as FrameworkElement;
+        PART_SliderBlock = GetTemplateChild(nameof(PART_SliderBlock)) as SegmentedSelectorSliderBlock;
         PART_SliderBlockHost = GetTemplateChild(nameof(PART_SliderBlockHost)) as Canvas;
         PART_SliderThumb = GetTemplateChild(nameof(PART_SliderThumb)) as Thumb;
         PART_SliderThumbHost = GetTemplateChild(nameof(PART_SliderThumbHost)) as Canvas;
         PART_ItemsHost = GetTemplateChild(nameof(PART_ItemsHost)) as ItemsPresenter;
 
-        if (PART_SliderThumb is not null)
+        if (PART_SliderThumb is not null && PART_SliderThumbHost is not null)
         {
             PART_SliderThumb.DragDelta += OnSliderThumbDragDelta;
             PART_SliderThumb.DragCompleted += OnSliderThumbDragCompleted;
+            _thumbPointerStateManager ??= CreateThumbPointerStateManager(PART_SliderThumb);
         }
-        if (PART_SliderBlock is not null)
+        if (PART_SliderBlock is not null && PART_SliderBlockHost is not null)
         {
             _sliderBlockWidthAnimation.EasingFunction = _easingFunction;
             _sliderBlockCanvasLeftAnimation.EasingFunction = _easingFunction;
@@ -82,14 +128,14 @@ public partial class SegmentedSelector : ListViewBase
             left = 0;
         }
         left += e.HorizontalChange;
-        left = Math.Clamp(left, 0, PART_SliderThumbHost.ActualWidth - PART_SliderThumb.ActualWidth);
+        left = Math.Clamp(left, 0, PART_SliderThumbHost!.ActualWidth - PART_SliderThumb!.ActualWidth);
         Canvas.SetLeft(PART_SliderThumb, left);
         Canvas.SetLeft(PART_SliderBlock, left);
     }
 
     private void OnSliderThumbDragCompleted(object sender, DragCompletedEventArgs e)
     {
-        Point thumbPosition = PART_SliderThumb.TransformToVisual(this).TransformPoint(new Point(0, 0));
+        Point thumbPosition = PART_SliderThumb!.TransformToVisual(this).TransformPoint(new Point(0, 0));
         double minDistance = double.MaxValue;
         int selectedIndex = SelectedIndex;
         for (int i = 0; i < Items.Count; i++)
@@ -130,7 +176,7 @@ public partial class SegmentedSelector : ListViewBase
 
     private void SlideThumbToSelectedItem()
     {
-        if (SelectedItem is null || PART_SliderThumb is null || PART_SliderThumbHost is null)
+        if (_selectedItemContainer is null || SelectedItem is null || PART_SliderBlock is null || PART_SliderThumb is null || PART_SliderThumbHost is null)
             return;
 
         Point selectedItemContainerPosition = _selectedItemContainer.TransformToVisual(PART_SliderThumbHost).TransformPoint(new Point(0, 0));

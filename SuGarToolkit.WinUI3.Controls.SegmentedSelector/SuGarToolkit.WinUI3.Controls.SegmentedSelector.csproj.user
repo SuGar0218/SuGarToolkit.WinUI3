@@ -2,6 +2,11 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Page Update="SegmentedSelector\SegmentedSelectorSliderBlock.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="SegmentedSelector\SegmentedSelectorItem.xaml">
       <SubType>Designer</SubType>
     </Page>
