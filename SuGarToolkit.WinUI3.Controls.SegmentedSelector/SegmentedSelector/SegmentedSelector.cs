@@ -40,6 +40,7 @@ public partial class SegmentedSelector : ListViewBase
     private Thumb? PART_SliderThumb;
     private Canvas? PART_SliderThumbHost;
     private ItemsPresenter? PART_ItemsHost;
+    private SegmentedSelectorItem? _previousItemContainer;
     private SegmentedSelectorItem? _selectedItemContainer;
     private bool _isPrivateSelecting;
     private SegmentedSelectorSliderThumbPointerStateManager? _thumbPointerStateManager;
@@ -120,17 +121,19 @@ public partial class SegmentedSelector : ListViewBase
         UpdateSliderVisibility();
     }
 
+    /// <summary>
+    /// Canvas.Left of PART_SliderThumb after dragging.
+    /// </summary>
+    /// <remarks>
+    /// It can be out of the range of PART_SliderThumbHost, but will be constrained in <see cref="SlideThumbToSelectedItem"/>.
+    /// </remarks>
+    private double _thumbDragLeft;
+
     private void OnSliderThumbDragDelta(object sender, DragDeltaEventArgs e)
     {
-        double left = Canvas.GetLeft(PART_SliderThumb);
-        if (double.IsNaN(left))
-        {
-            left = 0;
-        }
-        left += e.HorizontalChange;
-        left = Math.Clamp(left, 0, PART_SliderThumbHost!.ActualWidth - PART_SliderThumb!.ActualWidth);
-        Canvas.SetLeft(PART_SliderThumb, left);
-        Canvas.SetLeft(PART_SliderBlock, left);
+        _thumbDragLeft += e.HorizontalChange;
+        double left = Math.Clamp(_thumbDragLeft, 0, Math.Abs(PART_SliderThumbHost!.ActualWidth - PART_SliderThumb!.ActualWidth));
+        SetSliderPropertyValue(Canvas.LeftProperty, left);
     }
 
     private void OnSliderThumbDragCompleted(object sender, DragCompletedEventArgs e)
@@ -161,6 +164,7 @@ public partial class SegmentedSelector : ListViewBase
 
     private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        _previousItemContainer = _selectedItemContainer;
         _selectedItemContainer = (SegmentedSelectorItem) ItemContainerGenerator.ContainerFromItem(SelectedItem);
         UpdateSliderVisibility();
         if (!_isPrivateSelecting)
@@ -180,31 +184,37 @@ public partial class SegmentedSelector : ListViewBase
             return;
 
         Point selectedItemContainerPosition = _selectedItemContainer.TransformToVisual(PART_SliderThumbHost).TransformPoint(new Point(0, 0));
-        PART_SliderThumb.Height = _selectedItemContainer.ActualHeight;
-        PART_SliderBlock.Height = _selectedItemContainer.ActualHeight;
         _sliderBlockWidthAnimation.From = PART_SliderThumb.ActualWidth;
         _sliderBlockWidthAnimation.To = _selectedItemContainer.ActualWidth;
         double fromLeft = Canvas.GetLeft(PART_SliderThumb);
         double toLeft = selectedItemContainerPosition.X;
+        _thumbDragLeft = toLeft;
         if (double.IsNaN(fromLeft))
         {
             fromLeft = 0;
         }
         _sliderBlockCanvasLeftAnimation.From = fromLeft;
         _sliderBlockCanvasLeftAnimation.To = toLeft;
-        _selectionChangingStoryboard.Begin();
+        if (_previousItemContainer is not null)
+        {
+            _selectionChangingStoryboard.Begin();
+        }
         _selectedItemContainer.IsSelected = true;
-        PART_SliderThumb.Width = _selectedItemContainer.ActualWidth;
-        PART_SliderBlock.Width = _selectedItemContainer.ActualWidth;
-        Canvas.SetLeft(PART_SliderThumb, toLeft);
-        Canvas.SetLeft(PART_SliderBlock, toLeft);
+        SetSliderPropertyValue(FrameworkElement.WidthProperty, _selectedItemContainer.ActualWidth);
+        SetSliderPropertyValue(FrameworkElement.HeightProperty, _selectedItemContainer.ActualHeight);
+        SetSliderPropertyValue(Canvas.LeftProperty, toLeft);
     }
 
     private void UpdateSliderVisibility()
     {
         Visibility visibility = SelectedItem is null ? Visibility.Collapsed : Visibility.Visible;
-        PART_SliderThumb?.Visibility = visibility;
-        PART_SliderBlock?.Visibility = visibility;
+        SetSliderPropertyValue(UIElement.VisibilityProperty, visibility);
+    }
+
+    private void SetSliderPropertyValue(DependencyProperty property, object value)
+    {
+        PART_SliderThumb?.SetValue(property, value);
+        PART_SliderBlock?.SetValue(property, value);
     }
 
     private void OnSelectionModeChanged(DependencyObject sender, DependencyProperty dp)
