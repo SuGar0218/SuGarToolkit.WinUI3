@@ -10,6 +10,7 @@
   <Project Path="SuGarToolkit.WinUI3.Controls.Dialogs/SuGarToolkit.WinUI3.Controls.Dialogs.csproj">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
+  <Project Path="SuGarToolkit.WinUI3.Controls.HeaderBodyFooterView/SuGarToolkit.WinUI3.Controls.HeaderBodyFooterView.csproj" Id="ac6c78ae-9aeb-4ec7-8142-8b391e23b25b" />
   <Project Path="SuGarToolkit.WinUI3.Controls.SegmentedSelector/SuGarToolkit.WinUI3.Controls.SegmentedSelector.csproj" />
   <Project Path="SuGarToolkit.WinUI3.Controls.Validations/SuGarToolkit.WinUI3.Controls.Validations.csproj" Id="fa4e3127-654b-4ee3-bad0-d96e7fee8a76" />
   <Project Path="SuGarToolkit.WinUI3.Controls.Windows/SuGarToolkit.WinUI3.Controls.Windows.csproj">
@@ -20,5 +21,4 @@
     <Deploy />
   </Project>
   <Project Path="SuGarToolkit.WinUI3.Helpers/SuGarToolkit.WinUI3.Helpers.csproj" Id="299cef0f-7cba-4148-abb6-792b90fbe23a" />
-  <Project Path="SuGarToolkit.WinUI3.Layout/SuGarToolkit.WinUI3.Layout.csproj" Id="aecd8164-8ada-4ffa-b8e4-6660c1d85539" />
 </Solution>

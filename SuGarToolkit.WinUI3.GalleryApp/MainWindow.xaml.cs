@@ -19,7 +19,6 @@ public sealed partial class MainWindow : ContentWindow
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<MessageBoxPage>("MessageBox"));
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<ContentWindowPage>("ContentWindow"));
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<TextBoxValidationPage>("TextBoxValidation"));
-        PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<AdaptiveStackPanelPage>("AdaptiveStackPanel"));
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<LiquidGlassLikeInteractionPage>("LiquidGlassLikeInteraction"));
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<HeaderBodyFooterViewPage>("HeaderBodyFooterView"));
         PART_MainView.ViewModel.Pages.Add(PageViewModel.Create<DwmWindowAttributesSamplePage>("DwmWindowAttributes"));

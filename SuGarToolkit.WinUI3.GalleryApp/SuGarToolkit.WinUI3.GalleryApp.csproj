@@ -15,7 +15,6 @@
 		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Views\AdaptiveStackPanel\AdaptiveStackPanelPage.xaml" />
 	  <None Remove="Views\DwmWindowAttributes\DwmWindowAttributesSamplePage.xaml" />
 	  <None Remove="Views\DwmWindowAttributes\SampleDwmAttributesWindow.xaml" />
 	  <None Remove="Views\HeaderBodyFooterView\HeaderBodyFooterViewPage.xaml" />
@@ -50,17 +49,17 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.3.1" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2705" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.28000.2957" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="2.7.0" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Decorators\SuGarToolkit.WinUI3.Controls.Decorators.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Dialogs\SuGarToolkit.WinUI3.Controls.Dialogs.csproj" />
+		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.HeaderBodyFooterView\SuGarToolkit.WinUI3.Controls.HeaderBodyFooterView.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.SegmentedSelector\SuGarToolkit.WinUI3.Controls.SegmentedSelector.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Validations\SuGarToolkit.WinUI3.Controls.Validations.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Controls.Windows\SuGarToolkit.WinUI3.Controls.Windows.csproj" />
 		<ProjectReference Include="..\SuGarToolkit.WinUI3.Helpers\SuGarToolkit.WinUI3.Helpers.csproj" />
-		<ProjectReference Include="..\SuGarToolkit.WinUI3.Layout\SuGarToolkit.WinUI3.Layout.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\DwmWindowAttributes\DwmWindowAttributesSamplePage.xaml">
@@ -81,11 +80,6 @@
 		<Page Update="Views\MainView.xaml">
 			<SubType>Designer</SubType>
 		</Page>
-	</ItemGroup>
-	<ItemGroup>
-	  <Page Update="Views\AdaptiveStackPanel\AdaptiveStackPanelPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml">

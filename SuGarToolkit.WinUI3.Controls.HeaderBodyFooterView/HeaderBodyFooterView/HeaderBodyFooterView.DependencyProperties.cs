@@ -2,7 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 
-namespace SuGarToolkit.WinUI3.Layout;
+namespace SuGarToolkit.WinUI3.Controls;
 
 public partial class HeaderBodyFooterView
 {
@@ -154,6 +154,19 @@ public partial class HeaderBodyFooterView
         new PropertyMetadata(default(VerticalAlignment))
     );
 
+    public bool IsHeaderVisible
+    {
+        get => (bool) GetValue(IsHeaderVisibleProperty);
+        set => SetValue(IsHeaderVisibleProperty, value);
+    }
+
+    public static readonly DependencyProperty IsHeaderVisibleProperty = DependencyProperty.Register(
+        nameof(IsHeaderVisible),
+        typeof(bool),
+        typeof(HeaderBodyFooterView),
+        new PropertyMetadata(true)
+    );
+
     public Brush? BodyBackground
     {
         get => (Brush?) GetValue(BodyBackgroundProperty);
@@ -269,5 +282,18 @@ public partial class HeaderBodyFooterView
         typeof(VerticalAlignment),
         typeof(HeaderBodyFooterView),
         new PropertyMetadata(default(VerticalAlignment))
+    );
+
+    public bool IsFooterVisible
+    {
+        get => (bool) GetValue(IsFooterVisibleProperty);
+        set => SetValue(IsFooterVisibleProperty, value);
+    }
+
+    public static readonly DependencyProperty IsFooterVisibleProperty = DependencyProperty.Register(
+        nameof(IsFooterVisible),
+        typeof(bool),
+        typeof(HeaderBodyFooterView),
+        new PropertyMetadata(true)
     );
 }

@@ -6,47 +6,12 @@
 	xmlns:SuGarControls="using:SuGarToolkit.WinUI3.Controls"
 	xmlns:SuGarDialogs="using:SuGarToolkit.WinUI3.Controls.Dialogs"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:layout="using:SuGarToolkit.WinUI3.Layout"
 	xmlns:local="using:SuGarToolkit.WinUI3.GalleryApp.Views"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d">
 
 	<ScrollViewer>
 		<StackPanel>
-			<TextBox x:Name="TestTextBox" VerticalAlignment="Top" />
-			<layout:TextBlock
-				HorizontalAlignment="Center"
-				VerticalAlignment="Center"
-				Text="MAXIMIZEBOX" />
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="1*" />
-					<ColumnDefinition Width="1*" />
-				</Grid.ColumnDefinitions>
-				<Expander
-					Grid.Column="0"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Top"
-					Header="IsTextScaleFactorEnabled=False">
-					<StackPanel x:Name="PART_DisableTextScaleFactorStackPanel" />
-				</Expander>
-				<Expander
-					Grid.Column="1"
-					HorizontalAlignment="Stretch"
-					VerticalAlignment="Top"
-					Header="IsTextScaleFactorEnabled=True">
-					<StackPanel x:Name="PART_EnableTextScaleFactorStackPanel" />
-				</Expander>
-			</Grid>
-			<CheckBox>
-				<layout:TextBlock Text="MAXIMIZEBOX" />
-			</CheckBox>
-			<SuGarControls:SegmentedSelector Margin="24" SelectionMode="Multiple">
-				<SuGarControls:SegmentedSelectorItem Content="Lorem" />
-				<SuGarControls:SegmentedSelectorItem Content="Ipsum" />
-				<SuGarControls:SegmentedSelectorItem Content="Sit" />
-				<SuGarControls:SegmentedSelectorItem Content="Amet" />
-			</SuGarControls:SegmentedSelector>
 		</StackPanel>
 	</ScrollViewer>
 

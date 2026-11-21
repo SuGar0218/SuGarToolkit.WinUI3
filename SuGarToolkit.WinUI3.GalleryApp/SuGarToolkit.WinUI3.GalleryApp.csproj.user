@@ -28,9 +28,6 @@
     <Page Update="Views\LiquidGlassLike\LiquidGlassLikeInteractionPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\AdaptiveStackPanel\AdaptiveStackPanelPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\TestPage.xaml">
       <SubType>Designer</SubType>
     </Page>
