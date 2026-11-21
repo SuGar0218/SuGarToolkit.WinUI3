@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 
 using System;
@@ -9,9 +10,9 @@ using Windows.System;
 
 namespace SuGarToolkit.WinUI3.Controls.Dialogs;
 
-[TemplatePart(Name = nameof(PrimaryButton), Type = typeof(Button))]
-[TemplatePart(Name = nameof(SecondaryButton), Type = typeof(Button))]
-[TemplatePart(Name = nameof(CloseButton), Type = typeof(Button))]
+[TemplatePart(Name = nameof(PrimaryButton), Type = typeof(ButtonBase))]
+[TemplatePart(Name = nameof(SecondaryButton), Type = typeof(ButtonBase))]
+[TemplatePart(Name = nameof(CloseButton), Type = typeof(ButtonBase))]
 [TemplatePart(Name = nameof(TitleArea), Type = typeof(UIElement))]
 [TemplatePart(Name = nameof(DialogSpace), Type = typeof(Grid))]
 [TemplatePart(Name = nameof(CommandSpace), Type = typeof(Grid))]
@@ -142,7 +143,7 @@ public partial class ContentDialogView : ContentControl, IContentDialog
         typeof(ContentDialogView),
         new PropertyMetadata(default(DataTemplate))
     );
-    
+
     public ICommand? PrimaryButtonCommand
     {
         get => (ICommand?) GetValue(PrimaryButtonCommandProperty);
@@ -324,25 +325,25 @@ public partial class ContentDialogView : ContentControl, IContentDialog
     private Grid? DialogSpace;
     private Border? CommandSpace;
 
-    private Button? PrimaryButton;
-    private Button? SecondaryButton;
-    private Button? CloseButton;
+    private ButtonBase? PrimaryButton;
+    private ButtonBase? SecondaryButton;
+    private ButtonBase? CloseButton;
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
 
-        TitleArea = (UIElement) GetTemplateChild(nameof(TitleArea));
-        DialogSpace = (Grid) GetTemplateChild(nameof(DialogSpace));
-        CommandSpace = (Border) GetTemplateChild(nameof(CommandSpace));
+        TitleArea = GetTemplateChild(nameof(TitleArea)) as UIElement;
+        DialogSpace = GetTemplateChild(nameof(DialogSpace)) as Grid;
+        CommandSpace = GetTemplateChild(nameof(CommandSpace)) as Border;
 
-        PrimaryButton = (Button) GetTemplateChild(nameof(PrimaryButton));
-        SecondaryButton = (Button) GetTemplateChild(nameof(SecondaryButton));
-        CloseButton = (Button) GetTemplateChild(nameof(CloseButton));
+        PrimaryButton = GetTemplateChild(nameof(PrimaryButton)) as ButtonBase;
+        SecondaryButton = GetTemplateChild(nameof(SecondaryButton)) as ButtonBase;
+        CloseButton = GetTemplateChild(nameof(CloseButton)) as ButtonBase;
 
-        PrimaryButton.Click += OnPrimaryButtonClick;
-        SecondaryButton.Click += OnSecondaryButtonClick;
-        CloseButton.Click += OnCloseButtonClick;
+        PrimaryButton?.Click += OnPrimaryButtonClick;
+        SecondaryButton?.Click += OnSecondaryButtonClick;
+        CloseButton?.Click += OnCloseButtonClick;
     }
 
     private void OnPrimaryButtonClick(object sender, RoutedEventArgs e)
@@ -461,20 +462,29 @@ public partial class ContentDialogView : ContentControl, IContentDialog
         switch (DefaultButton)
         {
             case ContentDialogButton.Primary:
-                PrimaryButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
-                PrimaryButton.Focus(FocusState.Programmatic);
+                if (PrimaryButton is not null)
+                {
+                    PrimaryButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
+                    PrimaryButton.Focus(FocusState.Programmatic);
+                }
                 DefaultButtonState = "PrimaryAsDefaultButton";
                 break;
 
             case ContentDialogButton.Secondary:
-                SecondaryButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
-                SecondaryButton.Focus(FocusState.Programmatic);
+                if (SecondaryButton is not null)
+                {
+                    SecondaryButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
+                    SecondaryButton.Focus(FocusState.Programmatic);
+                }
                 DefaultButtonState = "SecondaryAsDefaultButton";
                 break;
 
             case ContentDialogButton.Close:
-                CloseButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
-                CloseButton.Focus(FocusState.Programmatic);
+                if (CloseButton is not null)
+                {
+                    CloseButton.KeyboardAccelerators.Add(new KeyboardAccelerator { Key = VirtualKey.Enter });
+                    CloseButton.Focus(FocusState.Programmatic);
+                }
                 DefaultButtonState = "CloseAsDefaultButton";
                 break;
 

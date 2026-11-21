@@ -5,13 +5,13 @@ using System;
 
 namespace SuGarToolkit.WinUI3.Controls.Dialogs;
 
-[TemplatePart(Name = nameof(PART_UacStyleDialogView), Type = typeof(UacStyleDialogView))]
-[TemplateVisualState(GroupName = "IconStates", Name = "None")]
-[TemplateVisualState(GroupName = "IconStates", Name = "Information")]
-[TemplateVisualState(GroupName = "IconStates", Name = "Question")]
-[TemplateVisualState(GroupName = "IconStates", Name = "Error")]
-[TemplateVisualState(GroupName = "IconStates", Name = "Warning")]
-[TemplateVisualState(GroupName = "IconStates", Name = "Success")]
+[TemplatePart(Name = nameof(PART_ContentDialogView), Type = typeof(ContentDialogView))]
+[TemplateVisualState(GroupName = "IconStates", Name = VisualStates.None)]
+[TemplateVisualState(GroupName = "IconStates", Name = VisualStates.Information)]
+[TemplateVisualState(GroupName = "IconStates", Name = VisualStates.Question)]
+[TemplateVisualState(GroupName = "IconStates", Name = VisualStates.Error)]
+[TemplateVisualState(GroupName = "IconStates", Name = VisualStates.Warning)]
+[TemplateVisualState(GroupName = "IconStates", Name = VisualStates.Success)]
 public partial class MessageBoxView : Control
 {
     public MessageBoxView()
@@ -111,33 +111,36 @@ public partial class MessageBoxView : Control
         }
     }
 
-    private UacStyleDialogView PART_UacStyleDialogView;
+    private ContentDialogView? PART_ContentDialogView;
 
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
-        PART_UacStyleDialogView = (UacStyleDialogView) GetTemplateChild(nameof(PART_UacStyleDialogView));
-        PART_UacStyleDialogView.PrimaryButtonClick += OnPrimaryButtonClick;
-        PART_UacStyleDialogView.SecondaryButtonClick += OnSecondaryButtonClick;
-        PART_UacStyleDialogView.CloseButtonClick += OnCloseButtonClick;
-	}
+        PART_ContentDialogView = GetTemplateChild(nameof(PART_ContentDialogView)) as ContentDialogView;
+        if (PART_ContentDialogView is not null)
+        {
+            PART_ContentDialogView.PrimaryButtonClick += OnPrimaryButtonClick;
+            PART_ContentDialogView.SecondaryButtonClick += OnSecondaryButtonClick;
+            PART_ContentDialogView.CloseButtonClick += OnCloseButtonClick;
+        }
+    }
 
-	private void OnLoaded(object sender, RoutedEventArgs e)
-	{
-        //PART_UacStyleDialogView.MaxWidth = double.PositiveInfinity;
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        //PART_ContentDialogView.MaxWidth = double.PositiveInfinity;
         DetermineIconState();
         DetermineButtons();
-	}
+    }
 
-	private void OnSizeChanged(object sender, SizeChangedEventArgs e)
-	{
+    private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+    {
         if (IsLoaded)
         {
-			PART_UacStyleDialogView.MaxWidth = double.PositiveInfinity;
-		}
-	}
+            PART_ContentDialogView?.MaxWidth = double.PositiveInfinity;
+        }
+    }
 
-	private void OnPrimaryButtonClick(object? sender, EventArgs e)
+    private void OnPrimaryButtonClick(object? sender, EventArgs e)
     {
         Result = Buttons switch
         {
@@ -187,6 +190,101 @@ public partial class MessageBoxView : Control
         IconState = Icon.ToString();
     }
 
+    private void DetermineButtons()
+    {
+        if (PART_ContentDialogView is null)
+            return;
+
+        switch (Buttons)
+        {
+            case MessageBoxButtons.OK:
+                {
+                    MessageBoxButtonString okString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.OK);
+                    PART_ContentDialogView.CloseButtonContent = okString.Text;
+                    PART_ContentDialogView.CloseButtonAccessKey = okString.Key;
+                    PART_ContentDialogView.DefaultButton = ContentDialogButton.Close;
+                    break;
+                }
+
+            case MessageBoxButtons.OKCancel:
+                {
+                    MessageBoxButtonString okString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.OK);
+                    MessageBoxButtonString cancelString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Cancel);
+                    PART_ContentDialogView.PrimaryButtonContent = okString.Text;
+                    PART_ContentDialogView.PrimaryButtonAccessKey = okString.Key;
+                    PART_ContentDialogView.CloseButtonContent = cancelString.Text;
+                    PART_ContentDialogView.CloseButtonAccessKey = cancelString.Key;
+                    PART_ContentDialogView.DefaultButton = ContentDialogButton.Close;
+                    break;
+                }
+
+            case MessageBoxButtons.YesNo:
+                {
+                    MessageBoxButtonString yesString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Yes);
+                    MessageBoxButtonString noString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.No);
+                    PART_ContentDialogView.PrimaryButtonContent = yesString.Text;
+                    PART_ContentDialogView.PrimaryButtonAccessKey = yesString.Key;
+                    PART_ContentDialogView.SecondaryButtonContent = noString.Text;
+                    PART_ContentDialogView.SecondaryButtonAccessKey = noString.Key;
+                    break;
+                }
+
+            case MessageBoxButtons.YesNoCancel:
+                {
+                    MessageBoxButtonString yesString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Yes);
+                    MessageBoxButtonString noString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.No);
+                    MessageBoxButtonString cancelString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Cancel);
+                    PART_ContentDialogView.PrimaryButtonContent = yesString.Text;
+                    PART_ContentDialogView.PrimaryButtonAccessKey = yesString.Key;
+                    PART_ContentDialogView.SecondaryButtonContent = noString.Text;
+                    PART_ContentDialogView.SecondaryButtonAccessKey = noString.Key;
+                    PART_ContentDialogView.CloseButtonContent = cancelString.Text;
+                    PART_ContentDialogView.CloseButtonAccessKey = cancelString.Key;
+                    break;
+                }
+
+            case MessageBoxButtons.AbortRetryIgnore:
+                {
+                    MessageBoxButtonString abortString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Abort);
+                    MessageBoxButtonString retryString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Retry);
+                    MessageBoxButtonString ignoreString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Ignore);
+                    PART_ContentDialogView.PrimaryButtonContent = abortString.Text;
+                    PART_ContentDialogView.PrimaryButtonAccessKey = abortString.Key;
+                    PART_ContentDialogView.SecondaryButtonContent = retryString.Text;
+                    PART_ContentDialogView.SecondaryButtonAccessKey = retryString.Key;
+                    PART_ContentDialogView.CloseButtonContent = ignoreString.Text;
+                    PART_ContentDialogView.CloseButtonAccessKey = ignoreString.Key;
+                    break;
+                }
+
+            case MessageBoxButtons.RetryCancel:
+                {
+                    MessageBoxButtonString retryString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Retry);
+                    MessageBoxButtonString cancelString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Cancel);
+                    PART_ContentDialogView.PrimaryButtonContent = retryString.Text;
+                    PART_ContentDialogView.PrimaryButtonAccessKey = retryString.Key;
+                    PART_ContentDialogView.SecondaryButtonContent = cancelString.Text;
+                    PART_ContentDialogView.SecondaryButtonAccessKey = cancelString.Key;
+                    break;
+                }
+
+            case MessageBoxButtons.CancelTryContinue:
+                {
+                    MessageBoxButtonString continueString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Continue);
+                    MessageBoxButtonString tryString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.TryAgain);
+                    MessageBoxButtonString cancelString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Cancel);
+                    PART_ContentDialogView.PrimaryButtonContent = continueString.Text;
+                    PART_ContentDialogView.PrimaryButtonAccessKey = continueString.Key;
+                    PART_ContentDialogView.SecondaryButtonContent = tryString.Text;
+                    PART_ContentDialogView.SecondaryButtonAccessKey = tryString.Key;
+                    PART_ContentDialogView.CloseButtonContent = cancelString.Text;
+                    PART_ContentDialogView.CloseButtonAccessKey = cancelString.Key;
+                    PART_ContentDialogView.DefaultButton = ContentDialogButton.Close;
+                    break;
+                }
+        }
+    }
+
     private string? IconState
     {
         get => field;
@@ -197,96 +295,14 @@ public partial class MessageBoxView : Control
         }
     }
 
-    private void DetermineButtons()
+    protected static class VisualStates
     {
-        switch (Buttons)
-        {
-            case MessageBoxButtons.OK:
-                {
-                    MessageBoxButtonString okString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.OK);
-                    PART_UacStyleDialogView.CloseButtonContent = okString.Text;
-                    PART_UacStyleDialogView.CloseButtonAccessKey = okString.Key;
-                    PART_UacStyleDialogView.DefaultButton = ContentDialogButton.Close;
-                    break;
-                }
-
-            case MessageBoxButtons.OKCancel:
-                {
-                    MessageBoxButtonString okString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.OK);
-                    MessageBoxButtonString cancelString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Cancel);
-                    PART_UacStyleDialogView.PrimaryButtonContent = okString.Text;
-                    PART_UacStyleDialogView.PrimaryButtonAccessKey = okString.Key;
-                    PART_UacStyleDialogView.CloseButtonContent = cancelString.Text;
-                    PART_UacStyleDialogView.CloseButtonAccessKey = cancelString.Key;
-                    PART_UacStyleDialogView.DefaultButton = ContentDialogButton.Close;
-                    break;
-                }
-
-            case MessageBoxButtons.YesNo:
-                {
-                    MessageBoxButtonString yesString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Yes);
-                    MessageBoxButtonString noString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.No);
-                    PART_UacStyleDialogView.PrimaryButtonContent = yesString.Text;
-                    PART_UacStyleDialogView.PrimaryButtonAccessKey = yesString.Key;
-                    PART_UacStyleDialogView.SecondaryButtonContent = noString.Text;
-                    PART_UacStyleDialogView.SecondaryButtonAccessKey = noString.Key;
-                    break;
-                }
-
-            case MessageBoxButtons.YesNoCancel:
-                {
-                    MessageBoxButtonString yesString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Yes);
-                    MessageBoxButtonString noString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.No);
-                    MessageBoxButtonString cancelString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Cancel);
-                    PART_UacStyleDialogView.PrimaryButtonContent = yesString.Text;
-                    PART_UacStyleDialogView.PrimaryButtonAccessKey = yesString.Key;
-                    PART_UacStyleDialogView.SecondaryButtonContent = noString.Text;
-                    PART_UacStyleDialogView.SecondaryButtonAccessKey = noString.Key;
-                    PART_UacStyleDialogView.CloseButtonContent = cancelString.Text;
-                    PART_UacStyleDialogView.CloseButtonAccessKey = cancelString.Key;
-                    break;
-                }
-
-            case MessageBoxButtons.AbortRetryIgnore:
-                {
-                    MessageBoxButtonString abortString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Abort);
-                    MessageBoxButtonString retryString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Retry);
-                    MessageBoxButtonString ignoreString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Ignore);
-                    PART_UacStyleDialogView.PrimaryButtonContent = abortString.Text;
-                    PART_UacStyleDialogView.PrimaryButtonAccessKey = abortString.Key;
-                    PART_UacStyleDialogView.SecondaryButtonContent = retryString.Text;
-                    PART_UacStyleDialogView.SecondaryButtonAccessKey = retryString.Key;
-                    PART_UacStyleDialogView.CloseButtonContent = ignoreString.Text;
-                    PART_UacStyleDialogView.CloseButtonAccessKey = ignoreString.Key;
-                    break;
-                }
-
-            case MessageBoxButtons.RetryCancel:
-                {
-                    MessageBoxButtonString retryString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Retry);
-                    MessageBoxButtonString cancelString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Cancel);
-                    PART_UacStyleDialogView.PrimaryButtonContent = retryString.Text;
-                    PART_UacStyleDialogView.PrimaryButtonAccessKey = retryString.Key;
-                    PART_UacStyleDialogView.SecondaryButtonContent = cancelString.Text;
-                    PART_UacStyleDialogView.SecondaryButtonAccessKey = cancelString.Key;
-                    break;
-                }
-
-            case MessageBoxButtons.CancelTryContinue:
-                {
-                    MessageBoxButtonString continueString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Continue);
-                    MessageBoxButtonString tryString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.TryAgain);
-                    MessageBoxButtonString cancelString = MessageBoxButtonString.FromUser32(NativeMessageBoxButtonStringLoader.Cancel);
-                    PART_UacStyleDialogView.PrimaryButtonContent = continueString.Text;
-                    PART_UacStyleDialogView.PrimaryButtonAccessKey = continueString.Key;
-                    PART_UacStyleDialogView.SecondaryButtonContent = tryString.Text;
-                    PART_UacStyleDialogView.SecondaryButtonAccessKey = tryString.Key;
-                    PART_UacStyleDialogView.CloseButtonContent = cancelString.Text;
-                    PART_UacStyleDialogView.CloseButtonAccessKey = cancelString.Key;
-                    PART_UacStyleDialogView.DefaultButton = ContentDialogButton.Close;
-                    break;
-                }
-        }
+        public const string None = nameof(MessageBoxIcon.None);
+        public const string Information = nameof(MessageBoxIcon.Information);
+        public const string Question = nameof(MessageBoxIcon.Question);
+        public const string Error = nameof(MessageBoxIcon.Error);
+        public const string Warning = nameof(MessageBoxIcon.Warning);
+        public const string Success = nameof(MessageBoxIcon.Success);
     }
 
     private readonly struct MessageBoxButtonString
@@ -310,7 +326,6 @@ public partial class MessageBoxView : Control
             else
             {
                 text = loadedString.Remove(i, 1);
-                //text = text.Substring(0, text.IndexOf('('));
                 key = loadedString[i + 1].ToString();  // For letters, VirtualKey enum value is the same as unicode.
             }
             return new MessageBoxButtonString(text, key);

@@ -6,7 +6,7 @@
 
 	<ResourceDictionary.MergedDictionaries>
 		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/MessageBox/MessageBoxView_themeresources.xaml" />
-		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/UacStyleDialog/UacStyleDialogView.xaml" />
+		<ResourceDictionary Source="/SuGarToolkit.WinUI3.Controls.Dialogs/ContentDialog/ContentDialogView.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 
 	<local:MessageBoxDefaultButtonToContentDialogButtonConverter x:Key="MessageBoxDefaultButtonToContentDialogButtonConverter" />
@@ -15,15 +15,14 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="local:MessageBoxView">
-					<local:UacStyleDialogView
-						x:Name="PART_UacStyleDialogView"
+					<local:ContentDialogView
+						x:Name="PART_ContentDialogView"
 						MaxWidth="{ThemeResource ContentDialogMaxWidth}"
 						Background="{TemplateBinding Background}"
 						BorderBrush="{TemplateBinding BorderBrush}"
 						BorderThickness="{TemplateBinding BorderThickness}"
-						DefaultButton="{Binding DefaultButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={ThemeResource MessageBoxDefaultButtonToContentDialogButtonConverter}}"
-						ExtendedHeader="{TemplateBinding Title}">
-						<local:UacStyleDialogView.Resources>
+						DefaultButton="{Binding DefaultButton, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={ThemeResource MessageBoxDefaultButtonToContentDialogButtonConverter}}">
+						<local:ContentDialogView.Resources>
 							<SolidColorBrush x:Key="TextBoxBackgroundThemeBrush" Color="Transparent" />
 							<SolidColorBrush x:Key="TextControlBackground" Color="Transparent" />
 							<SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="Transparent" />
@@ -46,47 +45,49 @@
 								<Setter Property="MinHeight" Value="0" />
 								<Setter Property="TextWrapping" Value="Wrap" />
 							</Style>
-						</local:UacStyleDialogView.Resources>
+						</local:ContentDialogView.Resources>
 
-						<local:UacStyleDialogView.ExtendedHeaderTemplate>
-							<DataTemplate>
+						<local:ContentDialogView.Header>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="auto" />
+									<ColumnDefinition Width="*" />
+								</Grid.ColumnDefinitions>
+
+								<Grid
+									x:Name="IconArea"
+									Grid.Column="0"
+									Margin="{ThemeResource MessageBoxIconMargin}"
+									VerticalAlignment="Top">
+									<FontIcon
+										x:Name="IconBackground"
+										AutomationProperties.AccessibilityView="Raw"
+										FontSize="{ThemeResource MessageBoxIconFontSize}"
+										Foreground="{ThemeResource MessageBoxInformationalSeverityIconBackground}"
+										Glyph="{ThemeResource MessageBoxIconBackgroundGlyph}" />
+
+									<FontIcon
+										x:Name="StandardIcon"
+										FontSize="{ThemeResource MessageBoxIconFontSize}"
+										Foreground="{ThemeResource MessageBoxInformationalSeverityIconForeground}"
+										Glyph="{ThemeResource MessageBoxInformationalIconGlyph}" />
+								</Grid>
+
 								<TextBlock
-									Margin="0,8,0,0"
-									HorizontalAlignment="Stretch"
+									Grid.Column="1"
+									VerticalAlignment="Center"
 									FontSize="20"
 									FontWeight="SemiBold"
-									Text="{Binding}"
+									Text="{TemplateBinding Title}"
 									TextWrapping="Wrap" />
-							</DataTemplate>
-						</local:UacStyleDialogView.ExtendedHeaderTemplate>
+							</Grid>
+						</local:ContentDialogView.Header>
 
 						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="auto" />
 								<ColumnDefinition Width="*" />
 							</Grid.ColumnDefinitions>
-
-							<Grid
-								x:Name="IconArea"
-								Grid.Column="0"
-								VerticalAlignment="Top">
-								<TextBlock
-									x:Name="IconBackground"
-									Margin="{ThemeResource MessageBoxIconMargin}"
-									AutomationProperties.AccessibilityView="Raw"
-									FontFamily="{ThemeResource SymbolThemeFontFamily}"
-									FontSize="{ThemeResource MessageBoxIconFontSize}"
-									Foreground="{ThemeResource MessageBoxInformationalSeverityIconBackground}"
-									Text="{ThemeResource MessageBoxIconBackgroundGlyph}" />
-
-								<TextBlock
-									x:Name="StandardIcon"
-									Margin="{ThemeResource MessageBoxIconMargin}"
-									FontFamily="{ThemeResource SymbolThemeFontFamily}"
-									FontSize="{ThemeResource MessageBoxIconFontSize}"
-									Foreground="{ThemeResource MessageBoxInformationalSeverityIconForeground}"
-									Text="{ThemeResource MessageBoxInformationalIconGlyph}" />
-							</Grid>
 
 							<TextBox
 								Grid.Column="1"
@@ -108,47 +109,42 @@
 								<VisualState x:Name="Information">
 									<VisualState.Setters>
 										<Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxInformationalSeverityIconBackground}" />
-										<Setter Target="StandardIcon.Text" Value="{ThemeResource MessageBoxInformationalIconGlyph}" />
+										<Setter Target="StandardIcon.Glyph" Value="{ThemeResource MessageBoxInformationalIconGlyph}" />
 										<Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxInformationalSeverityIconForeground}" />
-										<Setter Target="PART_UacStyleDialogView.Style" Value="{ThemeResource UacStyleDialogViewInformationalSeverityStyle}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Question">
 									<VisualState.Setters>
 										<Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxQuestionalSeverityIconBackground}" />
-										<Setter Target="StandardIcon.Text" Value="{ThemeResource MessageBoxQuestionalIconGlyph}" />
+										<Setter Target="StandardIcon.Glyph" Value="{ThemeResource MessageBoxQuestionalIconGlyph}" />
 										<Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxQuestionalSeverityIconForeground}" />
-										<Setter Target="PART_UacStyleDialogView.Style" Value="{ThemeResource UacStyleDialogViewInformationalSeverityStyle}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Error">
 									<VisualState.Setters>
 										<Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxErrorSeverityIconBackground}" />
-										<Setter Target="StandardIcon.Text" Value="{ThemeResource MessageBoxErrorIconGlyph}" />
+										<Setter Target="StandardIcon.Glyph" Value="{ThemeResource MessageBoxErrorIconGlyph}" />
 										<Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxErrorSeverityIconForeground}" />
-										<Setter Target="PART_UacStyleDialogView.Style" Value="{ThemeResource UacStyleDialogViewErrorSeverityStyle}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Warning">
 									<VisualState.Setters>
-										<Setter Target="IconBackground.Text" Value="{ThemeResource MessageBoxWarningBackgroundGlyph}" />
+										<Setter Target="IconBackground.Glyph" Value="{ThemeResource MessageBoxWarningBackgroundGlyph}" />
 										<Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxWarningSeverityIconBackground}" />
-										<Setter Target="StandardIcon.Text" Value="{ThemeResource MessageBoxWarningIconGlyph}" />
+										<Setter Target="StandardIcon.Glyph" Value="{ThemeResource MessageBoxWarningIconGlyph}" />
 										<Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxWarningSeverityIconForeground}" />
-										<Setter Target="PART_UacStyleDialogView.Style" Value="{ThemeResource UacStyleDialogViewWarningSeverityStyle}" />
 									</VisualState.Setters>
 								</VisualState>
 								<VisualState x:Name="Success">
 									<VisualState.Setters>
 										<Setter Target="IconBackground.Foreground" Value="{ThemeResource MessageBoxSuccessSeverityIconBackground}" />
-										<Setter Target="StandardIcon.Text" Value="{ThemeResource MessageBoxSuccessIconGlyph}" />
+										<Setter Target="StandardIcon.Glyph" Value="{ThemeResource MessageBoxSuccessIconGlyph}" />
 										<Setter Target="StandardIcon.Foreground" Value="{ThemeResource MessageBoxSuccessSeverityIconForeground}" />
-										<Setter Target="PART_UacStyleDialogView.Style" Value="{ThemeResource UacStyleDialogViewSuccessSeverityStyle}" />
 									</VisualState.Setters>
 								</VisualState>
 							</VisualStateGroup>
 						</VisualStateManager.VisualStateGroups>
-					</local:UacStyleDialogView>
+					</local:ContentDialogView>
 				</ControlTemplate>
 			</Setter.Value>
 		</Setter>

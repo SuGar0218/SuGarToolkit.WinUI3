@@ -29,8 +29,7 @@
 			<StaticResource x:Key="MessageBoxInformationalSeverityBackgroundBrush" ResourceKey="SystemFillColorAttentionBackgroundBrush" />
 			<StaticResource x:Key="MessageBoxQuestionalSeverityBackgroundBrush" ResourceKey="SystemFillColorAttentionBackgroundBrush" />
 			<StaticResource x:Key="MessageBoxErrorSeverityIconBackground" ResourceKey="SystemFillColorCriticalBrush" />
-			<!--<StaticResource x:Key="MessageBoxWarningSeverityIconBackground" ResourceKey="SystemFillColorCautionBrush" />-->
-			<SolidColorBrush x:Key="MessageBoxWarningSeverityIconBackground" Color="#FCE100" />
+			<SolidColorBrush x:Key="MessageBoxWarningSeverityIconBackground" Color="#FFCC00" />
 			<StaticResource x:Key="MessageBoxSuccessSeverityIconBackground" ResourceKey="SystemFillColorSuccessBrush" />
 			<StaticResource x:Key="MessageBoxInformationalSeverityIconBackground" ResourceKey="SystemFillColorAttentionBrush" />
 			<StaticResource x:Key="MessageBoxQuestionalSeverityIconBackground" ResourceKey="SystemFillColorAttentionBrush" />
@@ -60,13 +59,13 @@
 	</ResourceDictionary.ThemeDictionaries>
 
 	<x:Double x:Key="MessageBoxIconFontSize">36</x:Double>
-	<Thickness x:Key="MessageBoxIconMargin">0,0,12,0</Thickness>
+	<Thickness x:Key="MessageBoxIconMargin">0,2,12,2</Thickness>
 	<x:String x:Key="MessageBoxIconBackgroundGlyph">&#xF136;</x:String>
 	<x:String x:Key="MessageBoxWarningBackgroundGlyph">&#xF139;</x:String>
 	<x:String x:Key="MessageBoxInformationalIconGlyph">&#xF13F;</x:String>
 	<x:String x:Key="MessageBoxQuestionalIconGlyph">&#xF142;</x:String>
 	<x:String x:Key="MessageBoxErrorIconGlyph">&#xF13D;</x:String>
-	<x:String x:Key="MessageBoxWarningIconGlyph">&#xF13C;</x:String>
+	<x:String x:Key="MessageBoxWarningIconGlyph">&#xF13B;</x:String>
 	<x:String x:Key="MessageBoxSuccessIconGlyph">&#xF13E;</x:String>
 
 </ResourceDictionary>
