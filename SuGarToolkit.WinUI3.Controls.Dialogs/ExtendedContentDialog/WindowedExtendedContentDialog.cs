@@ -496,7 +496,7 @@ public partial class WindowedExtendedContentDialog : DependencyObject, IExtended
         {
             Content = _view,
             SystemBackdrop = SystemBackdrop,
-            Owner = Owner
+            OwnerAppWindow = Owner?.AppWindow
         };
         await _window.ShowDialogAsync();
         return Result;

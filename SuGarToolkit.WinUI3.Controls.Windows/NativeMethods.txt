@@ -4,6 +4,7 @@ SetWindowLong
 GetWindowLongPtr
 SetWindowLongPtr
 SetWindowSubclass
+SetActiveWindow
 RemoveWindowSubclass
 DefSubclassProc
 ﻿DwmGetWindowAttribute

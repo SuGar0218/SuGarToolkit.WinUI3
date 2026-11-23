@@ -22,7 +22,7 @@ public partial class ContentWindow : ContentControl
 {
     public ContentWindow() : this(new Window()) { }
 
-    public ContentWindow(Window window)
+    private ContentWindow(Window window)
     {
         DefaultStyleKey = typeof(ContentWindow);
         _window = window;
@@ -588,7 +588,7 @@ public partial class ContentWindow : ContentControl
         }
     }
 
-    public Window? Owner
+    public AppWindow? OwnerAppWindow
     {
         get => field;
         set
@@ -597,14 +597,21 @@ public partial class ContentWindow : ContentControl
                 return;
 
             field = value;
-            nint ownerHwnd = Owner is null ? nint.Zero : Win32Interop.GetWindowFromWindowId(Owner.AppWindow.Id);
+            if (value is not null)
+            {
+                RequestedTheme = value.TitleBar.PreferredTheme switch
+                {
+                    TitleBarTheme.Light => ElementTheme.Light,
+                    TitleBarTheme.Dark => ElementTheme.Dark,
+                    _ => ElementTheme.Default
+                };
+            }
+            nint ownerHwnd = value is null ? nint.Zero : Win32Interop.GetWindowFromWindowId(value.Id);
             PInvokeNative.SetWindowLongPtr(_hwnd, WINDOW_LONG_PTR_INDEX.GWLP_HWNDPARENT, new HWND(ownerHwnd));
         }
     }
 
     public double DpiScale => IsLoaded ? XamlRoot.RasterizationScale : (double) PInvoke.GetDpiForWindow(_hwnd) / 96;
-
-    public static Window? GetWindow(UIElement element) => GetContentWindow(element)?.Window;
 
     public static ContentWindow? GetContentWindow(UIElement element) => element.XamlRoot.Content as ContentWindow;
 
@@ -644,14 +651,14 @@ public partial class ContentWindow : ContentControl
 
     private void MoveToCenterOwner()
     {
-        if (Owner is null)
+        if (OwnerAppWindow is null)
         {
             MoveToCenterScreen();
             return;
         }
         Window.AppWindow.Move(new PointInt32(
-            Owner.AppWindow.Position.X + (Owner.AppWindow.Size.Width - Window.AppWindow.Size.Width) / 2,
-            Owner.AppWindow.Position.Y + (Owner.AppWindow.Size.Height - Window.AppWindow.Size.Height) / 2)
+            OwnerAppWindow.Position.X + (OwnerAppWindow.Size.Width - Window.AppWindow.Size.Width) / 2,
+            OwnerAppWindow.Position.Y + (OwnerAppWindow.Size.Height - Window.AppWindow.Size.Height) / 2)
         );
     }
 
@@ -664,21 +671,22 @@ public partial class ContentWindow : ContentControl
         }
     }
 
-    public async Task ShowDialogAsync()
+    public Task ShowDialogAsync()
     {
         TaskCompletionSource taskCompletionSource = new();
         Closed += OnClosed;
         void OnClosed(object? sender, EventArgs e)
         {
-            Closed -= OnClosed;
+            ContentWindow window = (ContentWindow) sender!;
+            window.Closed -= OnClosed;
             taskCompletionSource.SetResult();
         }
-        if (Owner is not null)
+        if (OwnerAppWindow is not null)
         {
             (Window.AppWindow.Presenter as OverlappedPresenter)?.IsModal = true;
         }
         Show();
-        await taskCompletionSource.Task;
+        return taskCompletionSource.Task;
     }
 
     public void Hide()
@@ -737,7 +745,11 @@ public partial class ContentWindow : ContentControl
 
     private void CloseImmediately()
     {
-        Owner?.Activate();
+        if (OwnerAppWindow is not null)
+        {
+            nint ownerHwnd = Win32Interop.GetWindowFromWindowId(OwnerAppWindow.Id);
+            PInvoke.SetActiveWindow(new HWND(ownerHwnd));
+        }
         Window.AppWindow.Hide();
         Window.Close();
     }
@@ -832,13 +844,16 @@ public partial class ContentWindow : ContentControl
     protected virtual void OnClosed()  // OnClosed is not triggered by Window.Closed because adding breakpoint in it may cause a crash
     {
         _subclassProcHelper.Dispose();
-        (Window.AppWindow.Presenter as OverlappedPresenter)?.IsModal = false;
         Closed?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnAppWindowClosing(AppWindow sender, AppWindowClosingEventArgs args)
     {
-        Owner?.Activate();
+        if (OwnerAppWindow is not null)
+        {
+            nint ownerHwnd = Win32Interop.GetWindowFromWindowId(OwnerAppWindow.Id);
+            PInvoke.SetActiveWindow(new HWND(ownerHwnd));
+        }
         sender.Hide();
     }
 

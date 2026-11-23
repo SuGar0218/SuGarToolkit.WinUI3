@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
 
 using System.Threading.Tasks;
@@ -17,12 +18,12 @@ public partial class MessageBox
         return Show(null, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1);
     }
 
-    public static Task<MessageBoxResult> Show(Window? owner, string message)
+    public static Task<MessageBoxResult> Show(AppWindow? owner, string message)
     {
         return Show(owner, message, null, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1);
     }
 
-    public static Task<MessageBoxResult> Show(Window? owner, string? message, string? title)
+    public static Task<MessageBoxResult> Show(AppWindow? owner, string? message, string? title)
     {
         return Show(owner, message, title, MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1);
     }
@@ -38,7 +39,7 @@ public partial class MessageBox
     }
 
     public static Task<MessageBoxResult> Show(
-        Window? owner,
+        AppWindow? owner,
         string? message,
         string? title,
         MessageBoxButtons buttons,
@@ -47,7 +48,7 @@ public partial class MessageBox
     {
         return new MessageBox
         {
-            Owner = owner,
+            OwnerAppWindow = owner,
             Title = title,
             Message = message,
             Buttons = buttons,

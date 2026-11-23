@@ -1,9 +1,9 @@
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
 
 using SuGarToolkit.WinUI3.Controls.Dialogs;
-using SuGarToolkit.WinUI3.Controls.Windows;
 
 namespace SuGarToolkit.WinUI3.GalleryApp.Views;
 
@@ -25,7 +25,7 @@ public sealed partial class ContentDialogPage : Page
             CloseButtonContent = WindowedContentDialogInfo.CloseButtonText,
             ButtonOrientation = WindowedContentDialogInfo.Orientation,
             SystemBackdrop = new MicaBackdrop(),
-            Owner = ContentWindow.GetWindow(this)
+            OwnerAppWindow = AppWindow.GetFromWindowId(XamlRoot.ContentIslandEnvironment.AppWindowId)
         }
         .ShowAsync();
     }
@@ -39,7 +39,7 @@ public sealed partial class ContentDialogPage : Page
             CloseButtonContent = ContentDialogWindowInfo.CloseButtonText,
             ButtonOrientation = ContentDialogWindowInfo.Orientation,
             ShowInTaskbar = ContentDialogWindowInfo.ShowInTaskbar,
-            Owner = ContentWindow.GetWindow(this)
+            OwnerAppWindow = AppWindow.GetFromWindowId(XamlRoot.ContentIslandEnvironment.AppWindowId)
         };
         if (ContentDialogWindowInfo.IsModal)
         {
@@ -60,7 +60,7 @@ public sealed partial class ContentDialogPage : Page
             CloseButtonContent = ExtendedContentDialogWindowInfo.CloseButtonText,
             ButtonOrientation = ExtendedContentDialogWindowInfo.Orientation,
             ShowInTaskbar = ExtendedContentDialogWindowInfo.ShowInTaskbar,
-            Owner = ContentWindow.GetWindow(this)
+            OwnerAppWindow = AppWindow.GetFromWindowId(XamlRoot.ContentIslandEnvironment.AppWindowId)
         };
         if (ExtendedContentDialogWindowInfo.IsModal)
         {
@@ -76,7 +76,7 @@ public sealed partial class ContentDialogPage : Page
     {
         SampleUacStyleDialogWindow window = new()
         {
-            Owner = ContentWindow.GetWindow(this),
+            OwnerAppWindow = AppWindow.GetFromWindowId(XamlRoot.ContentIslandEnvironment.AppWindowId),
             Severity = (InfoBarSeverity) PART_SeverityComboBox.SelectedItem
         };
         await window.ShowDialogAsync();

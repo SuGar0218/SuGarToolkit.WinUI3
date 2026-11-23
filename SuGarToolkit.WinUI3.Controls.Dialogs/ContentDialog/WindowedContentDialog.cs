@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Markup;
 using Microsoft.UI.Xaml.Media;
@@ -445,7 +446,7 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
 
     #endregion
 
-    public Window? Owner { get; set; }
+    public AppWindow? OwnerAppWindow { get; set; }
 
     public ContentDialogResult Result => _view.Result;
 
@@ -463,7 +464,7 @@ public partial class WindowedContentDialog : DependencyObject, IContentDialog, I
         {
             Content = _view,
             SystemBackdrop = SystemBackdrop,
-            Owner = Owner,
+            OwnerAppWindow = OwnerAppWindow,
         };
         await _window.ShowDialogAsync();
         return Result;

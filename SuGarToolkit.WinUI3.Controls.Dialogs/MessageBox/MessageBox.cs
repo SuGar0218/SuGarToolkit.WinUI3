@@ -1,5 +1,5 @@
-﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Media;
+﻿using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
 
 using System;
 using System.Threading.Tasks;
@@ -112,10 +112,10 @@ public partial class MessageBox : DependencyObject
 
     #endregion
 
-    public Window? Owner
+    public AppWindow? OwnerAppWindow
     {
-        get => _window.Owner;
-        set => _window.Owner = value;
+        get => _window.OwnerAppWindow;
+        set => _window.OwnerAppWindow = value;
     }
 
     private readonly DialogWindowBase _window;
